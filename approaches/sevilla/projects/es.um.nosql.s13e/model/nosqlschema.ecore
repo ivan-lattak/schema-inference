@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="NoSQLSchema" nsURI="http://www.modelum.es/NoSQLSchema" nsPrefix="NoSQLSchema">
+  <eClassifiers xsi:type="ecore:EClass" name="NoSQLSchema">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
+        eType="#//EntityType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relationships" upperBound="-1"
+        eType="#//RelationshipType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityType" eSuperTypes="#//SchemaType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="root" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructuralVariation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variationId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" lowerBound="1"
+        upperBound="-1" eType="#//Property" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstTimestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastTimestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
+        eType="#//SchemaType" eOpposite="#//SchemaType/variations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" upperBound="-1" eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Property">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//DataType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PList" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" eType="#//DataType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" abstract="true" eSuperTypes="#//Property">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Association">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="#//Reference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refsTo" lowerBound="1"
+        eType="#//EntityType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//StructuralVariation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Aggregate" eSuperTypes="#//Association">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregates" unique="false"
+        lowerBound="1" upperBound="-1" eType="#//StructuralVariation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Null" eSuperTypes="#//Property"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationshipType" eSuperTypes="#//SchemaType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SchemaType" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parents" upperBound="-1"
+        eType="#//SchemaType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variations" lowerBound="1"
+        upperBound="-1" eType="#//StructuralVariation" containment="true" eOpposite="#//StructuralVariation/container"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PMap" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyType" eType="#//PrimitiveType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueType" eType="#//DataType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PSet" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" eType="#//DataType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PTuple" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//DataType" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

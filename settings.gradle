@@ -1,0 +1,10 @@
+rootProject.name = 'SchemaInference'
+
+file('approaches').eachDir { dir ->
+    include dir.name
+    project(":${dir.name}").projectDir = dir
+
+    if (file("$dir/settings.gradle").exists()) {
+        apply from: "$dir/settings.gradle"
+    }
+}

@@ -1,0 +1,5 @@
+file('projects').eachDir { dir ->
+    def subprojectId = ":sevilla:${dir.name}"
+    include subprojectId
+    project(subprojectId).projectDir = dir
+}
