@@ -18,8 +18,8 @@ dependencies {
 
 version = '1.0.0'
 description = 'jsondiscoverer'
-java.sourceCompatibility = JavaVersion.VERSION_1_7
-java.targetCompatibility = JavaVersion.VERSION_1_7
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.targetCompatibility = JavaVersion.VERSION_1_8
 
 sourceSets {
     main {

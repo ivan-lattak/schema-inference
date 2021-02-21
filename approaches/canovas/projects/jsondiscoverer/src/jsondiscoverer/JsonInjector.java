@@ -238,7 +238,7 @@ public class JsonInjector {
 				return ""; // TODO Improve discovery process to deal with this
 			else return value.getAsJsonPrimitive().getAsString();
 		} else if (eAttribute.getEType().equals(EcorePackage.Literals.EINT)) {
-			return new Integer(value.getAsJsonPrimitive().getAsNumber().intValue());
+			return value.getAsJsonPrimitive().getAsNumber().intValue();
 		} else if (eAttribute.getEType().equals(EcorePackage.Literals.EBOOLEAN)) {
 			return value.getAsJsonPrimitive().getAsBoolean() ? Boolean.TRUE : Boolean.FALSE;
 		} else {
