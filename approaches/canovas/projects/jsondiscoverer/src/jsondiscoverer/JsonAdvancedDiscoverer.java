@@ -172,7 +172,7 @@ public class JsonAdvancedDiscoverer {
 		coverageCreators = new HashMap<JsonSource, CoverageCreator>();
 
 		// Iterating the JsonSouces
-		// At the end of this loop, we have the set of discovered classes 
+		// At the end of this loop, we have the set of discovered classes
 		for (JsonSource jsonSource : this.sourceSet.getJsonSources()) {
 			LOGGER.finer("Analizing JSON source: " + jsonSource.getName());
 			CoverageCreator coverageCreator = new CoverageCreator(jsonSource.getName(), jsonSource.getMetamodel(), finalPackage);
@@ -208,7 +208,7 @@ public class JsonAdvancedDiscoverer {
 			coverageCreators.put(jsonSource, coverageCreator);
 		}
 
-		// Adding the discovered classes in the resulting metamodel 
+		// Adding the discovered classes in the resulting metamodel
 		for (EClass eClass : registry.values()) {
 			finalPackage.getEClassifiers().add(eClass);
 		}
@@ -597,7 +597,7 @@ public class JsonAdvancedDiscoverer {
 		String attributeName = eAttribute.getName();
 
 		if (containmentElementName.equals(sourceName)) {
-			// If the containmentElement name matches with the sourceName, 
+			// If the containmentElement name matches with the sourceName,
 			// we have to deal with the root elements of the JSON
 			for (JsonObject jsonObject : elements) {
 				Iterator<Map.Entry<String, JsonElement>> pairs = jsonObject.entrySet().iterator();
@@ -626,7 +626,7 @@ public class JsonAdvancedDiscoverer {
 							String key2 = pair2.getKey();
 							if (key2.equals(attributeName) && pair2.getValue().isJsonPrimitive() && pair2.getValue().getAsJsonPrimitive().isString()) {
 								result.add(pair2.getValue().getAsJsonPrimitive().toString());
-							} // TODO make this recursive!						
+							} // TODO make this recursive!
 						}
 					}
 				}

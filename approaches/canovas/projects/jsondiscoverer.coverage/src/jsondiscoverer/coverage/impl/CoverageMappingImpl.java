@@ -14,19 +14,19 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public abstract class CoverageMappingImpl extends EObjectImpl implements CoverageMapping {
-	/**
-	 * @generated
-	 */
-	protected CoverageMappingImpl() {
-		super();
-	}
+    /**
+     * @generated
+     */
+    protected CoverageMappingImpl() {
+        super();
+    }
 
-	/**
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoveragePackage.Literals.COVERAGE_MAPPING;
-	}
+    /**
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return CoveragePackage.Literals.COVERAGE_MAPPING;
+    }
 
 } //CoverageMappingImpl

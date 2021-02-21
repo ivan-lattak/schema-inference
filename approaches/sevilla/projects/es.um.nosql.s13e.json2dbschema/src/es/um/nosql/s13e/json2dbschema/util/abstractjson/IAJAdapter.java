@@ -7,11 +7,9 @@ import java.io.File;
 
 /**
  * @author dsevilla
- *
  */
-public interface IAJAdapter<JET>
-{
-	public IAJElement wrap(JET e);
+public interface IAJAdapter<JET> {
+    public IAJElement wrap(JET e);
 
-	public IAJElement readFromFile(File jsonFile);
+    public IAJElement readFromFile(File jsonFile);
 }

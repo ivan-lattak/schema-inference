@@ -1,4 +1,5 @@
 /**
+ *
  */
 package es.um.nosql.s13e.NoSQLSchema;
 
@@ -20,31 +21,33 @@ package es.um.nosql.s13e.NoSQLSchema;
  * @generated
  */
 public interface EntityType extends SchemaType {
-  /**
-	 * Returns the value of the '<em><b>Root</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Root</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root</em>' attribute.
-	 * @see #setRoot(boolean)
-	 * @see es.um.nosql.s13e.NoSQLSchema.NoSQLSchemaPackage#getEntityType_Root()
-	 * @model default="false"
-	 * @generated
-	 */
-  boolean isRoot();
+    /**
+     * Returns the value of the '<em><b>Root</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Root</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     *
+     * @return the value of the '<em>Root</em>' attribute.
+     * @model default="false"
+     * @generated
+     * @see #setRoot(boolean)
+     * @see es.um.nosql.s13e.NoSQLSchema.NoSQLSchemaPackage#getEntityType_Root()
+     */
+    boolean isRoot();
 
-  /**
-	 * Sets the value of the '{@link es.um.nosql.s13e.NoSQLSchema.EntityType#isRoot <em>Root</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root</em>' attribute.
-	 * @see #isRoot()
-	 * @generated
-	 */
-  void setRoot(boolean value);
+    /**
+     * Sets the value of the '{@link es.um.nosql.s13e.NoSQLSchema.EntityType#isRoot <em>Root</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @param value the new value of the '<em>Root</em>' attribute.
+     * @generated
+     * @see #isRoot()
+     */
+    void setRoot(boolean value);
 
 } // EntityType

@@ -38,36 +38,36 @@ public class CoverageImpl extends EObjectImpl implements Coverage {
 	/**
 	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
 	 *
-	 * @see #getMappings()
 	 * @generated
 	 * @ordered
+	 * @see #getMappings()
 	 */
 	protected EList<CoverageMapping> mappings;
 
 	/**
 	 * The cached value of the '{@link #getInput() <em>Input</em>}' reference.
 	 *
-	 * @see #getInput()
 	 * @generated
 	 * @ordered
+	 * @see #getInput()
 	 */
 	protected EAttribute input;
 
 	/**
 	 * The default value of the '{@link #getService() <em>Service</em>}' attribute.
 	 *
-	 * @see #getService()
 	 * @generated
 	 * @ordered
+	 * @see #getService()
 	 */
 	protected static final String SERVICE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getService() <em>Service</em>}' attribute.
 	 *
-	 * @see #getService()
 	 * @generated
 	 * @ordered
+	 * @see #getService()
 	 */
 	protected String service = SERVICE_EDEFAULT;
 

@@ -1,10 +1,10 @@
 /**
+ *
  */
 package es.um.nosql.s13e.NoSQLSchema.impl;
 
 import es.um.nosql.s13e.NoSQLSchema.NoSQLSchemaPackage;
 import es.um.nosql.s13e.NoSQLSchema.Null;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -15,23 +15,25 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class NullImpl extends PropertyImpl implements Null {
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  protected NullImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected NullImpl() {
+        super();
+    }
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-  protected EClass eStaticClass() {
-		return NoSQLSchemaPackage.Literals.NULL;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return NoSQLSchemaPackage.Literals.NULL;
+    }
 
 } //NullImpl

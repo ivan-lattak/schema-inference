@@ -1,8 +1,5 @@
 package es.um.nosql.s13e.util;
 
-import java.io.File;
-import java.util.Map;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,71 +10,63 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-public class ModelLoader
-{
-  private ResourceSet resourceSet;
-  private static Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+import java.io.File;
+import java.util.Map;
 
-  static
-  {
-    Map<String, Object> map = reg.getExtensionToFactoryMap();
-    map.put("xmi", new XMIResourceFactoryImpl());
-    map.put("nosqlschema", new XMIResourceFactoryImpl());
-  }
+public class ModelLoader {
+    private ResourceSet resourceSet;
+    private static Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 
-  public ModelLoader()
-  {
-    resourceSet = new ResourceSetImpl();
-    final ExtendedMetaData extendedMetaData = new BasicExtendedMetaData(resourceSet.getPackageRegistry());
-    resourceSet.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, extendedMetaData);
-    resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-  }
+    static {
+        Map<String, Object> map = reg.getExtensionToFactoryMap();
+        map.put("xmi", new XMIResourceFactoryImpl());
+        map.put("nosqlschema", new XMIResourceFactoryImpl());
+    }
 
-  public ModelLoader(EPackage thePackage)
-  {
-    this();
-    registerPackages(thePackage);
-  }
+    public ModelLoader() {
+        resourceSet = new ResourceSetImpl();
+        final ExtendedMetaData extendedMetaData = new BasicExtendedMetaData(resourceSet.getPackageRegistry());
+        resourceSet.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, extendedMetaData);
+        resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+    }
 
-  // builder
-  public ModelLoader forPackages(EPackage... packages)
-  {
-    registerPackages(packages);
-    return this;
-  }
+    public ModelLoader(EPackage thePackage) {
+        this();
+        registerPackages(thePackage);
+    }
 
-  // builder
-  public ModelLoader withExtension(String extension, Object rf)
-  {
-    registerExtension(extension,rf);
-    return this;
-  }
+    // builder
+    public ModelLoader forPackages(EPackage... packages) {
+        registerPackages(packages);
+        return this;
+    }
 
-  public void registerExtension(String extension, Object resourceFactory)
-  {
-    reg.getExtensionToFactoryMap().put(extension, resourceFactory);
-  }
+    // builder
+    public ModelLoader withExtension(String extension, Object rf) {
+        registerExtension(extension, rf);
+        return this;
+    }
 
-  public void registerPackages(EPackage... packages)
-  {
-    for (EPackage p : packages)
-      resourceSet.getPackageRegistry().put(p.getNsURI(), p);
-  }
+    public void registerExtension(String extension, Object resourceFactory) {
+        reg.getExtensionToFactoryMap().put(extension, resourceFactory);
+    }
 
-  public <T> T load(String route, Class<T> c)
-  {
-    return load(new File(route), c);
-  }
+    public void registerPackages(EPackage... packages) {
+        for (EPackage p : packages)
+            resourceSet.getPackageRegistry().put(p.getNsURI(), p);
+    }
 
-  @SuppressWarnings("unchecked")
-  public <T> T load(File file, Class<T> c)
-  {
-    Resource r = resourceSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
-    return (T)r.getContents().get(0);
-  }
+    public <T> T load(String route, Class<T> c) {
+        return load(new File(route), c);
+    }
 
-  public ResourceSet getResourceSet()
-  {
-    return resourceSet;
-  }
+    @SuppressWarnings("unchecked")
+    public <T> T load(File file, Class<T> c) {
+        Resource r = resourceSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
+        return (T) r.getContents().get(0);
+    }
+
+    public ResourceSet getResourceSet() {
+        return resourceSet;
+    }
 }
