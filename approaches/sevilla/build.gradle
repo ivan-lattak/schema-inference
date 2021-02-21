@@ -3,7 +3,7 @@ plugins {
     id 'utils'
 }
 
-group 'org.example'
+group 'cz.cuni.mff.dsi.nosql.s13e'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = JavaVersion.VERSION_13
