@@ -1,0 +1,13 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+gradlePlugin {
+    plugins {
+        utils {
+            id = 'utils'
+            implementationClass = 'cz.cuni.mff.dsi.nosql.s13e.UtilsPlugin'
+        }
+    }
+}
+

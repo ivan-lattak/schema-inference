@@ -1,8 +1,7 @@
 plugins {
     id 'java'
+    id 'utils'
 }
-
-apply from: "$rootDir/common.gradle"
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -22,5 +21,5 @@ dependencies {
 task run(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'cz.cuni.mff.dsi.nosql.s13e.sevilla.Main'
-    systemProperties getPropertiesForProject()
+    systemProperties utils.propertiesForProject
 }
