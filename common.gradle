@@ -1,0 +1,10 @@
+ext.getPropertiesForProject = {
+    String prefix = project.path.substring(1).replace ':', '.'
+    Map<String, ?> propsForProject = [:]
+    project.properties.each {
+        if (it.key.startsWith(prefix)) {
+            propsForProject << it
+        }
+    }
+    return propsForProject
+}
