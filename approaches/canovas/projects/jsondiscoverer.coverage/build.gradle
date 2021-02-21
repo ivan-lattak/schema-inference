@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.eclipse.core:org.eclipse.core.runtime:3.7.0'
+    implementation 'org.eclipse.emf:org.eclipse.emf.ecore:2.23.0'
+    implementation 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.16.0' // original version 2.9.0
+}
+
+group = 'jsondiscoverer'
+version = '1.0.0'
+description = 'coverage'
+java.sourceCompatibility = JavaVersion.VERSION_1_7
+java.targetCompatibility = JavaVersion.VERSION_1_7
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}

@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'utils'
+}
+
+group 'cz.cuni.mff.dsi.nosql.s13e'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_13
+targetCompatibility = JavaVersion.VERSION_13
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project('jsondiscoverer')
+
+    implementation 'org.mongodb:mongo-java-driver:3.12.7'
+    implementation 'com.google.code.gson:gson:2.2.4'
+}
+
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'cz.cuni.mff.dsi.nosql.s13e.canovas.Main'
+    systemProperties utils.propertiesForProject
+}
