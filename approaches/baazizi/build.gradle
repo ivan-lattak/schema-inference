@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'utils'
 }
 
 group 'cz.cuni.mff.dsi.nosql.s13e'
@@ -14,4 +15,10 @@ repositories {
 
 dependencies {
     implementation project('impl')
+}
+
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'cz.cuni.mff.dsi.nosql.s13e.baazizi.Main'
+    systemProperties utils.propertiesForProject
 }
