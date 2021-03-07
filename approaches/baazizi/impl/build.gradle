@@ -7,6 +7,8 @@ group 'su.lip6'
 version '0.1'
 description 'ParamSchemaInference'
 
+targetCompatibility = JavaVersion.VERSION_1_8
+
 repositories {
     mavenCentral()
 }
