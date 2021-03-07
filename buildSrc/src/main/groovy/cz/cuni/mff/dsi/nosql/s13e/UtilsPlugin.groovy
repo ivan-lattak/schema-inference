@@ -7,8 +7,7 @@ class UtilsPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        UtilsExtension extension = project.extensions.create('utils', UtilsExtension)
-        extension.project = project
+        project.extensions.create('utils', UtilsExtension, project)
     }
 
 }
@@ -16,6 +15,10 @@ class UtilsPlugin implements Plugin<Project> {
 class UtilsExtension {
 
     Project project
+
+    UtilsExtension(Project project) {
+        this.project = project
+    }
 
     Map<String, ?> getPropertiesForProject() {
         String prefix = project.path.substring(1).replace ':', '.'
