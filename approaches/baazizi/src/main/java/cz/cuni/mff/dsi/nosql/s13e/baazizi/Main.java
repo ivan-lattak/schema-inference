@@ -16,7 +16,7 @@ public class Main {
     private static String dbName = System.getProperty(PROPERTY_DB_NAME, "inference");
     private static String collectionName = System.getProperty(PROPERTY_COLLECTION_NAME, "articles");
     private static String equivalence = System.getProperty(PROPERTY_EQUIVALENCE, "k");
-    private static String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.ecore");
+    private static String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.txt");
 
     public static void main(String[] args) {
         parseArgs(args);
