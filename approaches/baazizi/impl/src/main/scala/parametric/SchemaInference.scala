@@ -8,16 +8,12 @@ import parametric.typeInference._
 import parametric.typeReduction._
 import play.api.libs.json.{JsNull, JsValue, Json}
 
-import java.nio.file.{Files, Paths}
-import scala.util.Using
-
 object SchemaInference {
   def infer(sparkMaster: String,
             mongoHost: String,
             dbName: String,
             collectionName: String,
-            equivalence: String,
-            outputFile: String): Unit = {
+            equivalence: String): CountingType = {
     val spark = SparkSession.builder()
       .master(sparkMaster)
       .appName("JSON Schema Inference, Baazizi Approach")
@@ -27,9 +23,9 @@ object SchemaInference {
       .getOrCreate()
 
     try {
-      println(s"infer the $equivalence schema from MongoDB collection at $mongoHost/$dbName/$collectionName into file $outputFile")
+      println(s"infer the $equivalence schema from MongoDB collection at $mongoHost/$dbName/$collectionName")
       val helper: Helper = new Helper()
-      val order: (structuralType, structuralType) => Int = helper.whichOrdering(equivalence)
+      val order: (StructuralType, StructuralType) => Int = helper.whichOrdering(equivalence)
       /* load json documents */
       val objects: RDD[String] = MongoSpark.load(spark.sparkContext).map(_.toJson)
 
@@ -44,12 +40,8 @@ object SchemaInference {
           //a quick trick to avoid crashing the app TODO improve
         }
       }
-      val types: RDD[countingType] = parsed.map(x => inference.inferStructType(x, reduction.Reduce, order).asInstanceOf[countingType])
-      val result: countingType = types.reduce((t, u) => reduction.Reduce(t, u, order))
-      Using(Files.newBufferedWriter(Paths.get(outputFile))) { writer =>
-        writer.write(result.toString)
-        writer.newLine()
-      }
+      val types: RDD[CountingType] = parsed.map(x => inference.inferStructType(x, reduction.Reduce, order).asInstanceOf[CountingType])
+      types.reduce((t, u) => reduction.Reduce(t, u, order))
     } finally {
       spark.stop()
     }

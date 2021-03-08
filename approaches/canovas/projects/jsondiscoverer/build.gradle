@@ -8,10 +8,10 @@ repositories {
 
 dependencies {
     api 'org.eclipse.emf:org.eclipse.emf.ecore:2.23.0'
+    api 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.16.0'
 
     implementation project(':canovas:jsondiscoverer.coverage')
 
-    implementation 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.16.0'
     implementation 'org.eclipse.emf:org.eclipse.emf.common:2.21.0'
     implementation 'com.google.code.gson:gson:2.2.4'
 }

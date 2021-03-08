@@ -2,7 +2,7 @@ package commons
 
 import parametric.typeDefinition.RecordType
 
-trait recordTypes extends fieldTypes {
+trait RecordTypes extends FieldTypes {
   val in_abc: RecordType = RecordType(List(a1, b1, c1).sorted, 1)
   val in_abc2: RecordType = RecordType(List(a1, b1, c1).sorted, 2)
 

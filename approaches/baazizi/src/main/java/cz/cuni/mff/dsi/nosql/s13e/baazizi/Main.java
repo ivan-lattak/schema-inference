@@ -1,6 +1,12 @@
 package cz.cuni.mff.dsi.nosql.s13e.baazizi;
 
 import parametric.SchemaInference;
+import parametric.typeDefinition.CountingType;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main {
 
@@ -18,10 +24,14 @@ public class Main {
     private static String equivalence = System.getProperty(PROPERTY_EQUIVALENCE, "k");
     private static String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.txt");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         parseArgs(args);
 
-        SchemaInference.infer(sparkMaster, mongoHost, dbName, collectionName, equivalence, outputFile);
+        CountingType type = SchemaInference.infer(sparkMaster, mongoHost, dbName, collectionName, equivalence);
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputFile))) {
+            writer.write(type.toString());
+            writer.newLine();
+        }
     }
 
     private static void parseArgs(String[] args) {

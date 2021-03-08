@@ -12,6 +12,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Spliterator;
 import java.util.stream.StreamSupport;
 
@@ -32,8 +33,8 @@ public class MongoImporter {
     public void importToFile() throws IOException {
         MongoClient client = new MongoClient(host, 27017);
         MongoDatabase database = client.getDatabase(dbName);
-        if (!Files.exists(Path.of(outputDir))) {
-            Files.createDirectory(Path.of(outputDir));
+        if (!Files.exists(Paths.get(outputDir))) {
+            Files.createDirectory(Paths.get(outputDir));
         }
 
         JsonArray documents = new JsonArray();
@@ -42,7 +43,7 @@ public class MongoImporter {
                 .map(MongoImporter::jsonObjectFromDocument)
                 .forEach(documents::add);
 
-        Path jsonFile = Path.of(outputDir).resolve(collectionName + ".json");
+        Path jsonFile = Paths.get(outputDir).resolve(collectionName + ".json");
         try (BufferedWriter writer = Files.newBufferedWriter(jsonFile)) {
             new Gson().toJson(documents, writer);
         }

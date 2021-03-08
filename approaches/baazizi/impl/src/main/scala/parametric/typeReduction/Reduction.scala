@@ -34,24 +34,24 @@ class Reduction extends Serializable {
   //    /*the symmetric case*/
   //  }
 
-  def Reduce(T1: countingType, T2: countingType, equiv: (structuralType, structuralType) => Int): countingType = (T1, T2) match {
+  def Reduce(T1: CountingType, T2: CountingType, equiv: (StructuralType, StructuralType) => Int): CountingType = (T1, T2) match {
     case (Empty(), _) => T2
     case (_, Empty()) => T1
 
-    case (u1: unionType, u2: unionType) => unionType(stuctTypeListFuse(u1.body, u2.body, equiv))
+    case (u1: UnionType, u2: UnionType) => UnionType(stuctTypeListFuse(u1.body, u2.body, equiv))
 
-    case (s1: structuralType, s2: structuralType) => equiv(s1, s2) match {
-      case 0 => Fuse(s1, s2, equiv)
-      case _ => unionType(List(s1, s2).sortWith(equiv(_, _) < 0))
+    case (s1: StructuralType, s2: StructuralType) => equiv(s1, s2) match {
+      case 0 => fuse(s1, s2, equiv)
+      case _ => UnionType(List(s1, s2).sortWith(equiv(_, _) < 0))
     }
 
-    case (u1: unionType, s2: structuralType) => unionType(stuctTypeListFuse(u1.body, List(s2), equiv))
-    case (s1: structuralType, u2: unionType) => unionType(stuctTypeListFuse(List(s1), u2.body, equiv))
+    case (u1: UnionType, s2: StructuralType) => UnionType(stuctTypeListFuse(u1.body, List(s2), equiv))
+    case (s1: StructuralType, u2: UnionType) => UnionType(stuctTypeListFuse(List(s1), u2.body, equiv))
 
   }
 
   /*fuse list of structural types*/
-  def stuctTypeListFuse(L1: List[structuralType], L2: List[structuralType], equiv: (structuralType, structuralType) => Int): List[structuralType] = (L1, L2) match {
+  def stuctTypeListFuse(L1: List[StructuralType], L2: List[StructuralType], equiv: (StructuralType, StructuralType) => Int): List[StructuralType] = (L1, L2) match {
     case (List(), List()) => List()
     case (L1, List()) => L1
     case (List(), L2) => L2
@@ -59,11 +59,11 @@ class Reduction extends Serializable {
       val v = equiv(hl1, hl2)
       if (v < 0) hl1 :: stuctTypeListFuse(tl1, L2, equiv)
       else if (v > 0) hl2 :: stuctTypeListFuse(L1, tl2, equiv)
-      else Fuse(hl1, hl2, equiv) :: stuctTypeListFuse(tl1, tl2, equiv)
+      else fuse(hl1, hl2, equiv) :: stuctTypeListFuse(tl1, tl2, equiv)
   }
 
 
-  def Fuse(S1: structuralType, S2: structuralType, equiv: (structuralType, structuralType) => Int): structuralType = (S1, S2) match {
+  def fuse(S1: StructuralType, S2: StructuralType, equiv: (StructuralType, StructuralType) => Int): StructuralType = (S1, S2) match {
 
     /*Basic types*/
     case (Null(m), Null(n)) => Null(m + n)
@@ -80,7 +80,7 @@ class Reduction extends Serializable {
   }
 
   /*fuse list of type fields*/
-  def ftypeListFuse(L1: List[fieldType], L2: List[fieldType], equiv: (structuralType, structuralType) => Int): List[fieldType] = (L1, L2) match {
+  def ftypeListFuse(L1: List[FieldType], L2: List[FieldType], equiv: (StructuralType, StructuralType) => Int): List[FieldType] = (L1, L2) match {
     case (List(), List()) => List()
     case (fl1, List()) => fl1
     case (List(), fl2) => fl2
@@ -88,6 +88,6 @@ class Reduction extends Serializable {
       val v = h1.compare(h2)
       if (v < 0) h1 :: ftypeListFuse(t1, L2, equiv)
       else if (v > 0) h2 :: ftypeListFuse(L1, t2, equiv)
-      else new fieldType(h1.getLabel, Reduce(h1.getBody, h2.getBody, equiv)) :: ftypeListFuse(t1, t2, equiv)
+      else new FieldType(h1.getLabel, Reduce(h1.getBody, h2.getBody, equiv)) :: ftypeListFuse(t1, t2, equiv)
   }
 }

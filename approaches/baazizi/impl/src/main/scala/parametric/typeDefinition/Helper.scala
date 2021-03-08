@@ -3,12 +3,12 @@ package parametric.typeDefinition
 @SerialVersionUID(100L)
 class Helper extends Serializable {
 
-  def _KindEquiv(S1: structuralType, S2: structuralType): Int = S1.kindOrdering(S2)
+  def _KindEquiv(S1: StructuralType, S2: StructuralType): Int = S1.kindOrdering(S2)
 
-  def _LabelEquiv(S1: structuralType, S2: structuralType): Int = S1.labelOrdering(S2)
+  def _LabelEquiv(S1: StructuralType, S2: StructuralType): Int = S1.labelOrdering(S2)
 
 
-  def whichOrdering(variant: String): (structuralType, structuralType) => Int = variant match {
+  def whichOrdering(variant: String): (StructuralType, StructuralType) => Int = variant match {
     case "k" | "K" => _KindEquiv // K-equivalence
     case "l" | "L" => _LabelEquiv //L-equivalence
   }

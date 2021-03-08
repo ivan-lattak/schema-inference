@@ -2,7 +2,7 @@ package commons
 
 import parametric.typeDefinition.{Bool, Null, Numb, Str}
 
-trait basicTypes {
+trait BasicTypes {
   val null1: Null = Null(1)
   val bool1: Bool = Bool(1)
   val num1: Numb = Numb(1)

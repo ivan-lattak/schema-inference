@@ -1,8 +1,8 @@
 package parametric.typeDefinition
 
 @SerialVersionUID(100L)
-sealed class structuralType(val card: Long) extends countingType with Serializable {
-  def isEqualTo(other: structuralType): Boolean = (this, other) match {
+sealed class StructuralType(val card: Long) extends CountingType with Serializable {
+  def isEqualTo(other: StructuralType): Boolean = (this, other) match {
     case (l: Null, r: Null) => this.card == other.card
     case (l: Numb, r: Numb) => this.card == other.card
     case (l: Bool, r: Bool) => this.card == other.card
@@ -44,10 +44,10 @@ sealed class structuralType(val card: Long) extends countingType with Serializab
   }
 
 
-  def kindOrdering(other: structuralType): Int = this.kind() - other.kind()
+  def kindOrdering(other: StructuralType): Int = this.kind() - other.kind()
 
   /** assumes records with sorted keys */
-  def labelOrdering(other: structuralType): Int = (this, other) match {
+  def labelOrdering(other: StructuralType): Int = (this, other) match {
     case (r1: RecordType, r2: RecordType) => helper.strListCompare(r1.labels(), r2.labels())
     case (_, _) => this.kindOrdering(other)
   }
@@ -60,41 +60,41 @@ sealed class structuralType(val card: Long) extends countingType with Serializab
 
 /*Basic types*/
 //case class Empty(override val card: Long) extends structuralType(card)
-case class Null(override val card: Long) extends structuralType(card) {
+case class Null(override val card: Long) extends StructuralType(card) {
   override def toString: String = tNull
 
 }
 
-case class Bool(override val card: Long) extends structuralType(card) {
+case class Bool(override val card: Long) extends StructuralType(card) {
   //  override def toString: String = tBool
 
 }
 
-case class Numb(override val card: Long) extends structuralType(card) {
+case class Numb(override val card: Long) extends StructuralType(card) {
   //  override def toString: String = tNumb
 }
 
-case class Str(override val card: Long) extends structuralType(card) {
+case class Str(override val card: Long) extends StructuralType(card) {
   //  override def toString: String = tStr
 }
 
 
-case class Strbis(override val card: Long, minLengthL: Long, maxLength: Long) extends structuralType(card) {
+case class Strbis(override val card: Long, minLengthL: Long, maxLength: Long) extends StructuralType(card) {
   //  override def toString: String = tStr
 }
 
-case class StrEnum(override val card: Long, values: Map[String, Long]) extends structuralType(card) {
+case class StrEnum(override val card: Long, values: Map[String, Long]) extends StructuralType(card) {
   //  override def toString: String = ""
 }
 
 /*Record types*/
-case class RecordType(body: List[fieldType], override val card: Long) extends structuralType(card) {
+case class RecordType(body: List[FieldType], override val card: Long) extends StructuralType(card) {
   def labels(): List[String] = body.map(_.getLabel)
 
   //  override def toString: String = tRec
 
   /*l and r sorted*/
-  def deepEqual(l: List[fieldType], r: List[fieldType]): Boolean = (l, r) match {
+  def deepEqual(l: List[FieldType], r: List[FieldType]): Boolean = (l, r) match {
     case (Nil, Nil) => true
     case (h1 :: t1, h2 :: t2) => h1.isEqualTo(h2) && deepEqual(t1, t2)
     case _ => false
@@ -106,7 +106,7 @@ case class RecordType(body: List[fieldType], override val card: Long) extends st
 }
 
 /*Array types*/
-case class ArrayType(body: countingType, override val card: Long) extends structuralType(card) {
+case class ArrayType(body: CountingType, override val card: Long) extends StructuralType(card) {
   //  override def toString: String = tArr
 
   def isEqualTo(other: ArrayType): Boolean = (other.card == this.card) && this.body.isEqualTo(other.body)

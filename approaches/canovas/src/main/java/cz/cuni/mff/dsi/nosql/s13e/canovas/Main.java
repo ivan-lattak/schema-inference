@@ -5,11 +5,13 @@ import jsondiscoverer.JsonSimpleDiscoverer;
 import jsondiscoverer.JsonSource;
 import jsondiscoverer.util.ModelHelper;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
 
@@ -27,10 +29,11 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         parseArgs(args);
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         new MongoImporter(mongoHost, dbName, collectionName, jsonDir).importToFile();
         JsonSource source = new JsonSource(collectionName);
-        source.addJsonData(null, Files.newBufferedReader(Path.of(jsonDir).resolve(collectionName + ".json")));
+        source.addJsonData(null, Files.newBufferedReader(Paths.get(jsonDir).resolve(collectionName + ".json")));
 
         JsonSimpleDiscoverer discoverer = new JsonSimpleDiscoverer();
         EPackage ePackage = discoverer.discover(source);
