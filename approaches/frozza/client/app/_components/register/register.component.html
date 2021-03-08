@@ -1,0 +1,46 @@
+<mat-card>
+
+  <img src="../../../assets/jsd_logo.png" alt="JSON Schema Discovery" class="app-logo">
+
+  <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+
+    <mat-card-content>
+
+      <mat-input-container class="mat-block">
+        <input matInput placeholder="Nome" [(ngModel)]="model.username" #username="ngModel" name="username" required/>
+        <mat-error *ngIf="!username.valid">
+          Nome é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-input-container>
+
+      <mat-input-container class="mat-block">
+        <input type="email" matInput placeholder="Email" [formControl]="emailFormControl" [(ngModel)]="model.email"
+               required/>
+        <mat-error *ngIf="emailFormControl.hasError('pattern')">
+          Por favor, digite um email válido
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-input-container>
+
+      <mat-input-container class="mat-block">
+        <input matInput placeholder="Criar senha" [type]="showPassword ? 'text' : 'password'" required
+               [(ngModel)]="model.password" #password="ngModel" name="password" minlength="6">
+        <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility' : 'visibility_off'}}
+        </mat-icon>
+        <mat-error *ngIf="!password.valid">
+          Senha é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-input-container>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [disabled]="loading">Cadastrar-me</button>
+      <a mat-raised-button [routerLink]="['/login']">Cancelar</a>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

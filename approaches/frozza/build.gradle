@@ -1,0 +1,57 @@
+import static java.util.concurrent.TimeUnit.SECONDS
+
+group 'cz.cuni.mff.dsi.nosql.s13e'
+version '1.0-SNAPSHOT'
+
+task installAngularCli(type: Exec) {
+    commandLine getNpmExecutable(), 'install', '-g', '@angular/cli'
+}
+
+task installTypescript(type: Exec) {
+    commandLine getNpmExecutable(), 'install', '-g', 'typescript'
+}
+
+task installGlobalDependencies {
+    dependsOn installAngularCli
+    dependsOn installTypescript
+}
+
+task installDependencies(type: Exec) {
+    dependsOn installGlobalDependencies
+
+    commandLine getNpmExecutable(), 'install'
+}
+
+task run(type: Exec) {
+    dependsOn installDependencies
+
+    commandLine getNpmExecutable(), 'run', 'dev'
+}
+
+static def isWindows() {
+    System.getProperty("os.name").toLowerCase().contains("win")
+}
+
+static def getNpmExecutable() {
+    isWindows() ? 'npm.cmd' : 'npm'
+}
+
+static def npmExists() {
+    try {
+        def process = [getNpmExecutable(), 'version'].execute()
+        process.waitFor(5, SECONDS)
+        return process.exitValue() == 0
+    } catch (IOException | IllegalThreadStateException ignored) {
+        return false
+    }
+}
+
+tasks.all {
+    onlyIf {
+        if (npmExists()) {
+            return true
+        }
+        System.err.println("Skipping task $name, npm was not found! Make sure you have both node.js and npm installed and accessible on PATH.")
+        return false
+    }
+}
