@@ -26,21 +26,16 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.apache.hadoop:hadoop-client:3.0.0'
 
-    implementation('com.fasterxml.jackson.core:jackson-core') {
-        version {
-            strictly '2.8.7'
+    def versionStrictly = { versionNumber ->
+        return {
+            version {
+                strictly versionNumber
+            }
         }
     }
-    implementation('com.fasterxml.jackson.core:jackson-databind') {
-        version {
-            strictly '2.8.7'
-        }
-    }
-    implementation('com.fasterxml.jackson.module:jackson-module-scala_2.12') {
-        version {
-            strictly '2.8.7'
-        }
-    }
+    implementation 'com.fasterxml.jackson.core:jackson-core', versionStrictly('2.8.7')
+    implementation 'com.fasterxml.jackson.core:jackson-databind', versionStrictly('2.8.7')
+    implementation 'com.fasterxml.jackson.module:jackson-module-scala_2.12', versionStrictly('2.8.7')
 
     testImplementation 'org.scalatest:scalatest_2.12:3.1.1'
 }
