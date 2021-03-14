@@ -7,6 +7,9 @@ Master's thesis for Faculty of Mathematics and Physics of the Charles University
 The Frozza et al. approach implementation is done in Node.js. To be able to run this approach, `node` and `npm` must be
 available on PATH.
 
+Use `./gradlew :frozza:start` and `./gradlew :frozza:stop` to start and stop the inference server. The server is
+available on localhost:4200.
+
 ### Windows
 
 The implementation depends on package `node-gyp` to work. `node-gyp` is notoriously difficult to install on Windows due

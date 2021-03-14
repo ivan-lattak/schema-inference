@@ -36,7 +36,7 @@ public class RunInference {
 
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             InputParams inputParams = new InputParams("http://" + mongoHost, "27017", dbName, collectionName);
-            send(client, "/batch/rawschema/steps/all", inputParams);
+            post(client, "/batch/rawschema/steps/all", inputParams);
 
             User user = new User("admin", inferrerEmail, inferrerPassword);
             Credentials credentials = new Credentials(inferrerEmail, inferrerPassword);
@@ -44,7 +44,7 @@ public class RunInference {
         }
     }
 
-    private static void send(CloseableHttpClient client, String endpoint, Object data) throws IOException {
+    private static void post(CloseableHttpClient client, String endpoint, Object data) throws IOException {
         HttpPost httpPost = new HttpPost(inferrerUrl + "/api" + endpoint);
         ObjectMapper objectMapper = new ObjectMapper();
         httpPost.setEntity(new StringEntity(objectMapper.writeValueAsString(data)));
