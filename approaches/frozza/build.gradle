@@ -1,7 +1,25 @@
 import static java.util.concurrent.TimeUnit.SECONDS
 
+plugins {
+    id 'java'
+    id 'utils'
+}
+
 group 'cz.cuni.mff.dsi.nosql.s13e'
 version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
+
+}
 
 task installAngularCli(type: Exec) {
     commandLine getNpmExecutable(), 'install', '-g', '@angular/cli'
@@ -11,25 +29,43 @@ task installTypescript(type: Exec) {
     commandLine getNpmExecutable(), 'install', '-g', 'typescript'
 }
 
-task installGlobalDependencies {
+task installDependencies {
     dependsOn installAngularCli
     dependsOn installTypescript
 }
 
-task installDependencies(type: Exec) {
-    dependsOn installGlobalDependencies
+task install(type: Exec) {
+    dependsOn installDependencies
 
     commandLine getNpmExecutable(), 'install'
 }
 
-task run(type: Exec) {
-    dependsOn installDependencies
+task start {
+    // dependsOn install
 
-    commandLine getNpmExecutable(), 'run', 'dev'
+    doLast {
+        [getNpmExecutable(), 'run', 'dev'].execute()
+    }
+}
+
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'cz.cuni.mff.dsi.nosql.s13e.frozza.RunInference'
+    systemProperties utils.propertiesForProject
+}
+
+task stop {
+    doLast {
+        if (isWindows()) {
+            ['taskkill', '/f', '/im', 'node.exe'].execute()
+        } else {
+            ['pkill', '-u', "node"]
+        }
+    }
 }
 
 static def isWindows() {
-    System.getProperty("os.name").toLowerCase().contains("win")
+    System.getProperty('os.name').toLowerCase().contains('win')
 }
 
 static def getNpmExecutable() {

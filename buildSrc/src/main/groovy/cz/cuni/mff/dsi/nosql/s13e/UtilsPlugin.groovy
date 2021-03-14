@@ -3,6 +3,7 @@ package cz.cuni.mff.dsi.nosql.s13e
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+@SuppressWarnings('unused')
 class UtilsPlugin implements Plugin<Project> {
 
     @Override
@@ -14,7 +15,7 @@ class UtilsPlugin implements Plugin<Project> {
 
 class UtilsExtension {
 
-    Project project
+    private final Project project
 
     UtilsExtension(Project project) {
         this.project = project

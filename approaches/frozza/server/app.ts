@@ -6,7 +6,7 @@ import * as mongoose from 'mongoose';
 import * as path from 'path';
 import * as http from 'http';
 import * as fs from 'fs';
-import * as rfs from 'rotating-file-stream';
+var rfs = require('rotating-file-stream');
 import * as SegfaultHandler from 'segfault-handler';
 import * as cluster from 'cluster';
 import * as os from 'os';
@@ -72,7 +72,7 @@ if (cluster.isMaster) {
 
 	// Create HTTP server.
 	const server = http.createServer(app);
-	
+
 	console.log(`Hello from Node.js ${cluster.isMaster ? 'master' : 'child'} ${cluster.worker.id} process !\n`);
 
 	// Create a database variable outside of the database connection callback to reuse the connection pool in your app.
@@ -104,7 +104,7 @@ if (cluster.isMaster) {
 			console.log("GRAVE: ",err);
 		}
 
-	});	
+	});
 
 }
 
