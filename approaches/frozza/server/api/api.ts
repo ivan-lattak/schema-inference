@@ -82,8 +82,6 @@ export default class ApiController {
 		}
   	}
 
-//original allSteps
-/*
 	public allSteps = (req, res) => {
 		const user = this.getUserByToken(req);
 		if(user && user.user){
@@ -94,14 +92,6 @@ export default class ApiController {
 			return this.error(res, "invalid token", 403);
 		}
   	}
-  	*/
-  public allSteps = (req, res) => {
-    return new RawSchemaBatchController().allSteps(req.body).then((data) => {
-      return this.success(res, data);
-    }, (error) => {
-      return this.error(res, error.message, error.code);
-    });
-  }
 
   	public discovery = (req, res) => {
 		new RawSchemaBatchController().discovery(req.body);
