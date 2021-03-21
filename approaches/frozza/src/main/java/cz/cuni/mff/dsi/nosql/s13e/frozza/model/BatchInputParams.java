@@ -8,9 +8,11 @@ import lombok.Value;
 @Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class Credentials {
+public class BatchInputParams {
 
-    String email;
-    String password;
+    String address;
+    String port;
+    String databaseName;
+    String collectionName;
 
 }

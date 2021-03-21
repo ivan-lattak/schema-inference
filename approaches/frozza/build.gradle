@@ -3,6 +3,7 @@ import static java.util.concurrent.TimeUnit.SECONDS
 plugins {
     id 'java'
     id 'utils'
+    id 'io.freefair.lombok' version '5.3.0'
 }
 
 group 'cz.cuni.mff.dsi.nosql.s13e'
@@ -16,17 +17,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
+    compileOnly project(':utils')
 
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    runtimeOnly "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    implementation 'org.slf4j:slf4j-api:1.7.30'
 }
 
 task installAngularCli(type: Exec) {
     commandLine getNpmExecutable(), 'install', '-g', '@angular/cli'
+    workingDir projectDir
 }
 
 task installTypescript(type: Exec) {
     commandLine getNpmExecutable(), 'install', '-g', 'typescript'
+    workingDir projectDir
 }
 
 task installDependencies {
@@ -38,13 +44,14 @@ task install(type: Exec) {
     dependsOn installDependencies
 
     commandLine getNpmExecutable(), 'install'
+    workingDir projectDir
 }
 
 task start {
     // dependsOn install
 
     doLast {
-        [getNpmExecutable(), 'run', 'dev'].execute()
+        [getNpmExecutable(), 'run', 'dev'].execute(null, projectDir)
     }
 }
 

@@ -2,15 +2,11 @@ package cz.cuni.mff.dsi.nosql.s13e.frozza;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cz.cuni.mff.dsi.nosql.s13e.frozza.model.Batch;
+import cz.cuni.mff.dsi.nosql.s13e.frozza.model.BatchInputParams;
 import cz.cuni.mff.dsi.nosql.s13e.frozza.model.Credentials;
-import cz.cuni.mff.dsi.nosql.s13e.frozza.model.InputParams;
-import cz.cuni.mff.dsi.nosql.s13e.frozza.model.User;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.File;
 import java.io.IOException;
 
 public class RunInference {
@@ -31,26 +27,18 @@ public class RunInference {
     private static String collectionName = System.getProperty(PROPERTY_COLLECTION_NAME, "articles");
     private static String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.json");
 
-    public static void main(String[] args) throws IOException {
+    private static final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
+
+    public static void main(String[] args) throws IOException, InterruptedException {
         parseArgs(args);
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
-            InputParams inputParams = new InputParams("http://" + mongoHost, "27017", dbName, collectionName);
-            post(client, "/batch/rawschema/steps/all", inputParams);
-
-            User user = new User("admin", inferrerEmail, inferrerPassword);
-            Credentials credentials = new Credentials(inferrerEmail, inferrerPassword);
-            //send(client, "/register", user);
-        }
-    }
-
-    private static void post(CloseableHttpClient client, String endpoint, Object data) throws IOException {
-        HttpPost httpPost = new HttpPost(inferrerUrl + "/api" + endpoint);
-        ObjectMapper objectMapper = new ObjectMapper();
-        httpPost.setEntity(new StringEntity(objectMapper.writeValueAsString(data)));
-        try (CloseableHttpResponse response = client.execute(httpPost)) {
-            JsonNode jsonNode = objectMapper.readTree(response.getEntity().getContent());
-            System.out.printf("%d %s%n", response.getStatusLine().getStatusCode(), jsonNode.toString());
+        try (CloseableInferenceClient client = new CloseableInferenceClient(inferrerUrl, objectMapper)) {
+            client.login(new Credentials(inferrerEmail, inferrerPassword));
+            BatchInputParams params = new BatchInputParams(mongoHost, "27017", dbName, collectionName);
+            client.createBatch(params);
+            Batch batch = client.waitUntilLastBatchDone(params);
+            JsonNode schema = client.generateJsonSchema(batch);
+            objectMapper.writeValue(new File(outputFile), schema);
         }
     }
 

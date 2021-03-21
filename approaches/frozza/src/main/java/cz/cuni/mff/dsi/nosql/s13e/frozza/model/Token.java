@@ -8,9 +8,8 @@ import lombok.Value;
 @Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class Credentials {
+public class Token {
 
-    String email;
-    String password;
+    String token;
 
 }

@@ -1,5 +1,7 @@
 package cz.cuni.mff.dsi.nosql.s13e.frozza.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -8,9 +10,9 @@ import lombok.Value;
 @Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class Credentials {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class GeneratedSchema {
 
-    String email;
-    String password;
+    JsonNode jsonSchema;
 
 }
