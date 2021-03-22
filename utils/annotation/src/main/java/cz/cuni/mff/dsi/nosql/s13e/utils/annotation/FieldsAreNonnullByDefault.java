@@ -1,4 +1,4 @@
-package cz.cuni.mff.dsi.nosql.s13e.util.annotation;
+package cz.cuni.mff.dsi.nosql.s13e.utils.annotation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.meta.TypeQualifierDefault;

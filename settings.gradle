@@ -1,6 +1,6 @@
 rootProject.name = 'SchemaInference'
 
-include ':utils'
+include ':utils:annotation'
 
 file('approaches').eachDir { dir ->
     include dir.name
