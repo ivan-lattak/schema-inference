@@ -34,7 +34,7 @@ public class CloseableInferenceClient implements Closeable {
     });
     private static final Logger log = LoggerFactory.getLogger(CloseableInferenceClient.class);
 
-    private final CloseableHttpClient client;
+    private final CloseableHttpClient client = HttpClientBuilder.create().build();
 
     private final String inferrerUrl;
     private final ObjectMapper objectMapper;
@@ -43,7 +43,6 @@ public class CloseableInferenceClient implements Closeable {
     private Token token;
 
     public CloseableInferenceClient(String inferrerUrl, ObjectMapper objectMapper) {
-        this.client = HttpClientBuilder.create().build();
         this.inferrerUrl = inferrerUrl;
         this.objectMapper = objectMapper;
     }

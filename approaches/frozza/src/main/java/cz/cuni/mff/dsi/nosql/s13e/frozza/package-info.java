@@ -3,7 +3,7 @@
 @FieldsAreNonnullByDefault
 package cz.cuni.mff.dsi.nosql.s13e.frozza;
 
-import cz.cuni.mff.dsi.nosql.s13e.util.annotations.FieldsAreNonnullByDefault;
-import cz.cuni.mff.dsi.nosql.s13e.util.annotations.ReturnValuesAreNonnullByDefault;
+import cz.cuni.mff.dsi.nosql.s13e.util.annotation.FieldsAreNonnullByDefault;
+import cz.cuni.mff.dsi.nosql.s13e.util.annotation.ReturnValuesAreNonnullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;

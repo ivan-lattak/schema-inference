@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class Main {
+public class RunInference {
 
     public static final String PROPERTY_MONGO_HOST = "canovas.mongoHost";
     public static final String PROPERTY_DB_NAME = "canovas.dbName";
@@ -46,7 +46,7 @@ public class Main {
             return;
         }
         if (args.length != 5) {
-            throw new IllegalArgumentException("Usage: cz.cuni.mff.dsi.nosql.s13e.canovas.Main <mongoHost> <dbName> <collectionName> <jsonDir> <outputFile>");
+            throw new IllegalArgumentException("Usage: cz.cuni.mff.dsi.nosql.s13e.canovas.RunInference <mongoHost> <dbName> <collectionName> <jsonDir> <outputFile>");
         }
 
         mongoHost = args[0];

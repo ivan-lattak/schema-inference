@@ -19,6 +19,6 @@ dependencies {
 
 task run(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'cz.cuni.mff.dsi.nosql.s13e.baazizi.Main'
-    systemProperties utils.propertiesForProject
+    main = 'cz.cuni.mff.dsi.nosql.s13e.baazizi.RunInference'
+    systemProperties utils.propertiesForApproach
 }

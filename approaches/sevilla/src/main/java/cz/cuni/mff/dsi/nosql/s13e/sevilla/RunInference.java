@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import es.um.nosql.s13e.json2dbschema.main.BuildNoSQLSchema;
 import es.um.nosql.s13e.nosqlimport.db.mongodb.MongoDBImport;
 
-public class Main {
+public class RunInference {
 
     public static final String PROPERTY_MONGO_HOST = "sevilla.mongoHost";
     public static final String PROPERTY_DB_NAME = "sevilla.dbName";
@@ -29,7 +29,7 @@ public class Main {
             return;
         }
         if (args.length != 4) {
-            throw new IllegalArgumentException("Usage: cz.cuni.mff.dsi.nosql.s13e.sevilla.Main <mongoHost> <dbName> <mapReduceDir> <outputFile>");
+            throw new IllegalArgumentException("Usage: cz.cuni.mff.dsi.nosql.s13e.sevilla.RunInference <mongoHost> <dbName> <mapReduceDir> <outputFile>");
         }
 
         mongoHost = args[0];

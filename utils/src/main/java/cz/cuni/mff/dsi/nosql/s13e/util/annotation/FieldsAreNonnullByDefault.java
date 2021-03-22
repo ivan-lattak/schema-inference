@@ -1,4 +1,4 @@
-package cz.cuni.mff.dsi.nosql.s13e.util.annotations;
+package cz.cuni.mff.dsi.nosql.s13e.util.annotation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.meta.TypeQualifierDefault;
@@ -7,7 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Nonnull
-@TypeQualifierDefault(ElementType.METHOD)
+@TypeQualifierDefault(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ReturnValuesAreNonnullByDefault {
+public @interface FieldsAreNonnullByDefault {
 }

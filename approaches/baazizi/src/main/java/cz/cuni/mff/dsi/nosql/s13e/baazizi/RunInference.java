@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class Main {
+public class RunInference {
 
     public static final String PROPERTY_SPARK_MASTER = "baazizi.sparkMaster";
     public static final String PROPERTY_MONGO_HOST = "baazizi.mongoHost";
@@ -39,7 +39,7 @@ public class Main {
             return;
         }
         if (args.length != 6) {
-            throw new IllegalArgumentException("Usage: cz.cuni.mff.dsi.nosql.s13e.baazizi.Main <sparkMaster> <mongoHost> <dbName> <collectionName> <equivalence> <outputFile>");
+            throw new IllegalArgumentException("Usage: cz.cuni.mff.dsi.nosql.s13e.baazizi.RunInference <sparkMaster> <mongoHost> <dbName> <collectionName> <equivalence> <outputFile>");
         }
 
         sparkMaster = args[0];
