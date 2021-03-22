@@ -1,6 +1,5 @@
 package cz.cuni.mff.dsi.nosql.s13e.canovas;
 
-import cz.cuni.mff.dsi.nosql.s13e.canovas.util.MongoImporter;
 import jsondiscoverer.JsonSimpleDiscoverer;
 import jsondiscoverer.JsonSource;
 import jsondiscoverer.util.ModelHelper;

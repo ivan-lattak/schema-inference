@@ -1,4 +1,4 @@
-package cz.cuni.mff.dsi.nosql.s13e.canovas.util;
+package cz.cuni.mff.dsi.nosql.s13e.canovas;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -6,6 +6,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.bson.Document;
 
 import java.io.BufferedWriter;
@@ -16,19 +19,14 @@ import java.nio.file.Paths;
 import java.util.Spliterator;
 import java.util.stream.StreamSupport;
 
-public class MongoImporter {
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+class MongoImporter {
 
-    private final String host;
-    private final String dbName;
-    private final String collectionName;
-    private final String outputDir;
-
-    public MongoImporter(String host, String dbName, String collectionName, String outputDir) {
-        this.host = host;
-        this.dbName = dbName;
-        this.collectionName = collectionName;
-        this.outputDir = outputDir;
-    }
+    String host;
+    String dbName;
+    String collectionName;
+    String outputDir;
 
     public void importToFile() throws IOException {
         MongoClient client = new MongoClient(host, 27017);
