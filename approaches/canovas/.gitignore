@@ -1,19 +1,7 @@
-jsondiscoverer.coverage/bin/**/*
-jsondiscoverer.tests/bin/**/*
-jsondiscoverer.tests/log/**/*
-jsondiscoverer.ui/bin/**/*
-jsondiscoverer.examples/bin/**/*
-jsondiscoverer.zoo/bin/**/*
-jsondiscoverer.zoo/zooBig/*
-jsondiscoverer.zoo/zooMini/*
-jsondiscoverer/bin/**/*
-jsondiscoverer.web/build/**/*
-jsondiscoverer.web/**/workingDir/**/*.xmi
-jsondiscoverer.web/**/workingDir/**/*.ecore
-jsondiscoverer.web/**/workingDir/**/*.graphdesc
-jsondiscoverer.web/**/workingDir/**/*.jpg
-jsondiscoverer.web/**/workingDir/**/*.png
-jsondiscoverer.web/**/workingDir/**/*.feedback
-testing/**
-.idea/**
-*.iml
+projects/jsondiscoverer.coverage/bin/**/*
+projects/jsondiscoverer/bin/**/*
+
+# Temporary json collection files
+json
+# Default generated schema file
+schema.xml

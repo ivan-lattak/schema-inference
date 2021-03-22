@@ -46,3 +46,6 @@ Thumbs.db
 
 # Logs folder
 /logs
+
+# Default generated schema file
+schema.json
