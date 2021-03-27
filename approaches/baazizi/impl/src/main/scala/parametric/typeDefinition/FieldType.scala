@@ -7,7 +7,7 @@ class FieldType(label: String, body: CountingType) extends Ordered[FieldType] wi
    */
   def getCardinality: Long = body.getCardinality
 
-  override def toString: String = this.getClass.getName + "(" + this.label + "," + this.body.toString + ")"
+  override def toString: String = label + ":" + body
 
   def getLabel: String = this.label
 

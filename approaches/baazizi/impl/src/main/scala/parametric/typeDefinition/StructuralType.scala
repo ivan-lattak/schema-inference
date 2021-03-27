@@ -25,14 +25,6 @@ sealed class StructuralType(val card: Long) extends CountingType with Serializab
   val rRecord: Int = maxBase + _kindSep
   val rArray: Int = rRecord + _kindSep
 
-  val tNull = "NullType"
-  val tBool = "BoolType"
-  val tNumb = "NumType"
-  val tStr = "StrType"
-  val tRec = "RecordType"
-  val tArr = "ArrayType"
-
-
   def kind(): Int = this match {
 
     case Null(_) => rNull
@@ -61,23 +53,20 @@ sealed class StructuralType(val card: Long) extends CountingType with Serializab
 /*Basic types*/
 //case class Empty(override val card: Long) extends structuralType(card)
 case class Null(override val card: Long) extends StructuralType(card) {
-  override def toString: String = tNull
-
+  override def toString: String = "Null"
 }
 
 case class Bool(override val card: Long) extends StructuralType(card) {
-  //  override def toString: String = tBool
-
+  override def toString: String = "Bool"
 }
 
 case class Numb(override val card: Long) extends StructuralType(card) {
-  //  override def toString: String = tNumb
+  override def toString: String = "Num"
 }
 
 case class Str(override val card: Long) extends StructuralType(card) {
-  //  override def toString: String = tStr
+  override def toString: String = "Str"
 }
-
 
 case class Strbis(override val card: Long, minLengthL: Long, maxLength: Long) extends StructuralType(card) {
   //  override def toString: String = tStr
@@ -103,6 +92,8 @@ case class RecordType(body: List[FieldType], override val card: Long) extends St
   def isEqualTo(other: RecordType): Boolean =
     other.card == this.card && other.body.size == this.body.size &&
       other.labels() == this.labels() && deepEqual(other.body, this.body)
+
+  override def toString: String = body.mkString("{", ",", "}")
 }
 
 /*Array types*/
@@ -110,5 +101,7 @@ case class ArrayType(body: CountingType, override val card: Long) extends Struct
   //  override def toString: String = tArr
 
   def isEqualTo(other: ArrayType): Boolean = (other.card == this.card) && this.body.isEqualTo(other.body)
+
+  override def toString: String = "[" + body + "]"
 
 }

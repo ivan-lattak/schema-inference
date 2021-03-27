@@ -17,7 +17,8 @@ class CountingType() extends Serializable {
 }
 
 case class UnionType(body: List[StructuralType]) extends CountingType {
-  //  override def toString: String = "union"
+  override def toString: String = body.mkString("+")
+
   override def getCardinality: Long = body.map(_.getCardinality).sum
 
   /*l and r sorted*/
