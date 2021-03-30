@@ -25,30 +25,13 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.30'
 }
 
-task installAngularCli(type: Exec) {
-    commandLine getNpmExecutable(), 'install', '-g', '@angular/cli'
-    workingDir projectDir
-}
-
-task installTypescript(type: Exec) {
-    commandLine getNpmExecutable(), 'install', '-g', 'typescript'
-    workingDir projectDir
-}
-
-task installDependencies {
-    dependsOn installAngularCli
-    dependsOn installTypescript
-}
-
 task install(type: Exec) {
-    dependsOn installDependencies
-
     commandLine getNpmExecutable(), 'install'
     workingDir projectDir
 }
 
 task start {
-    // dependsOn install
+    dependsOn install
 
     doLast {
         [getNpmExecutable(), 'run', 'dev'].execute(null, projectDir)
