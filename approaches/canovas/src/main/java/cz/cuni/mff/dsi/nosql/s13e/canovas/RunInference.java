@@ -20,14 +20,13 @@ public class RunInference {
     public static final String PROPERTY_JSON_DIR = "canovas.jsonDir";
     public static final String PROPERTY_OUTPUT_FILE = "canovas.outputFile";
 
-    private static String mongoHost = System.getProperty(PROPERTY_MONGO_HOST, "localhost");
-    private static String dbName = System.getProperty(PROPERTY_DB_NAME, "inference");
-    private static String collectionName = System.getProperty(PROPERTY_COLLECTION_NAME, "articles");
-    private static String jsonDir = System.getProperty(PROPERTY_JSON_DIR, "json");
-    private static String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.xml");
+    private static final String mongoHost = System.getProperty(PROPERTY_MONGO_HOST, "localhost");
+    private static final String dbName = System.getProperty(PROPERTY_DB_NAME, "inference");
+    private static final String collectionName = System.getProperty(PROPERTY_COLLECTION_NAME, "articles");
+    private static final String jsonDir = System.getProperty(PROPERTY_JSON_DIR, "json");
+    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.xml");
 
     public static void main(String[] args) throws IOException {
-        parseArgs(args);
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         new MongoImporter(mongoHost, dbName, collectionName, jsonDir).importToFile();
@@ -38,21 +37,6 @@ public class RunInference {
         EPackage ePackage = discoverer.discover(source);
 
         ModelHelper.saveEPackage(ePackage, new File(outputFile));
-    }
-
-    private static void parseArgs(String[] args) {
-        if (args.length == 0) {
-            return;
-        }
-        if (args.length != 5) {
-            throw new IllegalArgumentException("Usage: cz.cuni.mff.dsi.nosql.s13e.canovas.RunInference <mongoHost> <dbName> <collectionName> <jsonDir> <outputFile>");
-        }
-
-        mongoHost = args[0];
-        dbName = args[1];
-        collectionName = args[2];
-        jsonDir = args[3];
-        outputFile = args[4];
     }
 
 }
