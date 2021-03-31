@@ -320,6 +320,3 @@ flycheck_*.el
 venv/
 
 .DS_Store
-
-# Default generated schema file
-schema.xml

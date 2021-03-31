@@ -3,5 +3,3 @@ projects/jsondiscoverer/bin/**/*
 
 # Temporary json collection files
 json
-# Default generated schema file
-schema.xml

@@ -25,7 +25,7 @@ public class RunInference {
     private static final String mongoHost = System.getProperty(PROPERTY_MONGO_HOST, "localhost");
     private static final String dbName = System.getProperty(PROPERTY_DB_NAME, "inferenceExtended");
     private static final String collectionName = System.getProperty(PROPERTY_COLLECTION_NAME, "articles");
-    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.json");
+    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/schema.json");
 
     private static final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 

@@ -24,7 +24,7 @@ public class RunInference {
     private static final String dbName = System.getProperty(PROPERTY_DB_NAME, "inference");
     private static final String collectionName = System.getProperty(PROPERTY_COLLECTION_NAME, "articles");
     private static final String jsonDir = System.getProperty(PROPERTY_JSON_DIR, "json");
-    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.xml");
+    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/schema.xml");
 
     public static void main(String[] args) throws IOException {
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());

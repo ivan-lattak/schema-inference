@@ -14,7 +14,7 @@ public class RunInference {
     private static final String mongoHost = System.getProperty(PROPERTY_MONGO_HOST, "localhost");
     private static final String dbName = System.getProperty(PROPERTY_DB_NAME, "inference");
     private static final String mapReduceDir = System.getProperty(PROPERTY_MAP_REDUCE_DIR, "mapreduce/v2");
-    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.xml");
+    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/schema.xml");
 
     public static void main(String[] args) {
         MongoDBImport importer = new MongoDBImport(mongoHost, dbName);

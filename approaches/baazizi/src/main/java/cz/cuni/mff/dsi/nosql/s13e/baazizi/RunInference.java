@@ -22,7 +22,7 @@ public class RunInference {
     private static final String dbName = System.getProperty(PROPERTY_DB_NAME, "inference");
     private static final String collectionName = System.getProperty(PROPERTY_COLLECTION_NAME, "articles");
     private static final String equivalence = System.getProperty(PROPERTY_EQUIVALENCE, "k");
-    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "schema.txt");
+    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/schema.txt");
 
     public static void main(String[] args) throws IOException {
         CountingType type = SchemaInference.infer(sparkMaster, mongoHost, dbName, collectionName, equivalence);
