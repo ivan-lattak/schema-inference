@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
 }
 
-group 'cz.cuni.mff.dsi.nosql.s13e.utils'
+group 'cz.cuni.mff.ksi.nosql.s13e.utils'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = JavaVersion.VERSION_1_8

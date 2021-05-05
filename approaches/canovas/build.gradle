@@ -4,7 +4,7 @@ plugins {
     id 'io.freefair.lombok' version '5.3.0'
 }
 
-group 'cz.cuni.mff.dsi.nosql.s13e'
+group 'cz.cuni.mff.ksi.nosql.s13e'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -24,6 +24,6 @@ dependencies {
 
 task run(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'cz.cuni.mff.dsi.nosql.s13e.canovas.RunInference'
+    main = 'cz.cuni.mff.ksi.nosql.s13e.canovas.RunInference'
     systemProperties utils.propertiesForApproach
 }

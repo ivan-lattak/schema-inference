@@ -6,7 +6,7 @@ gradlePlugin {
     plugins {
         utils {
             id = 'utils'
-            implementationClass = 'cz.cuni.mff.dsi.nosql.s13e.UtilsPlugin'
+            implementationClass = 'cz.cuni.mff.ksi.nosql.s13e.UtilsPlugin'
         }
     }
 }
