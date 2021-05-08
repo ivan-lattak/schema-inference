@@ -217,4 +217,7 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij,eclipse
 
+# Make project completely independent on IDE, either IDEA or Eclipse
 .idea
+**/.project
+**/.classpath
