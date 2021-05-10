@@ -42,15 +42,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnionType" eSuperTypes="#//Type">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="types" lowerBound="1" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" lowerBound="2" upperBound="-1"
                          eType="#//SingleType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SingleType" abstract="true" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="EntityReference" eSuperTypes="#//SingleType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
                          eType="#//Entity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="originalType" lowerBound="1"
-                         eType="#//PrimitiveType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="originalType" eType="#//PrimitiveType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnknownType" eSuperTypes="#//SingleType"/>
   <eClassifiers xsi:type="ecore:EClass" name="ComplexType" abstract="true" eSuperTypes="#//SingleType"/>

@@ -16,7 +16,7 @@
       <viewpoint xmi:type="description:Viewpoint"
                  href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="__lBiB6xkEeu-voOdVyG89w"
-                                      name="NoSQLSchema class diagram" repPath="#__k8CcKxkEeu-voOdVyG89w">
+                                      name="nosqlschema" repPath="#__k8CcKxkEeu-voOdVyG89w">
         <description xmi:type="description_1:DiagramDescription"
                      href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="nosqlschema.ecore#/"/>
@@ -35,8 +35,7 @@
                  href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']"/>
     </ownedViews>
   </viewpoint:DAnalysis>
-  <diagram:DSemanticDiagram xmi:id="__lBiAKxkEeu-voOdVyG89w" name="NoSQLSchema class diagram"
-                            uid="__k8CcKxkEeu-voOdVyG89w">
+  <diagram:DSemanticDiagram xmi:id="__lBiAKxkEeu-voOdVyG89w" name="nosqlschema" uid="__k8CcKxkEeu-voOdVyG89w">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="__lBiAaxkEeu-voOdVyG89w"
                             source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="__lBiAqxkEeu-voOdVyG89w">
@@ -1092,7 +1091,7 @@
       <actualMapping xmi:type="description_1:EdgeMapping"
                      href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ABVDhKxlEeu-voOdVyG89w" name="[1..*] types"
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ABVDhKxlEeu-voOdVyG89w" name="[2..*] types"
                           sourceNode="_ABFy8qxlEeu-voOdVyG89w" targetNode="_ABGaAKxlEeu-voOdVyG89w">
       <target xmi:type="ecore:EReference" href="nosqlschema.ecore#//UnionType/types"/>
       <semanticElements xmi:type="ecore:EReference" href="nosqlschema.ecore#//UnionType/types"/>
@@ -1128,20 +1127,17 @@
       <actualMapping xmi:type="description_1:EdgeMapping"
                      href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ABWRoKxlEeu-voOdVyG89w" name="[1..1] originalType"
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ABWRoKxlEeu-voOdVyG89w" name="[0..1] originalType"
                           sourceNode="_ABHBEKxlEeu-voOdVyG89w" targetNode="_ABI2QqxlEeu-voOdVyG89w">
       <target xmi:type="ecore:EReference" href="nosqlschema.ecore#//EntityReference/originalType"/>
       <semanticElements xmi:type="ecore:EReference" href="nosqlschema.ecore#//EntityReference/originalType"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_ABWRoaxlEeu-voOdVyG89w" description="_ABVqlKxlEeu-voOdVyG89w"
-                  routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_ABWRoqxlEeu-voOdVyG89w" showIcon="false">
-          <customFeatures>labelSize</customFeatures>
-          <labelFormat>bold</labelFormat>
-        </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_ABWRo6xlEeu-voOdVyG89w" showIcon="false"
-                       labelColor="39,76,114">
-          <customFeatures>labelSize</customFeatures>
-        </endLabelStyle>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_dKzwILHAEeuPl_ynhhr2XQ" routingStyle="manhattan"
+                  strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription"
+                     href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_dKzwIbHAEeuPl_ynhhr2XQ" showIcon="false"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_dKzwIrHAEeuPl_ynhhr2XQ" labelSize="6" showIcon="false"
+                       labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping"
                      href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
