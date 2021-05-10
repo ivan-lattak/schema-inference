@@ -1,5 +1,6 @@
 rootProject.name = 'SchemaInference'
 
+include ':impl'
 include ':utils:annotation'
 
 file('approaches').eachDir { dir ->
