@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
-@FieldsAreNonnullByDefault
 @ReturnValuesAreNonnullByDefault
-package cz.cuni.mff.ksi.nosql.s13e.api;
+@FieldsAreNonnullByDefault
+package cz.cuni.mff.ksi.nosql.s13e.impl;
 
 import cz.cuni.mff.ksi.nosql.s13e.utils.annotation.FieldsAreNonnullByDefault;
 import cz.cuni.mff.ksi.nosql.s13e.utils.annotation.ReturnValuesAreNonnullByDefault;

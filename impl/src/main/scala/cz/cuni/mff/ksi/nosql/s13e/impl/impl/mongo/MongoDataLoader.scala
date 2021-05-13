@@ -1,15 +1,14 @@
-package cz.cuni.mff.ksi.nosql.s13e.impl.mongo
+package cz.cuni.mff.ksi.nosql.s13e.impl.impl.mongo
 
 import com.mongodb.spark.MongoSpark
 import com.mongodb.spark.config.ReadConfig
-import cz.cuni.mff.ksi.nosql.s13e.api.DataLoader
-import cz.cuni.mff.ksi.nosql.s13e.impl.TypedDocumentImpl
+import cz.cuni.mff.ksi.nosql.s13e.impl.TypedDocument
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import play.api.libs.json.{JsNull, Json}
 
 sealed case class MongoDataLoader(mongoHost: String,
-                                  dbName: String) extends DataLoader[TypedDocumentImpl] {
+                                  dbName: String) extends DataLoader {
 
   private def getReadConfig(collectionName: String): ReadConfig = ReadConfig(Map(
     "uri" -> s"mongodb://$mongoHost/",
@@ -17,7 +16,7 @@ sealed case class MongoDataLoader(mongoHost: String,
     "collection" -> collectionName,
   ))
 
-  override def loadData(sparkSession: SparkSession): RDD[TypedDocumentImpl] = MongoSpark.load(sparkSession.sparkContext)
+  override def loadData(sparkSession: SparkSession): RDD[TypedDocument] = MongoSpark.load(sparkSession.sparkContext)
     .map(_.toJson)
     .filter(_.nonEmpty)
     .map { document =>

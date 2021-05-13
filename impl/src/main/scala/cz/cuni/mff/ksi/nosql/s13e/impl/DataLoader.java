@@ -1,4 +1,4 @@
-package cz.cuni.mff.ksi.nosql.s13e.api;
+package cz.cuni.mff.ksi.nosql.s13e.impl;
 
 import org.apache.spark.rdd.RDD;
 import org.apache.spark.sql.SparkSession;
