@@ -2,7 +2,8 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="NoSQLSchema"
-                nsURI="http://www.modelum.es/NoSQLSchema" nsPrefix="NoSQLSchema">
+                nsURI="http://www.ksi.mff.cuni.cz/NoSQLSchema"
+                nsPrefix="NoSQLSchema">
   <eClassifiers xsi:type="ecore:EClass" name="NoSQLSchema">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
                          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
