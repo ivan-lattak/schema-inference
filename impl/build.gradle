@@ -1,4 +1,5 @@
 plugins {
+    id 'java-library'
     id 'scala'
 }
 
@@ -13,17 +14,16 @@ repositories {
 }
 
 sourceSets {
-    model {
-        java {
-            srcDir 'src/model/java'
-        }
-    }
+    model { }
 }
 
 dependencies {
     modelImplementation 'org.eclipse.core:org.eclipse.core.runtime:3.7.0'
     modelImplementation 'org.eclipse.emf:org.eclipse.emf.ecore:2.23.0'
     modelImplementation 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.16.0'
+
+    implementation sourceSets.model.output
+    implementation configurations.modelImplementation
 
     implementation project(':utils:annotation')
 
@@ -39,8 +39,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-compileJava {
-    source sourceSets.model.java
 }

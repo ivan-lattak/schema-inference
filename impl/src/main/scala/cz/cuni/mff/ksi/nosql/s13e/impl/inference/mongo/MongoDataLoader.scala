@@ -1,8 +1,8 @@
-package cz.cuni.mff.ksi.nosql.s13e.impl.impl.mongo
+package cz.cuni.mff.ksi.nosql.s13e.impl.inference.mongo
 
 import com.mongodb.spark.MongoSpark
 import com.mongodb.spark.config.ReadConfig
-import cz.cuni.mff.ksi.nosql.s13e.impl.TypedDocument
+import cz.cuni.mff.ksi.nosql.s13e.impl.{DataLoader, TypedDocument}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import play.api.libs.json.{JsNull, Json}

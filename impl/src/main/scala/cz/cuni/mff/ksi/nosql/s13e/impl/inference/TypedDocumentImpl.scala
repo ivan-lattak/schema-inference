@@ -1,8 +1,9 @@
-package cz.cuni.mff.ksi.nosql.s13e.impl.impl
+package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
-import cz.cuni.mff.ksi.nosql.s13e.impl.TypedDocument
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.TypedDocumentImpl.jsObjectToObjectNode
+import cz.cuni.mff.ksi.nosql.s13e.impl.{TypedDocument, inference}
 import play.api.libs.json._
 
 private sealed case class TypedDocumentImpl(typeName: String, document: JsObject) extends TypedDocument {
@@ -11,8 +12,8 @@ private sealed case class TypedDocumentImpl(typeName: String, document: JsObject
 
   override def getDocument: ObjectNode = jsObjectToObjectNode(document)
 
-  private[impl] def getRawSchema: TypedDocument =
-    TypedDocumentImpl(typeName, TypedDocumentImpl.getRawSchema(document).asInstanceOf[JsObject])
+  private[inference] def getRawSchema: TypedDocument =
+    inference.TypedDocumentImpl(typeName, TypedDocumentImpl.getRawSchema(document).asInstanceOf[JsObject])
 
 }
 
@@ -28,7 +29,7 @@ private object TypedDocumentImpl {
 
   def apply(typedDoc: TypedDocument): TypedDocumentImpl = typedDoc match {
     case typedDoc: TypedDocumentImpl => typedDoc
-    case _ => TypedDocumentImpl(typedDoc.getTypeName, objectNodeToJsObject(typedDoc.getDocument))
+    case _ => inference.TypedDocumentImpl(typedDoc.getTypeName, objectNodeToJsObject(typedDoc.getDocument))
   }
 
   def getRawSchema(value: JsValue): JsValue = value match {
