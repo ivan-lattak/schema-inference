@@ -59,13 +59,14 @@ public interface EntityVersion extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Count</em>' attribute.
-	 * @see #setCount(int)
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityVersion_Count()
 	 * @model required="true"
 	 * @generated
+	 * @see #setCount(long)
+	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityVersion_Count()
 	 */
-	int getCount();
+	long getCount();
 
 	/**
 	 * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getCount <em>Count</em>}' attribute.
@@ -75,7 +76,7 @@ public interface EntityVersion extends EObject {
 	 * @see #getCount()
 	 * @generated
 	 */
-	void setCount(int value);
+	void setCount(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.

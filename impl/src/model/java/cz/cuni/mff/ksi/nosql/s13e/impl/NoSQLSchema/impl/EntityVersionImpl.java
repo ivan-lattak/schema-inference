@@ -60,35 +60,39 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	 * The default value of the '{@link #getCount() <em>Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCount()
+	 *
 	 * @generated
 	 * @ordered
+	 * @see #getCount()
 	 */
-	protected static final int COUNT_EDEFAULT = 0;
+	protected static final long COUNT_EDEFAULT = 0L;
 
 	/**
 	 * The cached value of the '{@link #getCount() <em>Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCount()
+	 *
 	 * @generated
 	 * @ordered
+	 * @see #getCount()
 	 */
-	protected int count = COUNT_EDEFAULT;
+	protected long count = COUNT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperties()
+	 *
 	 * @generated
 	 * @ordered
+	 * @see #getProperties()
 	 */
 	protected EList<Property> properties;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected EntityVersionImpl() {
@@ -117,6 +121,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void setId(int newId) {
@@ -129,19 +134,21 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
-	public int getCount() {
+	public long getCount() {
 		return count;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
-	public void setCount(int newCount) {
-		int oldCount = count;
+	public void setCount(long newCount) {
+		long oldCount = count;
 		count = newCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY_VERSION__COUNT, oldCount, count));
@@ -150,6 +157,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public EList<Property> getProperties() {
@@ -162,6 +170,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public Entity getEntity() {
@@ -172,6 +181,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetEntity(Entity newEntity, NotificationChain msgs) {
@@ -182,6 +192,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void setEntity(Entity newEntity) {
@@ -202,6 +213,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -268,6 +280,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -278,7 +291,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 				setId((Integer) newValue);
 				return;
 			case NoSQLSchemaPackage.ENTITY_VERSION__COUNT:
-				setCount((Integer) newValue);
+				setCount((Long) newValue);
 				return;
 			case NoSQLSchemaPackage.ENTITY_VERSION__PROPERTIES:
 				getProperties().clear();
@@ -294,6 +307,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override

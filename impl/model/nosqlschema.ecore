@@ -26,7 +26,7 @@
                          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
                          iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" lowerBound="1"
-                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" lowerBound="1"
                          upperBound="-1" eType="#//Property" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"

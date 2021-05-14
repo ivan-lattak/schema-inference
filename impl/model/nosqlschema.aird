@@ -788,7 +788,7 @@
         <actualMapping xmi:type="description_1:NodeMapping"
                        href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ABSAMaxlEeu-voOdVyG89w" name="count : EInt"
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ABSAMaxlEeu-voOdVyG89w" name="count : ELong"
                      tooltipText="">
         <target xmi:type="ecore:EAttribute" href="nosqlschema.ecore#//EntityVersion/count"/>
         <semanticElements xmi:type="ecore:EAttribute" href="nosqlschema.ecore#//EntityVersion/count"/>
