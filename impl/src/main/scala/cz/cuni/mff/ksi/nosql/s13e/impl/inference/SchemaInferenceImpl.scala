@@ -23,8 +23,8 @@ case object SchemaInferenceImpl {
       .map(TypedDocumentImpl.apply)
       .map(_.getRawSchema)
       .distinct()
-      .map(Injector(schemaName).inject)
-      .fold(EmptyInternalNoSqlSchema(schemaName))(Folder.fold)
+      .map(Injector(schemaName))
+      .fold(EmptyInternalNoSqlSchema(schemaName))(Combiner)
     SchemaConverter.internalToModel(internalSchema)
   }
 
