@@ -2,8 +2,8 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.InternalNoSqlSchema
 
-private sealed case class Injector(schemaName: String) {
+private case object Folder {
 
-  def inject(document: TypedDocumentImpl): InternalNoSqlSchema = ???
+  def fold(left: InternalNoSqlSchema, right: InternalNoSqlSchema): InternalNoSqlSchema = ???
 
 }

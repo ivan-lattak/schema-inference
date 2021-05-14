@@ -1,11 +1,13 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import play.api.libs.json.JsObject;
 
-public interface TypedDocument {
+import java.io.Serializable;
+
+public interface TypedDocument extends Serializable {
 
     String getTypeName();
 
-    ObjectNode getDocument();
+    JsObject getDocument();
 
 }

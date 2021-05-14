@@ -5,6 +5,7 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema;
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaInferenceImpl;
 
+import javax.annotation.Nullable;
 import java.io.Writer;
 import java.nio.file.Path;
 
@@ -14,12 +15,12 @@ public final class SchemaInference {
         throw new UnsupportedOperationException();
     }
 
-    public static NoSQLSchema infer(String sparkMaster, DataLoader dataLoader) {
-        return SchemaInferenceImpl.infer(sparkMaster, dataLoader);
+    public static NoSQLSchema infer(String sparkMaster, DataLoader dataLoader, String schemaName) {
+        return SchemaInferenceImpl.infer(sparkMaster, dataLoader, schemaName);
     }
 
-    public static NoSQLSchema extend(NoSQLSchema schema, String sparkMaster, DataLoader dataLoader) {
-        return SchemaInferenceImpl.extend(schema, sparkMaster, dataLoader);
+    public static NoSQLSchema extend(NoSQLSchema schema, String sparkMaster, DataLoader dataLoader, @Nullable String newSchemaName) {
+        return SchemaInferenceImpl.extend(schema, sparkMaster, dataLoader, newSchemaName);
     }
 
     public static NoSQLSchema flatten(Entity entity) {

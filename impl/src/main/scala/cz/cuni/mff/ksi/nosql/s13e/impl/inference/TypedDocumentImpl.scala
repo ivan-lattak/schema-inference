@@ -1,35 +1,24 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.node.ObjectNode
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.TypedDocumentImpl.jsObjectToObjectNode
-import cz.cuni.mff.ksi.nosql.s13e.impl.{TypedDocument, inference}
+import cz.cuni.mff.ksi.nosql.s13e.impl.TypedDocument
 import play.api.libs.json._
 
 private sealed case class TypedDocumentImpl(typeName: String, document: JsObject) extends TypedDocument {
 
   override def getTypeName: String = typeName
 
-  override def getDocument: ObjectNode = jsObjectToObjectNode(document)
+  override def getDocument: JsObject = document
 
-  private[inference] def getRawSchema: TypedDocument =
-    inference.TypedDocumentImpl(typeName, TypedDocumentImpl.getRawSchema(document).asInstanceOf[JsObject])
+  private[inference] def getRawSchema: TypedDocumentImpl =
+    TypedDocumentImpl(typeName, TypedDocumentImpl.getRawSchema(document).asInstanceOf[JsObject])
 
 }
 
-private object TypedDocumentImpl {
-
-  val objectMapper: ObjectMapper = new ObjectMapper()
-
-  def jsObjectToObjectNode(jsObject: JsObject): ObjectNode =
-    objectMapper.readTree(Json.stringify(jsObject)).asInstanceOf[ObjectNode]
-
-  def objectNodeToJsObject(objectNode: ObjectNode): JsObject =
-    Json.parse(objectNode.toString).asInstanceOf[JsObject]
+private case object TypedDocumentImpl {
 
   def apply(typedDoc: TypedDocument): TypedDocumentImpl = typedDoc match {
     case typedDoc: TypedDocumentImpl => typedDoc
-    case _ => inference.TypedDocumentImpl(typedDoc.getTypeName, objectNodeToJsObject(typedDoc.getDocument))
+    case _ => TypedDocumentImpl(typedDoc.getTypeName, typedDoc.getDocument)
   }
 
   def getRawSchema(value: JsValue): JsValue = value match {
