@@ -34,7 +34,8 @@ sealed case class MongoDataLoader(mongoHost: String,
       .getDatabase(dbName)
       .listCollectionNames()
       .map(loadFromCollection)
-      .foldLeft(sparkSession.sparkContext.emptyRDD[TypedDocument])(_.union(_))
+      .collect()
+      .map(sc.union)
       .head(), Duration.Inf)
   }
 
