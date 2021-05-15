@@ -19,7 +19,7 @@ case object SchemaInferenceImpl {
       .master(sparkMaster)
       .appName("NoSQL Schema Inference")
       .getOrCreate()
-    val internalSchema = dataLoader.loadData(session)
+    val internalSchema = dataLoader.loadData(session.sparkContext)
       .map(TypedDocumentImpl.apply)
       .map(_.getRawSchema)
       .distinct()
