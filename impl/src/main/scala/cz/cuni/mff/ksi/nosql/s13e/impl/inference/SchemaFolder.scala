@@ -8,12 +8,9 @@ private case object SchemaFolder extends ((InternalNoSqlSchema, InternalNoSqlSch
     (left, right) match {
       case (EmptyInternalNoSqlSchema, _) => right
       case (_, EmptyInternalNoSqlSchema) => left
-      case _ => InternalNoSqlSchema(None, mergeEntities(left.entities, right.entities))
+      case _ => ???
     }
 
-  private def mergeEntities(left: List[InternalEntity], right: List[InternalEntity]): List[InternalEntity] =
-    (left, right) match {
-      case (lh :: lt, rh :: rt)
-    }
+  private def mergeEntities(left: List[InternalEntity], right: List[InternalEntity]): List[InternalEntity] = ???
 
 }

@@ -3,6 +3,7 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema._
 import play.api.libs.json._
 
+import scala.collection.immutable.TreeSet
 import scala.collection.mutable
 
 private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) {
@@ -28,7 +29,7 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
         InternalAggregate(entity.getOrAddIdenticalVersion(properties).increment)
     }
 
-    def finish: InternalNoSqlSchema = InternalNoSqlSchema(None, entities.values.toList)
+    def finish: InternalNoSqlSchema = InternalNoSqlSchema(None, TreeSet(entities.values.toSeq: _*)(Ordering.by(_.name)))
 
     private def singularize(typeName: String): String = typeName.stripSuffix("s") // TODO better singularization
 
