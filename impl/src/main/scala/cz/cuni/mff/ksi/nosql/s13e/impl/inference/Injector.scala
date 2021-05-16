@@ -9,7 +9,7 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
 
   private case class InternalSchemaBuilder() {
 
-    private val entities: mutable.Map[String, InternalEntity] = mutable.HashMap()
+    private val entities: mutable.SortedMap[String, InternalEntity] = mutable.TreeMap()
 
     def construct(typeName: String,
                   jsValue: JsValue,
@@ -28,7 +28,7 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
         InternalAggregate(entity.getOrAddIdenticalVersion(properties).increment)
     }
 
-    def finish: InternalNoSqlSchema = InternalNoSqlSchema(None, entities.values.toList.sorted)
+    def finish: InternalNoSqlSchema = InternalNoSqlSchema(None, entities.values.toList)
 
     private def singularize(typeName: String): String = typeName.stripSuffix("s") // TODO better singularization
 
