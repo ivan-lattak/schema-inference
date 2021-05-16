@@ -3,7 +3,7 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 import com.fasterxml.jackson.databind.node.ObjectNode
 import cz.cuni.mff.ksi.nosql.s13e.impl.DataLoader
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Entity, NoSQLSchema}
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.{EmptyInternalNoSqlSchema, SchemaConverter}
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.{EmptyInternalNoSqlSchema, InternalNoSqlSchema, NamedInternalNoSqlSchema}
 import org.apache.spark.sql.SparkSession
 
 import java.io.Writer
@@ -14,24 +14,37 @@ case object SchemaInferenceImpl {
 
   def infer(sparkMaster: String,
             dataLoader: DataLoader,
-            schemaName: String): NoSQLSchema = {
-    val session = SparkSession.builder()
-      .master(sparkMaster)
-      .appName("NoSQL Schema Inference")
-      .getOrCreate()
-    val internalSchema = dataLoader.loadData(session.sparkContext)
-      .map(TypedDocumentImpl.apply)
-      .map(_.getRawSchema)
-      .distinct()
-      .map(Injector(schemaName))
-      .fold(EmptyInternalNoSqlSchema(schemaName))(Combiner)
-    SchemaConverter.internalToModel(internalSchema)
-  }
+            schemaName: String): NoSQLSchema =
+    Converter.internalToModel(
+      createInternal(sparkMaster, dataLoader, schemaName))
 
   def extend(schema: NoSQLSchema,
              sparkMaster: String,
              dataLoader: DataLoader,
-             @Nullable newSchemaName: String): NoSQLSchema = ???
+             @Nullable newSchemaName: String): NoSQLSchema = {
+    val internalSchema = Converter.modelToInternal(schema)
+    Converter.internalToModel(
+      createInternal(sparkMaster, dataLoader,
+        Option(newSchemaName).getOrElse(internalSchema.name),
+        internalSchema))
+  }
+
+  private def createInternal(sparkMaster: String,
+                             dataLoader: DataLoader,
+                             schemaName: String,
+                             baseSchema: InternalNoSqlSchema = EmptyInternalNoSqlSchema): NamedInternalNoSqlSchema = {
+    val session = SparkSession.builder()
+      .master(sparkMaster)
+      .appName("NoSQL Schema Inference")
+      .getOrCreate()
+    val newSchema = dataLoader.loadData(session.sparkContext)
+      .map(TypedDocumentImpl.apply)
+      .map(_.getRawSchema)
+      .distinct()
+      .map(Injector)
+      .fold(baseSchema)(SchemaFolder)
+    NamedInternalNoSqlSchema(schemaName, newSchema.entities)
+  }
 
   def flatten(entity: Entity): NoSQLSchema = ???
 

@@ -28,6 +28,7 @@ dependencies {
     implementation project(':utils:annotation')
 
     implementation 'com.typesafe.play:play-json_2.12:2.7.4'
+    implementation 'com.typesafe.scala-logging:scala-logging_2.12:3.9.3'
 
     implementation 'org.apache.spark:spark-sql_2.12:2.4.5'
     implementation 'org.apache.spark:spark-core_2.12:2.4.5'
