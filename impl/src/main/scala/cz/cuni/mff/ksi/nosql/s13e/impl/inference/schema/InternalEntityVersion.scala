@@ -12,6 +12,11 @@ sealed case class InternalEntityVersion(private var _count: Long, properties: So
     this
   }
 
+  def addCount(that: InternalEntityVersion): this.type = {
+    _count += that._count
+    this
+  }
+
 }
 
 case object InternalEntityVersion {
@@ -27,8 +32,8 @@ case object InternalEntityVersion {
     }
 
     @tailrec
-    def compareProperties(left: List[(String, InternalProperty)],
-                          right: List[(String, InternalProperty)]): Int = (left, right) match {
+    private def compareProperties(left: List[(String, InternalProperty)],
+                                  right: List[(String, InternalProperty)]): Int = (left, right) match {
       case (Nil, Nil) => 0
       case ((lk, lv) :: lt, (rk, rv) :: rt) => lk.compare(rk) match {
         case c if c != 0 => c

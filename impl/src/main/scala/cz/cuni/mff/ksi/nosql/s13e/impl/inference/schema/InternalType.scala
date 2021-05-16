@@ -1,5 +1,6 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.InternalEntityVersion.PropertiesOrdering
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.OptionOrdering
 
 import scala.annotation.tailrec
@@ -28,7 +29,7 @@ case object InternalType {
     case c if c != 0 => c
     case _ => (x, y) match {
       case (InternalArray(left), InternalArray(right)) => left.compare(right)
-      case (InternalAggregate(left), InternalAggregate(right)) => System.identityHashCode(left) - System.identityHashCode(right)
+      case (InternalAggregate(left), InternalAggregate(right)) => PropertiesOrdering.compare(left, right)
       case (InternalEntityReference(leftTarget, leftOrig), InternalEntityReference(rightTarget, rightOrig)) =>
         leftTarget.compare(rightTarget) match {
           case c if c != 0 => c
@@ -69,18 +70,7 @@ case object InternalString extends InternalPrimitiveType
 
 sealed abstract case class InternalComplexType() extends InternalSingleType
 
-sealed case class InternalAggregate(target: InternalEntityVersion) extends InternalComplexType {
-
-  override def hashCode(): Int = System.identityHashCode(target) + 31
-
-  override def equals(obj: Any): Boolean = obj match {
-    case that: InternalAggregate => that.canEqual(this) && target.eq(that.target)
-    case _ => false
-  }
-
-  override def canEqual(that: Any): Boolean = that.isInstanceOf[InternalAggregate]
-
-}
+sealed case class InternalAggregate(target: InternalEntityVersion) extends InternalComplexType
 
 sealed case class InternalArray(elementType: InternalType) extends InternalComplexType
 
