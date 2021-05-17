@@ -10,15 +10,15 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
 
   private case class InternalSchemaBuilder() {
 
-    private val entities: mutable.SortedMap[String, InternalEntity] = mutable.TreeMap()
+    private val entities: mutable.SortedMap[String, InternalEntity] = mutable.TreeMap.empty
 
     def construct(typeName: String,
                   jsValue: JsValue,
                   root: Boolean): InternalType = jsValue match {
-      case JsNull => InternalUnknownType
+      case JsNull => InternalUnknownType // TODO these are raw schemas => there are no primitives except strings!
       case _: JsBoolean => InternalBoolean
       case JsNumber(_) => InternalNumber
-      case JsString(_) => InternalString
+      case JsString(_) => InternalString // TODO handle Entity references encoded as strings
       case JsArray(value) => InternalArray(
         value.map(construct(typeName, _, root = false)).fold(InternalUnknownType)(TypeFolder))
       case DbRef(collectionName) => InternalEntityReference(singularize(collectionName))

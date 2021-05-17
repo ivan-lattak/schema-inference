@@ -7,7 +7,7 @@ import scala.collection.immutable.{SortedMap, TreeMap}
 import scala.collection.{Map, mutable}
 
 sealed case class InternalEntity(name: String, root: Boolean,
-                                 private val _versions: MutableVersionMap = mutable.TreeMap()(PropertiesOrdering)) {
+                                 private val _versions: MutableVersionMap = mutable.TreeMap.empty(PropertiesOrdering)) {
 
   def versions: VersionMap = TreeMap(_versions.toSeq: _*)(_versions.ordering)
 

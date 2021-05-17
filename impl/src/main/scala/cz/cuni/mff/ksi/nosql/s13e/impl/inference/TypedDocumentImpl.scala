@@ -27,7 +27,7 @@ private case object TypedDocumentImpl {
     case JsNumber(_) => JsString("number")
     case JsString(_) => JsString("string")
     case JsArray(value) => JsArray(value.map(getRawSchema))
-    case JsObject(underlying) => JsObject(underlying.mapValues(getRawSchema))
+    case JsObject(underlying) => JsObject(underlying.mapValues(getRawSchema)) // TODO add DbRef extractor case
   }
 
 }

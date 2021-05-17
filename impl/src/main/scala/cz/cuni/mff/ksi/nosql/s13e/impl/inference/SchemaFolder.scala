@@ -11,7 +11,7 @@ private case object SchemaFolder extends ((InternalNoSqlSchema, InternalNoSqlSch
 
   override def apply(left: InternalNoSqlSchema, right: InternalNoSqlSchema): InternalNoSqlSchema = Impl().fold(left, right)
 
-  private case class Impl(private val aggregateTargetMap: mutable.Map[InternalEntityVersion, InternalEntityVersion] = mutable.HashMap()) {
+  private case class Impl(private val aggregateTargetMap: mutable.Map[InternalEntityVersion, InternalEntityVersion] = mutable.HashMap.empty) {
 
     def fold(left: InternalNoSqlSchema, right: InternalNoSqlSchema): InternalNoSqlSchema = {
       val result = (left, right) match {
@@ -54,7 +54,7 @@ private case object SchemaFolder extends ((InternalNoSqlSchema, InternalNoSqlSch
           case c if c < 0 => lh :: mergeVersionLists(lt, right)
           case c if c > 0 => rh :: mergeVersionLists(left, rt)
           case _ =>
-            aggregateTargetMap(rh) = lh
+            aggregateTargetMap(rh) = lh // TODO dual edge -> version knows about aggregates of it
             lh.addCount(rh)
             lh :: mergeVersionLists(lt, rt)
         }

@@ -33,7 +33,7 @@ case object InternalType {
       case (InternalEntityReference(leftTarget, leftOrig), InternalEntityReference(rightTarget, rightOrig)) =>
         leftTarget.compare(rightTarget) match {
           case c if c != 0 => c
-          case _ => OptionOrdering.compareOptions[InternalType](leftOrig, rightOrig)
+          case _ => OptionOrdering.compareOptions(leftOrig, rightOrig)
         }
       case (InternalUnionType(left), InternalUnionType(right)) => compareLists(left, right)
       case _ => 0 // other subtypes do not have parameters
