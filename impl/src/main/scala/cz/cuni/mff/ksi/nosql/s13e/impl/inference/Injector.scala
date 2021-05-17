@@ -1,5 +1,6 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.RawSchema._
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema._
 import play.api.libs.json._
 
@@ -15,18 +16,21 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
     def construct(typeName: String,
                   jsValue: JsValue,
                   root: Boolean): InternalType = jsValue match {
-      case JsNull => InternalUnknownType // TODO these are raw schemas => there are no primitives except strings!
-      case _: JsBoolean => InternalBoolean
-      case JsNumber(_) => InternalNumber
-      case JsString(_) => InternalString // TODO handle Entity references encoded as strings
+      case JsString(actualType) => actualType match { // these are raw schemas, the actual type is encoded in the string
+        case nullType => InternalUnknownType
+        case booleanType => InternalBoolean
+        case numberType => InternalNumber
+        case stringType => InternalString
+        case ReferenceType(collectionName) => InternalEntityReference(singularize(collectionName))
+      }
       case JsArray(value) => InternalArray(
         value.map(construct(typeName, _, root = false)).fold(InternalUnknownType)(TypeFolder))
-      case DbRef(collectionName) => InternalEntityReference(singularize(collectionName))
       case JsObject(underlying) =>
         val singularTypeName = singularize(typeName)
         val entity = entities.getOrElseUpdate(singularTypeName, InternalEntity(singularTypeName, root))
         val properties = underlying map { case (k, v) => (k, InternalProperty(k, construct(k, v, root = false))) }
         InternalAggregate(entity.getOrAddIdenticalVersion(properties).increment)
+      case _ => throw new RuntimeException(s"Unexpected JSON type in raw schema: $jsValue") // null, boolean and number are unexpected
     }
 
     def finish: InternalNoSqlSchema = InternalNoSqlSchema(None, TreeSet(entities.values.toSeq: _*)(Ordering.by(_.name)))
