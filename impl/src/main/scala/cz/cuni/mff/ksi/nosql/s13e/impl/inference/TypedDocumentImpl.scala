@@ -9,8 +9,7 @@ private sealed case class TypedDocumentImpl(typeName: String, document: JsObject
 
   override def getDocument: JsObject = document
 
-  private[inference] def getRawSchema: TypedDocumentImpl =
-    TypedDocumentImpl(typeName, TypedDocumentImpl.getRawSchema(document).asInstanceOf[JsObject])
+  private[inference] def getRawSchema: TypedDocumentImpl = TypedDocumentImpl(typeName, RawSchema(document))
 
 }
 
@@ -19,15 +18,6 @@ private case object TypedDocumentImpl {
   def apply(typedDoc: TypedDocument): TypedDocumentImpl = typedDoc match {
     case typedDoc: TypedDocumentImpl => typedDoc
     case _ => TypedDocumentImpl(typedDoc.getTypeName, typedDoc.getDocument)
-  }
-
-  def getRawSchema(value: JsValue): JsValue = value match {
-    case JsNull => JsString("null")
-    case _: JsBoolean => JsString("boolean")
-    case JsNumber(_) => JsString("number")
-    case JsString(_) => JsString("string")
-    case JsArray(value) => JsArray(value.map(getRawSchema))
-    case JsObject(underlying) => JsObject(underlying.mapValues(getRawSchema)) // TODO add DbRef extractor case
   }
 
 }
