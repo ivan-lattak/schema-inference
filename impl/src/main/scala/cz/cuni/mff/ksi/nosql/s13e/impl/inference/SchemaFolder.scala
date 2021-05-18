@@ -14,7 +14,7 @@ private case object SchemaFolder extends ((InternalNoSqlSchema, InternalNoSqlSch
     (left, right) match {
       case (_, EmptyInternalNoSqlSchema) => left
       case (EmptyInternalNoSqlSchema, _) => right
-      case _ => InternalNoSqlSchema(None, mergeEntitySets(left.entities, right.entities))
+      case _ => new InternalNoSqlSchema(mergeEntitySets(left.entities, right.entities))
     }
 
 

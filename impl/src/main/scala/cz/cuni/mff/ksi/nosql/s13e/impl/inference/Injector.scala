@@ -32,7 +32,7 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
       case _ => throw new RuntimeException(s"Unexpected JSON type in raw schema: $jsValue") // null, boolean and number are unexpected
     }
 
-    def finish: InternalNoSqlSchema = InternalNoSqlSchema(None, TreeSet(entities.values.toSeq: _*)(Ordering.by(_.name)))
+    def finish: InternalNoSqlSchema = new InternalNoSqlSchema(TreeSet(entities.values.toSeq: _*)(Ordering.by(_.name)))
 
     private def singularize(typeName: String): String = typeName.stripSuffix("s") // TODO better singularization
 

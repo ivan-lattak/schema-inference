@@ -6,13 +6,15 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.OptionOrdering
 
 import scala.annotation.tailrec
 
-sealed abstract case class InternalType() extends Ordered[InternalType] {
+sealed abstract class InternalType extends Ordered[InternalType] {
 
   override def compare(that: InternalType): Int = NaturalOrdering.compare(this, that)
 
 }
 
 case object InternalType {
+
+  implicit def ordering[T <: InternalType]: Ordering[T] = NaturalOrdering.compare
 
   private case object NaturalOrdering extends Ordering[InternalType] {
 
@@ -69,12 +71,12 @@ case object InternalType {
  */
 sealed case class InternalUnionType(types: List[InternalSingleType]) extends InternalType
 
-sealed abstract case class InternalSingleType() extends InternalType
+sealed abstract class InternalSingleType extends InternalType
 
 sealed case class InternalEntityReference(targetEntityName: String, originalType: Option[InternalPrimitiveType] = None)
   extends InternalSingleType
 
-sealed abstract case class InternalPrimitiveType() extends InternalSingleType
+sealed abstract class InternalPrimitiveType extends InternalSingleType
 
 case object InternalBoolean extends InternalPrimitiveType
 
@@ -82,7 +84,7 @@ case object InternalNumber extends InternalPrimitiveType
 
 case object InternalString extends InternalPrimitiveType
 
-sealed abstract case class InternalComplexType() extends InternalSingleType
+sealed abstract class InternalComplexType extends InternalSingleType
 
 /**
  * @param target can change only to a version equivalent according to PropertiesOrdering

@@ -29,10 +29,19 @@ case object InternalEntityVersion {
   case object PropertiesOrdering extends Ordering[InternalEntityVersion] {
 
     override def compare(x: InternalEntityVersion, y: InternalEntityVersion): Int = {
-      val sizeDiff = x.properties.size - y.properties.size
-      if (sizeDiff != 0) sizeDiff else compareProperties(x.properties.toList, y.properties.toList)
+      x.properties.size - y.properties.size match {
+        case c if c != 0 => c
+        case _ => compareProperties(x.properties.toList, y.properties.toList)
+      }
     }
 
+    /**
+     * Compares the given lists element by element. The arguments are equally long sorted lists.
+     *
+     * @param left  sorted
+     * @param right sorted
+     * @return the first non-zero comparison between keys or values
+     */
     @tailrec
     private def compareProperties(left: List[(String, InternalProperty)],
                                   right: List[(String, InternalProperty)]): Int = (left, right) match {
@@ -44,6 +53,7 @@ case object InternalEntityVersion {
           case _ => compareProperties(lt, rt)
         }
       }
+      case _ => throw new RuntimeException("The lists are not equally long")
     }
 
   }

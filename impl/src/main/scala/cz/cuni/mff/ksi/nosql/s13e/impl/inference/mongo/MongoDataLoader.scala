@@ -35,7 +35,7 @@ sealed case class MongoDataLoader(mongoHost: String,
       .listCollectionNames()
       .map(loadFromCollection)
       .collect()
-      .map(sc.union)
+      .map(sc.union(_))
       .head(), Duration.Inf)
   }
 

@@ -2,9 +2,9 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import scala.collection.immutable.{SortedSet, TreeSet}
 
-sealed case class InternalNoSqlSchema(nameOpt: Option[String], entities: SortedSet[InternalEntity])
+sealed class InternalNoSqlSchema(val entities: SortedSet[InternalEntity])
 
 sealed case class NamedInternalNoSqlSchema(name: String, override val entities: SortedSet[InternalEntity])
-  extends InternalNoSqlSchema(Some(name), entities)
+  extends InternalNoSqlSchema(entities)
 
-case object EmptyInternalNoSqlSchema extends InternalNoSqlSchema(None, TreeSet.empty(Ordering.by(_.name)))
+case object EmptyInternalNoSqlSchema extends InternalNoSqlSchema(TreeSet.empty(Ordering.by(_.name)))
