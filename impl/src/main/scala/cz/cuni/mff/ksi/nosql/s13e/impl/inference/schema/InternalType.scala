@@ -13,19 +13,7 @@ sealed abstract case class InternalType() extends Ordered[InternalType] {
 
 case object InternalType {
 
-  private def subtypeOrder(t: InternalType): Int = t match {
-    case InternalUnknownType => 0
-    case InternalBoolean => 1
-    case InternalNumber => 2
-    case InternalString => 3
-    case InternalArray(_) => 4
-    case InternalAggregate(_) => 5
-    case InternalEntityReference(_, _) => 6
-    case InternalUnionType(_) => 7
-    case _ => throw new RuntimeException("Not all cases covered")
-  }
-
-  private def compare(x: InternalType, y: InternalType): Int = subtypeOrder(x) - subtypeOrder(y) match {
+  def compare(x: InternalType, y: InternalType): Int = subtypeOrder(x) - subtypeOrder(y) match {
     case c if c != 0 => c
     case _ => (x, y) match {
       case (InternalArray(left), InternalArray(right)) => left.compare(right)
@@ -38,6 +26,18 @@ case object InternalType {
       case (InternalUnionType(left), InternalUnionType(right)) => compareLists(left, right)
       case _ => 0 // other subtypes do not have parameters
     }
+  }
+
+  private def subtypeOrder(t: InternalType): Int = t match {
+    case InternalUnknownType => 0
+    case InternalBoolean => 1
+    case InternalNumber => 2
+    case InternalString => 3
+    case InternalArray(_) => 4
+    case InternalAggregate(_) => 5
+    case InternalEntityReference(_, _) => 6
+    case InternalUnionType(_) => 7
+    case _ => throw new RuntimeException("Not all cases covered")
   }
 
   @tailrec
@@ -70,7 +70,17 @@ case object InternalString extends InternalPrimitiveType
 
 sealed abstract case class InternalComplexType() extends InternalSingleType
 
-sealed case class InternalAggregate(target: InternalEntityVersion) extends InternalComplexType
+sealed case class InternalAggregate(private[schema] var target: InternalEntityVersion) extends InternalComplexType
+
+case object InternalAggregate {
+
+  def apply(target: InternalEntityVersion): InternalAggregate = {
+    val aggregate = new InternalAggregate(target)
+    target.addAggregate(aggregate)
+    aggregate
+  }
+
+}
 
 sealed case class InternalArray(elementType: InternalType) extends InternalComplexType
 

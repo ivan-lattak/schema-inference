@@ -12,7 +12,7 @@ sealed case class InternalEntity(name: String, root: Boolean,
   def versions: VersionMap = TreeMap(_versions.toSeq: _*)(_versions.ordering)
 
   def getOrAddIdenticalVersion(properties: Map[String, InternalProperty]): InternalEntityVersion = {
-    val version = InternalEntityVersion(0, TreeMap(properties.toSeq: _*))
+    val version = InternalEntityVersion(TreeMap(properties.toSeq: _*))
     _versions.getOrElseUpdate(version, version)
   }
 

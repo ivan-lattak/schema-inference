@@ -1,19 +1,21 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import scala.annotation.tailrec
-import scala.collection.SortedMap
+import scala.collection.{SortedMap, mutable}
 
-sealed case class InternalEntityVersion(private var _count: Long, properties: SortedMap[String, InternalProperty]) {
+sealed case class InternalEntityVersion(properties: SortedMap[String, InternalProperty],
+                                        private val aggregates: mutable.Buffer[InternalAggregate] = mutable.ArrayBuffer.empty) {
 
-  def count: Long = _count
+  def count: Int = aggregates.size
 
-  def increment: this.type = {
-    _count += 1
+  def mergeAggregatesFrom(that: InternalEntityVersion): this.type = {
+    that.aggregates.foreach(_.target = this)
+    aggregates ++= that.aggregates
     this
   }
 
-  def addCount(that: InternalEntityVersion): this.type = {
-    _count += that._count
+  private[schema] def addAggregate(aggregate: InternalAggregate): this.type = {
+    aggregates += aggregate
     this
   }
 
