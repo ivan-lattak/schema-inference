@@ -2,7 +2,6 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.InternalEntityVersion.PropertiesOrdering
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.InternalType.NaturalOrdering
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.OptionOrdering
 
 import scala.annotation.tailrec
 
@@ -26,7 +25,7 @@ case object InternalType {
         case (InternalEntityReference(leftTarget, leftOrig), InternalEntityReference(rightTarget, rightOrig)) =>
           leftTarget.compare(rightTarget) match {
             case c if c != 0 => c
-            case _ => OptionOrdering.compareOptions(leftOrig, rightOrig)
+            case _ => implicitly[Ordering[Option[InternalPrimitiveType]]].compare(leftOrig, rightOrig)
           }
         case (InternalUnionType(left), InternalUnionType(right)) => compareLists(left, right)
         case _ => 0 // other subtypes do not have parameters
