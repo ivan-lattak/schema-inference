@@ -3,8 +3,6 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.{Defaults, SeDes}
 
-import scala.collection.immutable.TreeMap
-
 class InternalTypeTest extends UnitTest with Defaults with SeDes {
 
   describe("InternalTypes") {
@@ -49,14 +47,6 @@ class InternalTypeTest extends UnitTest with Defaults with SeDes {
     }
 
     it("should correctly order aggregates of different versions") {
-      val versionWithX = InternalEntityVersion(TreeMap(
-        "x" -> InternalProperty("x", InternalUnknownType),
-      ))
-      val versionWithXAndY = InternalEntityVersion(TreeMap(
-        "x" -> InternalProperty("x", InternalUnknownType),
-        "y" -> InternalProperty("y", InternalUnknownType),
-      ))
-
       ord.compare(InternalAggregate(version), InternalAggregate(versionWithX)) should be < 0
       ord.compare(InternalAggregate(versionWithX), InternalAggregate(versionWithX)) shouldBe 0
       ord.compare(InternalAggregate(versionWithXAndY), InternalAggregate(versionWithX)) should be > 0

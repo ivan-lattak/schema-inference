@@ -11,7 +11,18 @@ trait Defaults {
   val emptySchema: EmptyInternalNoSqlSchema.type = EmptyInternalNoSqlSchema
 
   val entity: InternalEntity = InternalEntity("", root = false)
+
+  val propertiesWithX: TreeMap[String, InternalProperty] = TreeMap(
+    "x" -> InternalProperty("x", InternalNumber),
+  )
+  val propertiesWithXAndY: TreeMap[String, InternalProperty] = TreeMap(
+    "x" -> InternalProperty("x", InternalNumber),
+    "y" -> InternalProperty("y", InternalNumber),
+  )
+
   val version: InternalEntityVersion = InternalEntityVersion(TreeMap.empty)
+  val versionWithX: InternalEntityVersion = InternalEntityVersion(propertiesWithX)
+  val versionWithXAndY: InternalEntityVersion = InternalEntityVersion(propertiesWithXAndY)
 
   val unknown: InternalUnknownType.type = InternalUnknownType
   val boolean: InternalBoolean.type = InternalBoolean
