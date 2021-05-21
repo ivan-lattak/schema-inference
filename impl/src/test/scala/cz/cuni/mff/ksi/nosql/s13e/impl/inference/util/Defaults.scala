@@ -9,8 +9,10 @@ trait Defaults {
   val schema = new InternalNoSqlSchema(TreeSet.empty(Ordering.by(_.name)))
   val namedSchema: NamedInternalNoSqlSchema = NamedInternalNoSqlSchema("", TreeSet.empty(Ordering.by(_.name)))
   val emptySchema: EmptyInternalNoSqlSchema.type = EmptyInternalNoSqlSchema
+  val schemas = List(schema, namedSchema, emptySchema)
 
   val entity: InternalEntity = InternalEntity("", root = false)
+  val entities = List(entity)
 
   val propertiesWithX: TreeMap[String, InternalProperty] = TreeMap(
     "x" -> InternalProperty("x", InternalNumber),
@@ -23,6 +25,7 @@ trait Defaults {
   val version: InternalEntityVersion = InternalEntityVersion(TreeMap.empty)
   val versionWithX: InternalEntityVersion = InternalEntityVersion(propertiesWithX)
   val versionWithXAndY: InternalEntityVersion = InternalEntityVersion(propertiesWithXAndY)
+  val versions = List(version, versionWithX, versionWithXAndY)
 
   val unknown: InternalUnknownType.type = InternalUnknownType
   val boolean: InternalBoolean.type = InternalBoolean
@@ -32,7 +35,8 @@ trait Defaults {
   val aggregate: InternalAggregate = InternalAggregate(InternalEntityVersion(TreeMap.empty))
   val reference: InternalEntityReference = InternalEntityReference("")
   val union: InternalUnionType = InternalUnionType(Nil)
-
   val types: List[InternalType] = List(unknown, boolean, number, string, array, aggregate, reference, union)
+
+  val schemaObjects: List[Serializable] = schemas ++ entities ++ versions ++ types
 
 }

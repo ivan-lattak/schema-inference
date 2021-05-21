@@ -1,19 +1,9 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.{Defaults, SeDes}
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.Defaults
 
-class InternalTypeTest extends UnitTest with Defaults with SeDes {
-
-  describe("InternalTypes") {
-
-    it("should be serializable") {
-      for (internalType <- types) {
-        seDes(internalType) shouldEqual internalType
-      }
-    }
-
-  }
+class InternalTypeTest extends UnitTest with Defaults {
 
   describe("InternalType's natural ordering") {
 

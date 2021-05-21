@@ -24,7 +24,7 @@ sealed case class InternalEntityVersion(properties: SortedMap[String, InternalPr
   override def canEqual(that: Any): Boolean = that.isInstanceOf[InternalEntityVersion]
 
   override def equals(obj: Any): Boolean = obj match {
-    case that: InternalEntityVersion => that.canEqual(this) && properties == that.properties
+    case that: InternalEntityVersion => (this eq that) || that.canEqual(this) && properties == that.properties
     case _ => false
   }
 
