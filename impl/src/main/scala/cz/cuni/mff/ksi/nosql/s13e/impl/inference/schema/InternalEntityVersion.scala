@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 import scala.collection.{SortedMap, mutable}
 
 sealed case class InternalEntityVersion(properties: SortedMap[String, InternalProperty],
-                                        private val aggregates: mutable.Buffer[InternalAggregate] = mutable.ArrayBuffer.empty) {
+                                        private[schema] val aggregates: mutable.Buffer[InternalAggregate] = mutable.ArrayBuffer.empty) {
 
   def count: Int = aggregates.size
 
@@ -17,6 +17,15 @@ sealed case class InternalEntityVersion(properties: SortedMap[String, InternalPr
   private[schema] def addAggregate(aggregate: InternalAggregate): this.type = {
     aggregates += aggregate
     this
+  }
+
+  override def toString: String = s"${getClass.getSimpleName}($properties, $count aggregates)"
+
+  override def canEqual(that: Any): Boolean = that.isInstanceOf[InternalEntityVersion]
+
+  override def equals(obj: Any): Boolean = obj match {
+    case that: InternalEntityVersion => that.canEqual(this) && properties == that.properties
+    case _ => false
   }
 
 }

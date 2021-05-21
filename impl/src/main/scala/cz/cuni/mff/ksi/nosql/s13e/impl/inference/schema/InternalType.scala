@@ -5,7 +5,7 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.InternalType.NaturalOrde
 
 import scala.annotation.tailrec
 
-sealed abstract class InternalType extends Ordered[InternalType] {
+sealed abstract class InternalType extends Ordered[InternalType] with Serializable {
 
   override def compare(that: InternalType): Int = NaturalOrdering.compare(this, that)
 

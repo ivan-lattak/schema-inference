@@ -2,7 +2,7 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import scala.collection.immutable.{SortedSet, TreeSet}
 
-sealed class InternalNoSqlSchema(val entities: SortedSet[InternalEntity])
+sealed class InternalNoSqlSchema(val entities: SortedSet[InternalEntity]) extends Serializable
 
 sealed case class NamedInternalNoSqlSchema(name: String, override val entities: SortedSet[InternalEntity])
   extends InternalNoSqlSchema(entities)
