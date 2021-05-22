@@ -11,6 +11,7 @@ sealed case class InternalEntityVersion(properties: SortedMap[String, InternalPr
   def mergeAggregatesFrom(that: InternalEntityVersion): this.type = {
     that.aggregates.foreach(_.target = this)
     aggregates ++= that.aggregates
+    that.aggregates.clear()
     this
   }
 

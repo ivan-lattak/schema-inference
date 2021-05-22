@@ -88,7 +88,7 @@ class InternalTypeTest extends UnitTest with Defaults {
 
   describe("InternalAggregate") {
 
-    it("should notify the target entity version") {
+    it("should notify the target upon construction") {
       version.count shouldBe 0
 
       val aggregate = InternalAggregate(version)
