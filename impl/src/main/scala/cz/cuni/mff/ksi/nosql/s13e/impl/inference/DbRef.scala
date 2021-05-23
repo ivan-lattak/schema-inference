@@ -5,29 +5,29 @@ import play.api.libs.json.{JsObject, JsString, JsValue}
 
 private case object DbRef extends LazyLogging {
 
+  private def next[T](iter: Iterator[T]): Option[T] = if (iter.hasNext) Some(iter.next()) else None
+
   def unapply(value: JsValue): Option[String] = {
     if (!value.isInstanceOf[JsObject]) return None
 
     val iter = value.asInstanceOf[JsObject].fields.iterator
-    if (!iter.hasNext) return None
-    val ref = iter.next() match {
-      case ("$ref", JsString(value)) => value
+    val ref = next(iter) match {
+      case Some(("$ref", JsString(value))) => value
       case _ => return None
     }
 
-    if (!iter.hasNext) return None
-    if (iter.next()._1 != "$id") return None
-
-    if (iter.hasNext) {
-      iter.next() match {
-        case ("$db", JsString(_)) =>
-        case _ => return None
-      }
+    next(iter) match {
+      case Some(("$id", _)) => // do nothing
+      case _ => return None
     }
 
-    if (iter.hasNext) return None
+    next(iter) match {
+      case Some(("$db", JsString(_))) => // do nothing
+      case Some(_) => return None
+      case None => // do nothing
+    }
 
-    Some(ref)
+    if (iter.hasNext) None else Some(ref)
   }
 
 }
