@@ -5,6 +5,8 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.NamedInternalNoSqlSchema
 
 private case object Converter {
 
+  // TODO this
+
   def modelToInternal(schema: NoSQLSchema): NamedInternalNoSqlSchema = ???
 
   def internalToModel(schema: NamedInternalNoSqlSchema): NoSQLSchema = ???
