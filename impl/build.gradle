@@ -35,6 +35,17 @@ dependencies {
     implementation "org.mongodb.scala:mongo-scala-driver_$scalaVersion:4.2.3"
     implementation "org.mongodb.spark:mongo-spark-connector_$scalaVersion:3.0.1"
 
+    def versionStrictly = { versionNumber ->
+        return {
+            version {
+                strictly versionNumber
+            }
+        }
+    }
+    implementation 'com.fasterxml.jackson.core:jackson-core', versionStrictly('2.9.8')
+    implementation 'com.fasterxml.jackson.core:jackson-databind', versionStrictly('2.9.8')
+    implementation 'com.fasterxml.jackson.module:jackson-module-scala_2.12', versionStrictly('2.9.8')
+
     testImplementation "org.scalatest:scalatest_$scalaVersion:3.2.9"
     testRuntimeOnly 'org.junit.platform:junit-platform-engine:1.7.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.7.2'

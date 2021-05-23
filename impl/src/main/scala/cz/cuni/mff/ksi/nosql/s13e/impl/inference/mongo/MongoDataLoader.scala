@@ -6,14 +6,15 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.inference.TypedDocumentImpl
 import cz.cuni.mff.ksi.nosql.s13e.impl.{DataLoader, TypedDocument}
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-import org.mongodb.scala.MongoClient
+import org.bson.Document
+import org.mongodb.scala.{MongoClient, Observable}
 import play.api.libs.json.{JsObject, Json}
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
-sealed case class MongoDataLoader(mongoHost: String,
-                                  dbName: String) extends DataLoader {
+case class MongoDataLoader(mongoHost: String,
+                           dbName: String) extends DataLoader {
 
   private val mongoUri = s"mongodb://$mongoHost/"
 
@@ -25,18 +26,24 @@ sealed case class MongoDataLoader(mongoHost: String,
     ))
 
     def loadFromCollection(collectionName: String): RDD[TypedDocument] =
-      MongoSpark.load(sc, getReadConfig(collectionName))
+      loadDocuments(sc, getReadConfig(collectionName))
         .map(_.toJson)
         .map(Json.parse(_).asInstanceOf[JsObject])
         .map(TypedDocumentImpl(collectionName, _))
 
-    Await.result(MongoClient(mongoUri)
-      .getDatabase(dbName)
-      .listCollectionNames()
+    Await.result(listCollectionNames
       .map(loadFromCollection)
       .collect()
       .map(sc.union(_))
       .head(), Duration.Inf)
   }
+
+  private[mongo] def listCollectionNames: Observable[String] =
+    MongoClient(mongoUri)
+      .getDatabase(dbName)
+      .listCollectionNames()
+
+  private[mongo] def loadDocuments(sc: SparkContext,
+                                   config: ReadConfig): RDD[Document] = MongoSpark.load(sc, config)
 
 }
