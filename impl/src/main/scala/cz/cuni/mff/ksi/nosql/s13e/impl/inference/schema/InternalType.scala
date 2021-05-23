@@ -90,10 +90,17 @@ sealed abstract class InternalComplexType extends InternalSingleType
  */
 sealed case class InternalAggregate(private[schema] var target: InternalEntityVersion) extends InternalComplexType {
 
+  private var _isUnregistered = false
+
   def unregister(): this.type = {
+    if (isUnregistered) return this
+
     target.unregister(this)
+    _isUnregistered = true
     this
   }
+
+  def isUnregistered: Boolean = _isUnregistered
 
 }
 
@@ -109,4 +116,4 @@ case object InternalAggregate {
 
 sealed case class InternalArray(elementType: InternalType) extends InternalComplexType
 
-case object InternalUnknownType extends InternalSingleType
+case object InternalUnknownType extends InternalType

@@ -13,9 +13,14 @@ private case object TypeFolder extends ((InternalType, InternalType) => Internal
       def mkList(t: InternalType): List[InternalSingleType] = t match {
         case InternalUnionType(types) => types
         case t: InternalSingleType => List(t)
+        case InternalUnknownType => throw new RuntimeException("Unexpected unknown type")
       }
 
-      InternalUnionType(mergeSortedTypes(mkList(left), mkList(right)))
+      mergeSortedTypes(mkList(left), mkList(right)) match {
+        case Nil => throw new RuntimeException("Merged list should not be empty")
+        case loneElement :: Nil => loneElement
+        case types => InternalUnionType(types)
+      }
   }
 
   /**
@@ -38,7 +43,8 @@ private case object TypeFolder extends ((InternalType, InternalType) => Internal
         case c if c > 0 => mergeSortedTypes(left, rt, rh :: acc)
         case _ =>
           rh match {
-            case rh: InternalAggregate => rh.unregister()
+            case rh: InternalAggregate => if (lh ne rh) rh.unregister()
+            case _ => // do nothing
           }
           mergeSortedTypes(lt, rt, lh :: acc)
       }

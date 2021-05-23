@@ -34,7 +34,7 @@ trait Defaults {
   val array: InternalArray = InternalArray(unknown)
   val aggregate: InternalAggregate = InternalAggregate(InternalEntityVersion(TreeMap.empty))
   val reference: InternalEntityReference = InternalEntityReference("")
-  val union: InternalUnionType = InternalUnionType(Nil)
+  val union: InternalUnionType = InternalUnionType(List(boolean, number))
   val types: List[InternalType] = List(unknown, boolean, number, string, array, aggregate, reference, union)
 
   val schemaObjects: List[Serializable] = schemas ++ entities ++ versions ++ types
