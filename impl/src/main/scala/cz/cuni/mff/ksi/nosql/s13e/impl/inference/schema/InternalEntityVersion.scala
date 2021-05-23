@@ -4,23 +4,33 @@ import scala.annotation.tailrec
 import scala.collection.{SortedMap, mutable}
 
 sealed case class InternalEntityVersion(properties: SortedMap[String, InternalProperty],
-                                        private[schema] val aggregates: mutable.Buffer[InternalAggregate] = mutable.ArrayBuffer.empty) {
+                                        private[schema] val liveAggregates: mutable.Buffer[InternalAggregate] = mutable.ListBuffer.empty,
+                                        private[schema] var additionalCount: Int = 0) {
 
-  def count: Int = aggregates.size
+  def count: Int = liveAggregates.size + additionalCount
 
-  def mergeAggregatesFrom(that: InternalEntityVersion): this.type = {
-    that.aggregates.foreach(_.target = this)
-    aggregates ++= that.aggregates
-    that.aggregates.clear()
+  def mergeFrom(that: InternalEntityVersion): this.type = {
+    that.liveAggregates.foreach(_.target = this)
+    liveAggregates ++= that.liveAggregates
+    that.liveAggregates.clear()
+    additionalCount += that.additionalCount
+    that.additionalCount = 0
     this
   }
 
-  private[schema] def addAggregate(aggregate: InternalAggregate): this.type = {
-    aggregates += aggregate
+  private[schema] def register(aggregate: InternalAggregate): this.type = {
+    liveAggregates += aggregate
     this
   }
 
-  override def toString: String = s"${getClass.getSimpleName}($properties, $count aggregates)"
+  // this aggregate is being merged with another or is root, we forget it but increment the additional counter
+  private[schema] def unregister(aggregate: InternalAggregate): this.type = {
+    liveAggregates -= aggregate
+    additionalCount += 1
+    this
+  }
+
+  override def toString: String = s"${getClass.getSimpleName}($properties, (${liveAggregates.size} + $additionalCount) aggregates)"
 
   override def canEqual(that: Any): Boolean = that.isInstanceOf[InternalEntityVersion]
 

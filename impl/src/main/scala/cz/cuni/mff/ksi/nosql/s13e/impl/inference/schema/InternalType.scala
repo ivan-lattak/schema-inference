@@ -88,13 +88,20 @@ sealed abstract class InternalComplexType extends InternalSingleType
 /**
  * @param target can change only to a version equivalent according to PropertiesOrdering
  */
-sealed case class InternalAggregate(private[schema] var target: InternalEntityVersion) extends InternalComplexType
+sealed case class InternalAggregate(private[schema] var target: InternalEntityVersion) extends InternalComplexType {
+
+  def unregister(): this.type = {
+    target.unregister(this)
+    this
+  }
+
+}
 
 case object InternalAggregate {
 
   def apply(target: InternalEntityVersion): InternalAggregate = {
     val aggregate = new InternalAggregate(target)
-    target.addAggregate(aggregate)
+    target.register(aggregate)
     aggregate
   }
 

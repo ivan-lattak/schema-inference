@@ -93,7 +93,21 @@ class InternalTypeTest extends UnitTest with Defaults {
 
       val aggregate = InternalAggregate(version)
       version.count shouldBe 1
-      version.aggregates shouldEqual List(aggregate)
+      version.liveAggregates shouldEqual List(aggregate)
+    }
+
+    it("should be moved to additional count when unregister is called") {
+      version.count shouldBe 0
+
+      val aggregate = InternalAggregate(version)
+      version.count shouldBe 1
+      version.liveAggregates shouldEqual List(aggregate)
+      version.additionalCount shouldBe 0
+
+      aggregate.unregister()
+      version.count shouldBe 1
+      version.liveAggregates shouldBe empty
+      version.additionalCount shouldBe 1
     }
 
   }

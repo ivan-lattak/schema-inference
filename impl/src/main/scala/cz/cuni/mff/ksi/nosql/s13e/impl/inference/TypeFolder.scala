@@ -36,7 +36,11 @@ private case object TypeFolder extends ((InternalType, InternalType) => Internal
       case _ => lh.compare(rh) match {
         case c if c < 0 => mergeSortedTypes(lt, right, lh :: acc)
         case c if c > 0 => mergeSortedTypes(left, rt, rh :: acc)
-        case _ => mergeSortedTypes(lt, rt, lh :: acc)
+        case _ =>
+          rh match {
+            case rh: InternalAggregate => rh.unregister()
+          }
+          mergeSortedTypes(lt, rt, lh :: acc)
       }
     }
 

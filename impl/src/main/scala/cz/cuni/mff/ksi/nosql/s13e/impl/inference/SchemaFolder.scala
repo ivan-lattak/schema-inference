@@ -65,7 +65,7 @@ private case object SchemaFolder extends ((InternalNoSqlSchema, InternalNoSqlSch
       case (lh :: lt, rh :: rt) => PropertiesOrdering.compare(lh, rh) match {
         case c if c < 0 => mergeVersionLists(lt, right, lh :: acc)
         case c if c > 0 => mergeVersionLists(left, rt, rh :: acc)
-        case _ => mergeVersionLists(lt, rt, lh.mergeAggregatesFrom(rh) :: acc)
+        case _ => mergeVersionLists(lt, rt, lh.mergeFrom(rh) :: acc)
       }
     }
 
