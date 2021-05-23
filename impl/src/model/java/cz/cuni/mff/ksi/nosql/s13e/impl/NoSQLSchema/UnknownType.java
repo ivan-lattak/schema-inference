@@ -8,10 +8,9 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema;
  * A representation of the model object '<em><b>Unknown Type</b></em>'.
  * <!-- end-user-doc -->
  *
- *
- * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getUnknownType()
  * @model
  * @generated
+ * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getUnknownType()
  */
-public interface UnknownType extends SingleType {
+public interface UnknownType extends Type {
 } // UnknownType

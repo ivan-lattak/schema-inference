@@ -431,27 +431,30 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The number of structural features of the '<em>Unknown Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
-	int UNKNOWN_TYPE_FEATURE_COUNT = SINGLE_TYPE_FEATURE_COUNT + 0;
+	int UNKNOWN_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Unknown Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
-	int UNKNOWN_TYPE_OPERATION_COUNT = SINGLE_TYPE_OPERATION_COUNT + 0;
+	int UNKNOWN_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl <em>Complex Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
+	 * @generated
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getComplexType()
-	 * @generated
 	 */
 	int COMPLEX_TYPE = 9;
 

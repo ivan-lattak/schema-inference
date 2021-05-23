@@ -119,7 +119,6 @@ public class NoSQLSchemaSwitch<T> extends Switch<T> {
 			case NoSQLSchemaPackage.UNKNOWN_TYPE: {
 				UnknownType unknownType = (UnknownType) theEObject;
 				T result = caseUnknownType(unknownType);
-				if (result == null) result = caseSingleType(unknownType);
 				if (result == null) result = caseType(unknownType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

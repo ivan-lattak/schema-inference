@@ -121,7 +121,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setId(int newId) {
@@ -134,7 +133,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public long getCount() {
@@ -144,7 +142,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setCount(long newCount) {
@@ -157,7 +154,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EList<Property> getProperties() {
@@ -181,7 +177,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetEntity(Entity newEntity, NotificationChain msgs) {
@@ -192,7 +187,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setEntity(Entity newEntity) {
@@ -213,7 +207,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -280,7 +273,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -307,7 +299,6 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

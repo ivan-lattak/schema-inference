@@ -13,10 +13,11 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class UnknownTypeImpl extends SingleTypeImpl implements UnknownType {
+public class UnknownTypeImpl extends TypeImpl implements UnknownType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected UnknownTypeImpl() {
@@ -26,6 +27,7 @@ public class UnknownTypeImpl extends SingleTypeImpl implements UnknownType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override

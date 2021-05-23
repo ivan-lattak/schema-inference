@@ -595,7 +595,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
 		unionTypeEClass.getESuperTypes().add(this.getType());
 		singleTypeEClass.getESuperTypes().add(this.getType());
 		entityReferenceEClass.getESuperTypes().add(this.getSingleType());
-		unknownTypeEClass.getESuperTypes().add(this.getSingleType());
+		unknownTypeEClass.getESuperTypes().add(this.getType());
 		complexTypeEClass.getESuperTypes().add(this.getSingleType());
 		arrayEClass.getESuperTypes().add(this.getComplexType());
 		aggregateEClass.getESuperTypes().add(this.getComplexType());
