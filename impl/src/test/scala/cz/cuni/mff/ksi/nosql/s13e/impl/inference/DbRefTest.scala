@@ -8,6 +8,7 @@ class DbRefTest extends UnitTest {
   private val dbRef: BePropertyMatcher[JsValue] =
     (jsValue: JsValue) => BePropertyMatchResult(DbRef.unapply(jsValue).isDefined, "DBRef")
 
+  //noinspection SameParameterValue
   private def dbRefOf(expected: String): BePropertyMatcher[JsValue] =
     (jsValue: JsValue) => BePropertyMatchResult(jsValue match {
       case DbRef(actual) => actual == expected
