@@ -6,33 +6,28 @@ import play.api.libs.json.{JsObject, JsString, JsValue}
 private case object DbRef extends LazyLogging {
 
   def unapply(value: JsValue): Option[String] = {
-    if (!value.isInstanceOf[JsObject]) {
-      return None
+    if (!value.isInstanceOf[JsObject]) return None
+
+    val iter = value.asInstanceOf[JsObject].fields.iterator
+    if (!iter.hasNext) return None
+    val ref = iter.next() match {
+      case ("$ref", JsString(value)) => value
+      case _ => return None
     }
 
-    var ref: Option[String] = None
-    var id = false
-    var db = false
+    if (!iter.hasNext) return None
+    if (iter.next()._1 != "$id") return None
 
-    for ((k, v) <- value.asInstanceOf[JsObject].fields) {
-      k match {
-        case "$ref" => v match {
-          case JsString(value) => ref = Some(value)
-          case _ => return None
-        }
-        case "$id" => id = true
-        case "$db" => db = true
+    if (iter.hasNext) {
+      iter.next() match {
+        case ("$db", JsString(_)) =>
         case _ => return None
       }
     }
 
-    if (!id || ref.isEmpty) {
-      return None
-    }
-    if (db) {
-      logger.error(s"Cross-database DBRefs are not supported! $$db property ignored: $value")
-    }
-    ref
+    if (iter.hasNext) return None
+
+    Some(ref)
   }
 
 }
