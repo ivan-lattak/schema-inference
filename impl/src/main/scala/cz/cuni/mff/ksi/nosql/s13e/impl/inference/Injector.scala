@@ -23,10 +23,9 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
         case RawSchema.ReferenceType(collectionName) => InternalEntityReference(singularize(collectionName))
       }
       case JsArray(value) => InternalArray(
-        value.map(construct(typeName, _, root = false)).fold(InternalUnknownType)(TypeFolder))
+        value.map(construct(singularize(typeName), _, root = false)).fold(InternalUnknownType)(TypeFolder))
       case JsObject(underlying) =>
-        val singularTypeName = singularize(typeName)
-        val entity = entities.getOrElseUpdate(singularTypeName, InternalEntity(singularTypeName, root))
+        val entity = entities.getOrElseUpdate(typeName, InternalEntity(typeName, root))
         val properties = underlying map { case (k, v) => (k, InternalProperty(k, construct(k, v, root = false))) }
         val res = InternalAggregate(entity.getOrAddIdenticalVersion(properties))
         if (root) res.unregister() else res
@@ -35,14 +34,14 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
 
     def finish: InternalNoSqlSchema = new InternalNoSqlSchema(TreeSet(entities.values.toSeq: _*)(Ordering.by(_.name)))
 
-    private def singularize(typeName: String): String = typeName.stripSuffix("s") // TODO better singularization
-
   }
 
   override def apply(document: TypedDocumentImpl): InternalNoSqlSchema = {
     val builder = InternalSchemaBuilder()
-    builder.construct(document.typeName, document.document, root = true)
+    builder.construct(singularize(document.typeName), document.document, root = true)
     builder.finish
   }
+
+  private def singularize(typeName: String): String = typeName.stripSuffix("s") // TODO better singularization
 
 }
