@@ -1,31 +1,10 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
-import play.api.libs.json.{JsObject, Json}
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.JsonDocs
 
-class RawSchemaTest extends UnitTest {
+class RawSchemaTest extends UnitTest with JsonDocs {
 
-  private val json = Json.parse(
-    """
-      |{
-      |  "null": null,
-      |  "boolean": false,
-      |  "number": 0,
-      |  "string": "",
-      |  "array": [ null, false, 0, "", [], {} ],
-      |  "object": {
-      |    "x": 0,
-      |    "y": 0
-      |  },
-      |  "reference": {
-      |    "$ref": "collection",
-      |    "$id": 0
-      |  },
-      |  "notReference": {
-      |    "$ref": "collection"
-      |  }
-      |}
-      |""".stripMargin).asInstanceOf[JsObject]
-  private val schema = Json.parse(
+  private val expectedAllTypesSchema = doc(
     s"""
        |{
        |  "null": "${RawSchema.nullType}",
@@ -47,7 +26,7 @@ class RawSchemaTest extends UnitTest {
   describe("RawSchema") {
 
     it("should convert correctly") {
-      RawSchema(json) shouldEqual schema
+      allTypesSchema shouldEqual expectedAllTypesSchema
     }
 
   }
