@@ -4,66 +4,68 @@
                 xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="NoSQLSchema"
                 nsURI="http://www.ksi.mff.cuni.cz/NoSQLSchema"
                 nsPrefix="NoSQLSchema">
-    <eClassifiers xsi:type="ecore:EClass" name="NoSQLSchema">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
-                             eType="#//Entity" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Entity">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-                             iD="true"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="root"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-                             defaultValueLiteral="false"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
-                             upperBound="-1" eType="#//EntityVersion" containment="true"
-                             eOpposite="#//EntityVersion/entity"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="EntityVersion">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-                             iD="true"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" lowerBound="1"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="properties" lowerBound="1"
-                             upperBound="-1" eType="#//Property" containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
-                             eType="#//Entity" eOpposite="#//Entity/versions"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Property">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-                             defaultValueLiteral="false"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"
-                             containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="UnionType" eSuperTypes="#//Type">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="types" lowerBound="2" upperBound="-1"
-                             eType="#//SingleType" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SingleType" abstract="true" eSuperTypes="#//Type"/>
-    <eClassifiers xsi:type="ecore:EClass" name="EntityReference" eSuperTypes="#//SingleType">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-                             eType="#//Entity"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="originalType" eType="#//PrimitiveType"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="UnknownType" eSuperTypes="#//Type"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexType" abstract="true" eSuperTypes="#//SingleType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Array" eSuperTypes="#//ComplexType">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" lowerBound="1"
-                             eType="#//Type" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Aggregate" eSuperTypes="#//ComplexType">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="target" unique="false"
-                             lowerBound="1" eType="#//EntityVersion"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" abstract="true" eSuperTypes="#//SingleType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Boolean" eSuperTypes="#//PrimitiveType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//PrimitiveType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="String" eSuperTypes="#//PrimitiveType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NoSQLSchema">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+                         iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
+                         eType="#//Entity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+                         iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="root"
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+                         defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="versions" lowerBound="1"
+                         upperBound="-1" eType="#//EntityVersion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityVersion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1"
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+                         iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalCount" lowerBound="1"
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+                         eType="#//Property" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregates" ordered="false"
+                         upperBound="-1" eType="#//Aggregate" eOpposite="#//Aggregate/target"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Property">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+                         iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional"
+                         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+                         defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"
+                         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnionType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" lowerBound="2" upperBound="-1"
+                         eType="#//SingleType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleType" abstract="true" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityReference" eSuperTypes="#//SingleType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+                         eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="originalType" eType="#//PrimitiveType"
+                         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnknownType" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexType" abstract="true" eSuperTypes="#//SingleType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Array" eSuperTypes="#//ComplexType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" lowerBound="1"
+                         eType="#//Type" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Aggregate" eSuperTypes="#//ComplexType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" unique="false"
+                         lowerBound="1" eType="#//EntityVersion" eOpposite="#//EntityVersion/aggregates"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" abstract="true" eSuperTypes="#//SingleType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Boolean" eSuperTypes="#//PrimitiveType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//PrimitiveType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="String" eSuperTypes="#//PrimitiveType"/>
 </ecore:EPackage>

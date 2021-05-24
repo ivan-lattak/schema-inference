@@ -17,7 +17,6 @@ public class UnknownTypeImpl extends TypeImpl implements UnknownType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected UnknownTypeImpl() {
@@ -27,7 +26,6 @@ public class UnknownTypeImpl extends TypeImpl implements UnknownType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

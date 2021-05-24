@@ -82,18 +82,17 @@ public interface Entity extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Versions</b></em>' containment reference list.
 	 * The list contents are of type {@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion}.
-	 * It is bidirectional and its opposite is '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getEntity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Versions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Versions</em>' containment reference list.
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Versions()
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getEntity
-	 * @model opposite="entity" containment="true" required="true"
+	 * @model containment="true" required="true"
 	 * @generated
+	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Versions()
 	 */
 	EList<EntityVersion> getVersions();
 

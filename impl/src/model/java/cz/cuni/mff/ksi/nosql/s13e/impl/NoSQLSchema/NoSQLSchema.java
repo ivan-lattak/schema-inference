@@ -33,11 +33,12 @@ public interface NoSQLSchema extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Name</em>' attribute.
+	 * @model id="true" required="true"
+	 * @generated
 	 * @see #setName(String)
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getNoSQLSchema_Name()
-	 * @model required="true"
-	 * @generated
 	 */
 	String getName();
 

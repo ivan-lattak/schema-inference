@@ -7,6 +7,7 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.PrimitiveType;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -30,25 +31,28 @@ public class EntityReferenceImpl extends SingleTypeImpl implements EntityReferen
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
+	 *
 	 * @generated
 	 * @ordered
+	 * @see #getTarget()
 	 */
 	protected Entity target;
 
 	/**
-	 * The cached value of the '{@link #getOriginalType() <em>Original Type</em>}' reference.
+	 * The cached value of the '{@link #getOriginalType() <em>Original Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOriginalType()
+	 *
 	 * @generated
 	 * @ordered
+	 * @see #getOriginalType()
 	 */
 	protected PrimitiveType originalType;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected EntityReferenceImpl() {
@@ -106,44 +110,68 @@ public class EntityReferenceImpl extends SingleTypeImpl implements EntityReferen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public PrimitiveType getOriginalType() {
-		if (originalType != null && originalType.eIsProxy()) {
-			InternalEObject oldOriginalType = (InternalEObject) originalType;
-			originalType = (PrimitiveType) eResolveProxy(oldOriginalType);
-			if (originalType != oldOriginalType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE, oldOriginalType, originalType));
-			}
-		}
 		return originalType;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
-	public PrimitiveType basicGetOriginalType() {
-		return originalType;
+	public NotificationChain basicSetOriginalType(PrimitiveType newOriginalType, NotificationChain msgs) {
+		PrimitiveType oldOriginalType = originalType;
+		originalType = newOriginalType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE, oldOriginalType, newOriginalType);
+			if (msgs == null) msgs = notification;
+			else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void setOriginalType(PrimitiveType newOriginalType) {
-		PrimitiveType oldOriginalType = originalType;
-		originalType = newOriginalType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE, oldOriginalType, originalType));
+		if (newOriginalType != originalType) {
+			NotificationChain msgs = null;
+			if (originalType != null)
+				msgs = ((InternalEObject) originalType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE, null, msgs);
+			if (newOriginalType != null)
+				msgs = ((InternalEObject) newOriginalType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE, null, msgs);
+			msgs = basicSetOriginalType(newOriginalType, msgs);
+			if (msgs != null) msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE, newOriginalType, newOriginalType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE:
+				return basicSetOriginalType(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -153,8 +181,7 @@ public class EntityReferenceImpl extends SingleTypeImpl implements EntityReferen
 				if (resolve) return getTarget();
 				return basicGetTarget();
 			case NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE:
-				if (resolve) return getOriginalType();
-				return basicGetOriginalType();
+				return getOriginalType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,6 +189,7 @@ public class EntityReferenceImpl extends SingleTypeImpl implements EntityReferen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -180,6 +208,7 @@ public class EntityReferenceImpl extends SingleTypeImpl implements EntityReferen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -189,7 +218,7 @@ public class EntityReferenceImpl extends SingleTypeImpl implements EntityReferen
 				setTarget((Entity) null);
 				return;
 			case NoSQLSchemaPackage.ENTITY_REFERENCE__ORIGINAL_TYPE:
-				setOriginalType((PrimitiveType) null);
+				setOriginalType((PrimitiveType)null);
 				return;
 		}
 		super.eUnset(featureID);

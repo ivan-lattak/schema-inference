@@ -23,17 +23,20 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema;
 public interface Aggregate extends ComplexType {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates <em>Aggregates</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Target</em>' reference.
+	 * @model opposite="aggregates" required="true"
+	 * @generated
 	 * @see #setTarget(EntityVersion)
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getAggregate_Target()
-	 * @model required="true"
-	 * @generated
+	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates
 	 */
 	EntityVersion getTarget();
 

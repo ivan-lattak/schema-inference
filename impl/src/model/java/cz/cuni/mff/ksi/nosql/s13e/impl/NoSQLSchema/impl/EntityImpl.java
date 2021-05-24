@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import java.util.Collection;
@@ -151,24 +151,9 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	 */
 	public EList<EntityVersion> getVersions() {
 		if (versions == null) {
-			versions = new EObjectContainmentWithInverseEList<EntityVersion>(EntityVersion.class, this, NoSQLSchemaPackage.ENTITY__VERSIONS, NoSQLSchemaPackage.ENTITY_VERSION__ENTITY);
+			versions = new EObjectContainmentEList<EntityVersion>(EntityVersion.class, this, NoSQLSchemaPackage.ENTITY__VERSIONS);
 		}
 		return versions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case NoSQLSchemaPackage.ENTITY__VERSIONS:
-				return ((InternalEList<InternalEObject>) (InternalEList<?>) getVersions()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
