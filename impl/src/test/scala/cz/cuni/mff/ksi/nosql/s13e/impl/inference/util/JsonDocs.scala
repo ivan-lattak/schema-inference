@@ -5,10 +5,6 @@ import play.api.libs.json.{JsObject, Json}
 
 trait JsonDocs {
 
-  def doc(json: String): JsObject = Json.parse(json).asInstanceOf[JsObject]
-
-  def schema(doc: JsObject): JsObject = RawSchema(doc)
-
   val allTypes: JsObject = doc(
     """
       |{
@@ -52,6 +48,7 @@ trait JsonDocs {
       |}
       |""".stripMargin)
   private[inference] val userPicasso: TypedDocumentImpl = TypedDocumentImpl("users", schema(picasso))
+  private[inference] val authorPicasso: TypedDocumentImpl = TypedDocumentImpl("author", schema(picasso))
 
   // The following two JSON documents form the running example
   val johnDoe: JsObject = doc(
@@ -92,5 +89,9 @@ trait JsonDocs {
       |  "published": false }
       |""".stripMargin)
   private[inference] val articleVaclavNovak = TypedDocumentImpl("articles", schema(vaclavNovak))
+
+  def doc(json: String): JsObject = Json.parse(json).asInstanceOf[JsObject]
+
+  def schema(doc: JsObject): JsObject = RawSchema(doc)
 
 }
