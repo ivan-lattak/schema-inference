@@ -4,6 +4,8 @@ import scala.collection.immutable.{SortedSet, TreeSet}
 
 sealed class InternalNoSqlSchema(val entities: SortedSet[InternalEntity]) extends Serializable with Equals {
 
+  def named(name: String): NamedInternalNoSqlSchema = NamedInternalNoSqlSchema(name, entities)
+
   override def canEqual(that: Any): Boolean = that.isInstanceOf[InternalNoSqlSchema]
 
   override def equals(obj: Any): Boolean = obj match {
@@ -13,7 +15,7 @@ sealed class InternalNoSqlSchema(val entities: SortedSet[InternalEntity]) extend
 
 }
 
-sealed case class NamedInternalNoSqlSchema(name: String, override val entities: SortedSet[InternalEntity])
+sealed case class NamedInternalNoSqlSchema private(name: String, override val entities: SortedSet[InternalEntity])
   extends InternalNoSqlSchema(entities) {
 
   override def canEqual(that: Any): Boolean = that.isInstanceOf[NamedInternalNoSqlSchema]

@@ -6,7 +6,7 @@ class SerializationTest extends UnitTest with Defaults with SeDes {
 
   describe("Schema objects") {
 
-    it("should be serializable") {
+    they("should be serializable") {
       for (obj <- schemaObjects) {
         seDes(obj) shouldEqual obj
       }

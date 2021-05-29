@@ -7,7 +7,7 @@ import scala.collection.immutable.{TreeMap, TreeSet}
 trait Defaults {
 
   val schema = new InternalNoSqlSchema(TreeSet.empty(Ordering.by(_.name)))
-  val namedSchema: NamedInternalNoSqlSchema = NamedInternalNoSqlSchema("", TreeSet.empty(Ordering.by(_.name)))
+  val namedSchema: NamedInternalNoSqlSchema = schema.named("")
   val emptySchema: EmptyInternalNoSqlSchema.type = EmptyInternalNoSqlSchema
   val schemas = List(schema, namedSchema, emptySchema)
 

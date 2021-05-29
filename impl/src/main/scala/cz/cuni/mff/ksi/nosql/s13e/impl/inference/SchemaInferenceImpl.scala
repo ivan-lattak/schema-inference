@@ -37,13 +37,13 @@ case object SchemaInferenceImpl {
       .master(sparkMaster)
       .appName("NoSQL Schema Inference")
       .getOrCreate()
-    val newSchema = dataLoader.loadData(session.sparkContext)
+    dataLoader.loadData(session.sparkContext)
       .map(TypedDocumentImpl.apply)
       .map(_.getRawSchema)
       .distinct()
       .map(Injector)
       .fold(baseSchema)(SchemaFolder)
-    NamedInternalNoSqlSchema(schemaName, newSchema.entities)
+      .named(schemaName)
   }
 
   def flatten(entity: Entity): NoSQLSchema = ???
