@@ -5,7 +5,9 @@ import scala.collection.{SortedMap, mutable}
 
 sealed case class InternalEntityVersion(properties: SortedMap[String, InternalProperty],
                                         private[schema] val liveAggregates: mutable.Buffer[InternalAggregate] = mutable.ListBuffer.empty,
-                                        private[schema] var additionalCount: Int = 0) {
+                                        private var _additionalCount: Int = 0) {
+
+  def additionalCount: Int = _additionalCount
 
   def count: Int = liveAggregates.size + additionalCount
 
@@ -13,8 +15,8 @@ sealed case class InternalEntityVersion(properties: SortedMap[String, InternalPr
     that.liveAggregates.foreach(_.target = this)
     liveAggregates ++= that.liveAggregates
     that.liveAggregates.clear()
-    additionalCount += that.additionalCount
-    that.additionalCount = 0
+    _additionalCount += that._additionalCount
+    that._additionalCount = 0
     this
   }
 
@@ -26,7 +28,7 @@ sealed case class InternalEntityVersion(properties: SortedMap[String, InternalPr
   // this aggregate is being merged with another or is root, we forget it but increment the additional counter
   private[schema] def unregister(aggregate: InternalAggregate): this.type = {
     liveAggregates -= aggregate
-    additionalCount += 1
+    _additionalCount += 1
     this
   }
 

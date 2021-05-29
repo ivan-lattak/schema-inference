@@ -90,6 +90,15 @@ trait JsonDocs {
       |""".stripMargin)
   private[inference] val articleVaclavNovak = TypedDocumentImpl("articles", schema(vaclavNovak))
 
+  val nameReference: JsObject = doc(
+    """
+      |{ "user_id": 0,
+      |  "userId": "0123456789abcdef",
+      |  "user_ids": [ 0, 1, 2 ],
+      |  "userIds": [ "a", "b", "c" ] }
+      |""".stripMargin)
+  private[inference] val objectNameReference = TypedDocumentImpl("users", schema(nameReference))
+
   def doc(json: String): JsObject = Json.parse(json).asInstanceOf[JsObject]
 
   def schema(doc: JsObject): JsObject = RawSchema(doc)
