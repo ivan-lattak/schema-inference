@@ -32,7 +32,7 @@ dependencies {
 
     implementation "org.apache.spark:spark-sql_$scalaVersion:2.4.5"
     implementation "org.apache.spark:spark-core_$scalaVersion:2.4.5"
-    implementation "org.mongodb.scala:mongo-scala-driver_$scalaVersion:4.2.3"
+    implementation "org.mongodb.scala:mongo-scala-driver_$scalaVersion:4.0.5"
     implementation "org.mongodb.spark:mongo-spark-connector_$scalaVersion:3.0.1"
 
     def versionStrictly = { versionNumber ->

@@ -3,9 +3,11 @@ package cz.cuni.mff.ksi.nosql.s13e.impl;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema;
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaIO;
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaInferenceImpl;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Path;
 
@@ -24,27 +26,27 @@ public final class SchemaInference {
     }
 
     public static NoSQLSchema flatten(Entity entity) {
-        return SchemaInferenceImpl.flatten(entity);
+        throw new UnsupportedOperationException();
     }
 
     public static ObjectNode convertToJsonSchema(NoSQLSchema schema, Entity rootEntity) {
-        return SchemaInferenceImpl.convertToJsonSchema(schema, rootEntity);
+        throw new UnsupportedOperationException();
     }
 
     public static NoSQLSchema load(Path filePath) {
-        return SchemaInferenceImpl.load(filePath);
+        throw new UnsupportedOperationException();
     }
 
     public static NoSQLSchema load(Writer writer) {
-        return SchemaInferenceImpl.load(writer);
+        throw new UnsupportedOperationException();
     }
 
-    public static NoSQLSchema save(NoSQLSchema schema, Path filePath) {
-        return SchemaInferenceImpl.save(schema, filePath);
+    public static NoSQLSchema save(NoSQLSchema schema, Path filePath) throws IOException {
+        return SchemaIO.save(schema, filePath);
     }
 
     public static NoSQLSchema save(NoSQLSchema schema, Writer writer) {
-        return SchemaInferenceImpl.save(schema, writer);
+        return SchemaIO.save(schema, writer);
     }
 
 }
