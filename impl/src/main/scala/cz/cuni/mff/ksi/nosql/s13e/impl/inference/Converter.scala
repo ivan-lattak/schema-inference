@@ -1,16 +1,18 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
-import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Entity, EntityReference, EntityVersion, NoSQLSchema, NoSQLSchemaFactory, PrimitiveType, SingleType, Type}
+import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema
+import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Aggregate, Entity, EntityReference, EntityVersion, NoSQLSchemaFactory, PrimitiveType, Property, SingleType, Type, UnionType, UnknownType}
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.InternalEntityVersion.PropertiesOrdering
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema._
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.IdentityWrapper
 
+import scala.collection.JavaConverters.collectionAsScalaIterableConverter
+import scala.collection.immutable.{TreeMap, TreeSet}
 import scala.collection.mutable
 
 private object Converter {
 
-  def modelToInternal(schema: NoSQLSchema): NamedInternalNoSqlSchema = ???
-
-  def internalToModel(internalSchema: NamedInternalNoSqlSchema): NoSQLSchema = new InternalToModel(internalSchema).convert()
+  def internalToModel(internalSchema: NamedInternalNoSqlSchema): NoSQLSchema.NoSQLSchema = new InternalToModel(internalSchema).convert()
 
   private class InternalToModel(internalSchema: NamedInternalNoSqlSchema) {
 
@@ -21,9 +23,7 @@ private object Converter {
     private val entities: mutable.LinkedHashMap[String, Entity] = mutable.LinkedHashMap.empty
     private val versions: mutable.Map[IWVersion, EntityVersion] = mutable.HashMap.empty
 
-    private def identity[T <: AnyRef](t: T): IdentityWrapper[T] = IdentityWrapper(t)
-
-    def convert(): NoSQLSchema = {
+    def convert(): NoSQLSchema.NoSQLSchema = {
       val schema = factory.createNoSQLSchema()
       schema.setName(internalSchema.name)
 
@@ -33,7 +33,7 @@ private object Converter {
       schema
     }
 
-    private def processEntitiesAndVersions(schema: NoSQLSchema): Unit = {
+    private def processEntitiesAndVersions(schema: NoSQLSchema.NoSQLSchema): Unit = {
       def processVersions(internalEntity: InternalEntity, entity: Entity): Unit =
         internalEntity.versions.keys zip Stream.from(0) foreach {
           case (internalVersion, id) =>
@@ -149,5 +149,60 @@ private object Converter {
     }
 
   }
+
+  def modelToInternal(schema: NoSQLSchema.NoSQLSchema): NamedInternalNoSqlSchema = new ModelToInternal(schema).convert()
+
+  private class ModelToInternal(schema: NoSQLSchema.NoSQLSchema) {
+
+    private type IWVersion = IdentityWrapper[EntityVersion]
+
+    private val versions: mutable.Map[IWVersion, InternalEntityVersion] = mutable.HashMap.empty
+
+    def convert(): NamedInternalNoSqlSchema = {
+      val internalEntities = schema.getEntities.asScala.map(convertEntity).toSeq
+      val entityMap = TreeSet(internalEntities: _*)(Ordering.by(_.name))
+      NamedInternalNoSqlSchema(schema.getName, entityMap)
+    }
+
+    private def convertEntity(entity: Entity): InternalEntity = {
+      val internalVersions = entity.getVersions.asScala.map(convertVersion).map(v => (v, v)).toSeq
+      val versionMap = mutable.TreeMap(internalVersions: _*)(PropertiesOrdering)
+      InternalEntity(entity.getName, entity.isRoot, versionMap)
+    }
+
+    private def convertVersion(version: EntityVersion): InternalEntityVersion =
+      versions.getOrElseUpdate(identity(version), {
+        val internalProperties = version.getProperties.asScala.map(convertProperty).map(p => (p.name, p)).toSeq
+        InternalEntityVersion(TreeMap(internalProperties: _*), _additionalCount = version.getAdditionalCount)
+      })
+
+    private def convertProperty(property: Property): InternalProperty =
+      InternalProperty(property.getName, convertType(property.getType), property.isOptional)
+
+    private def convertType(`type`: Type): InternalType = `type` match {
+      case _: UnknownType => InternalUnknownType
+      case singleType: SingleType => convertSingleType(singleType)
+      case unionType: UnionType => InternalUnionType(unionType.getTypes.asScala.map(convertSingleType).toList)
+    }
+
+    private def convertSingleType(singleType: SingleType): InternalSingleType = singleType match {
+      case primitiveType: PrimitiveType => convertPrimitiveType(primitiveType)
+      case aggregate: Aggregate => InternalAggregate(convertVersion(aggregate.getTarget))
+      case array: NoSQLSchema.Array => InternalArray(convertType(array.getElementType))
+      case reference: EntityReference => convertEntityReference(reference)
+    }
+
+    private def convertPrimitiveType(primitiveType: PrimitiveType): InternalPrimitiveType = primitiveType match {
+      case _: NoSQLSchema.Boolean => InternalBoolean
+      case _: NoSQLSchema.Number => InternalNumber
+      case _: NoSQLSchema.String => InternalString
+    }
+
+    private def convertEntityReference(reference: EntityReference): InternalEntityReference =
+      InternalEntityReference(reference.getTarget.getName, Option(reference.getOriginalType).map(convertPrimitiveType))
+
+  }
+
+  private def identity[T <: AnyRef](t: T): IdentityWrapper[T] = IdentityWrapper(t)
 
 }

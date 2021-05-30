@@ -58,7 +58,7 @@ class ConverterTest extends UnitTest with JsonDocs {
       checkEntityRefArray[NoSQLSchema.Number]("user_ids", user)(properties.get(3))
     }
 
-    ignore("should convert to and from model correctly") {
+    it("should convert to and from model correctly") {
       val picassoBefore = Injector(userPicasso).named("Test schema")
       val picassoAfter = modelToInternal(internalToModel(picassoBefore))
       picassoAfter shouldEqual picassoBefore
