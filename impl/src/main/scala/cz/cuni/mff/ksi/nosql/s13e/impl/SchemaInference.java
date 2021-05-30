@@ -8,6 +8,7 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaInferenceImpl;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Writer;
 import java.nio.file.Path;
 
@@ -45,8 +46,8 @@ public final class SchemaInference {
         return SchemaIO.save(schema, filePath);
     }
 
-    public static NoSQLSchema save(NoSQLSchema schema, Writer writer) {
-        return SchemaIO.save(schema, writer);
+    public static NoSQLSchema save(NoSQLSchema schema, OutputStream outputStream) throws IOException {
+        return SchemaIO.save(schema, outputStream);
     }
 
 }
