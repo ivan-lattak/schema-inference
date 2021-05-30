@@ -3,8 +3,11 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Entity, EntityReference, Property}
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.Converter.{internalToModel, modelToInternal}
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.NamedInternalNoSqlSchema
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.JsonDocs
+import org.apache.commons.io.output.ByteArrayOutputStream
 
+import java.io.ByteArrayInputStream
 import scala.collection.JavaConverters.collectionAsScalaIterableConverter
 import scala.reflect.ClassTag
 
@@ -73,6 +76,31 @@ class ConverterTest extends UnitTest with JsonDocs {
 
       val foldedBefore = SchemaFolder(johnDoeBefore, vaclavNovakBefore).named("Test schema")
       val foldedAfter = modelToInternal(internalToModel(foldedBefore))
+      foldedAfter shouldEqual foldedBefore
+    }
+
+    it("should convert from model which was serialized and then deserialized correctly") {
+      def seDes(schema: NamedInternalNoSqlSchema): NamedInternalNoSqlSchema = {
+        val baos = new ByteArrayOutputStream()
+        SchemaIO.save(internalToModel(schema), baos)
+        val bais = new ByteArrayInputStream(baos.toByteArray)
+        modelToInternal(SchemaIO.load(bais))
+      }
+
+      val picassoBefore = Injector(userPicasso).named("Test schema")
+      val picassoAfter = seDes(picassoBefore)
+      picassoAfter shouldEqual picassoBefore
+
+      val johnDoeBefore = Injector(articleJohnDoe).named("Test schema")
+      val johnDoeAfter = seDes(johnDoeBefore)
+      johnDoeAfter shouldEqual johnDoeBefore
+
+      val vaclavNovakBefore = Injector(articleVaclavNovak).named("Test schema")
+      val vaclavNovakAfter = seDes(vaclavNovakBefore)
+      vaclavNovakAfter shouldEqual vaclavNovakBefore
+
+      val foldedBefore = SchemaFolder(johnDoeBefore, vaclavNovakBefore).named("Test schema")
+      val foldedAfter = seDes(foldedBefore)
       foldedAfter shouldEqual foldedBefore
     }
 
