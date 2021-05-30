@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,6 +38,20 @@ public final class SchemaIO {
         resource.getContents().add(schema);
         resource.save(outputStream, options);
         return schema;
+    }
+
+    public static NoSQLSchema load(Path filePath) throws IOException {
+        Resource resource = new XMIResourceImpl();
+        try (InputStream inputStream = Files.newInputStream(filePath)) {
+            resource.load(inputStream, options);
+        }
+        return (NoSQLSchema) resource.getContents().get(0);
+    }
+
+    public static NoSQLSchema load(InputStream inputStream) throws IOException {
+        Resource resource = new XMIResourceImpl();
+        resource.load(inputStream, options);
+        return (NoSQLSchema) resource.getContents().get(0);
     }
 
 }

@@ -8,8 +8,8 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaInferenceImpl;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Writer;
 import java.nio.file.Path;
 
 public final class SchemaInference {
@@ -34,20 +34,20 @@ public final class SchemaInference {
         throw new UnsupportedOperationException();
     }
 
-    public static NoSQLSchema load(Path filePath) {
-        throw new UnsupportedOperationException();
-    }
-
-    public static NoSQLSchema load(Writer writer) {
-        throw new UnsupportedOperationException();
-    }
-
     public static NoSQLSchema save(NoSQLSchema schema, Path filePath) throws IOException {
         return SchemaIO.save(schema, filePath);
     }
 
     public static NoSQLSchema save(NoSQLSchema schema, OutputStream outputStream) throws IOException {
         return SchemaIO.save(schema, outputStream);
+    }
+
+    public static NoSQLSchema load(Path filePath) throws IOException {
+        return SchemaIO.load(filePath);
+    }
+
+    public static NoSQLSchema load(InputStream inputStream) throws IOException {
+        return SchemaIO.load(inputStream);
     }
 
 }
