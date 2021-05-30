@@ -25,12 +25,9 @@ public final class SchemaIO {
     }
 
     public static NoSQLSchema save(NoSQLSchema schema, Path filePath) throws IOException {
-        Resource resource = new XMIResourceImpl();
-        resource.getContents().add(schema);
         try (OutputStream outputStream = Files.newOutputStream(filePath)) {
-            resource.save(outputStream, options);
+            return save(schema, outputStream);
         }
-        return schema;
     }
 
     public static NoSQLSchema save(NoSQLSchema schema, OutputStream outputStream) throws IOException {
@@ -41,11 +38,9 @@ public final class SchemaIO {
     }
 
     public static NoSQLSchema load(Path filePath) throws IOException {
-        Resource resource = new XMIResourceImpl();
         try (InputStream inputStream = Files.newInputStream(filePath)) {
-            resource.load(inputStream, options);
+            return load(inputStream);
         }
-        return (NoSQLSchema) resource.getContents().get(0);
     }
 
     public static NoSQLSchema load(InputStream inputStream) throws IOException {
