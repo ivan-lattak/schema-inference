@@ -31,7 +31,7 @@ private case object RawSchema {
     case JsString(_) => JsString(stringType)
     case DbRef(collectionName) => JsString(ReferenceType(collectionName))
     case JsArray(value) => JsArray(value.map(getRawSchema))
-    case JsObject(underlying) => JsObject(underlying.mapValues(getRawSchema))
+    case JsObject(underlying) => JsObject(underlying.mapValues(getRawSchema).map(identity)) // we have to map(identity) because mapValues result is not serializable
   }
 
 }

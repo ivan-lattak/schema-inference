@@ -99,6 +99,8 @@ trait JsonDocs {
       |""".stripMargin)
   private[inference] val objectNameReference = TypedDocumentImpl("users", schema(nameReference))
 
+  val objectsWithRawSchemas: List[Serializable] = List(allTypesSchema, userPicasso, articleJohnDoe, articleVaclavNovak, objectNameReference)
+
   def doc(json: String): JsObject = Json.parse(json).asInstanceOf[JsObject]
 
   def schema(doc: JsObject): JsObject = RawSchema(doc)
