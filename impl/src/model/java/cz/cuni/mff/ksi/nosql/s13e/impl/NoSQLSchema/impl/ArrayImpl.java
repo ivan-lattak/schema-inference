@@ -72,10 +72,10 @@ public class ArrayImpl extends ComplexTypeImpl implements Array {
 		Type oldElementType = elementType;
 		elementType = newElementType;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, oldElementType, newElementType);
-			if (msgs == null) msgs = notification;
-			else msgs.add(notification);
-		}
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, oldElementType, newElementType);
+            if (msgs == null) msgs = notification;
+            else msgs.add(notification);
+        }
 		return msgs;
 	}
 
@@ -85,16 +85,16 @@ public class ArrayImpl extends ComplexTypeImpl implements Array {
 	 * @generated
 	 */
 	public void setElementType(Type newElementType) {
-		if (newElementType != elementType) {
-			NotificationChain msgs = null;
-			if (elementType != null)
-				msgs = ((InternalEObject) elementType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, null, msgs);
-			if (newElementType != null)
-				msgs = ((InternalEObject) newElementType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, null, msgs);
-			msgs = basicSetElementType(newElementType, msgs);
-			if (msgs != null) msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, newElementType, newElementType));
+        if (newElementType != elementType) {
+            NotificationChain msgs = null;
+            if (elementType != null)
+                msgs = ((InternalEObject) elementType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, null, msgs);
+            if (newElementType != null)
+                msgs = ((InternalEObject) newElementType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, null, msgs);
+            msgs = basicSetElementType(newElementType, msgs);
+            if (msgs != null) msgs.dispatch();
+        } else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE, newElementType, newElementType));
 	}
 
 	/**
@@ -133,10 +133,10 @@ public class ArrayImpl extends ComplexTypeImpl implements Array {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE:
-				setElementType((Type) newValue);
-				return;
-		}
+            case NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE:
+                setElementType((Type) newValue);
+                return;
+        }
 		super.eSet(featureID, newValue);
 	}
 
@@ -148,10 +148,10 @@ public class ArrayImpl extends ComplexTypeImpl implements Array {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE:
-				setElementType((Type) null);
-				return;
-		}
+            case NoSQLSchemaPackage.ARRAY__ELEMENT_TYPE:
+                setElementType((Type) null);
+                return;
+        }
 		super.eUnset(featureID);
 	}
 

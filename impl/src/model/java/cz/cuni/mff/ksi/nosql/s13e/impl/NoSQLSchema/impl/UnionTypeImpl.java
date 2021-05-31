@@ -77,9 +77,9 @@ public class UnionTypeImpl extends TypeImpl implements UnionType {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NoSQLSchemaPackage.UNION_TYPE__TYPES:
-				return ((InternalEList<?>) getTypes()).basicRemove(otherEnd, msgs);
-		}
+            case NoSQLSchemaPackage.UNION_TYPE__TYPES:
+                return ((InternalEList<?>) getTypes()).basicRemove(otherEnd, msgs);
+        }
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
@@ -106,11 +106,11 @@ public class UnionTypeImpl extends TypeImpl implements UnionType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NoSQLSchemaPackage.UNION_TYPE__TYPES:
-				getTypes().clear();
-				getTypes().addAll((Collection<? extends SingleType>) newValue);
-				return;
-		}
+            case NoSQLSchemaPackage.UNION_TYPE__TYPES:
+                getTypes().clear();
+                getTypes().addAll((Collection<? extends SingleType>) newValue);
+                return;
+        }
 		super.eSet(featureID, newValue);
 	}
 

@@ -27,6 +27,7 @@ import java.util.Collection;
  * <ul>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#getName <em>Name</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#isRoot <em>Root</em>}</li>
+ *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#isFlattened <em>Flattened</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#getVersions <em>Versions</em>}</li>
  * </ul>
  *
@@ -67,19 +68,43 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	 * The cached value of the '{@link #isRoot() <em>Root</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRoot()
+	 *
 	 * @generated
 	 * @ordered
+	 * @see #isRoot()
 	 */
 	protected boolean root = ROOT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isFlattened() <em>Flattened</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 * @see #isFlattened()
+	 */
+	protected static final boolean FLATTENED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFlattened() <em>Flattened</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 * @see #isFlattened()
+	 */
+	protected boolean flattened = FLATTENED_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVersions() <em>Versions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVersions()
+	 *
 	 * @generated
 	 * @ordered
+	 * @see #getVersions()
 	 */
 	protected EList<EntityVersion> versions;
 
@@ -135,6 +160,7 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void setRoot(boolean newRoot) {
@@ -147,6 +173,30 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public boolean isFlattened() {
+		return flattened;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public void setFlattened(boolean newFlattened) {
+		boolean oldFlattened = flattened;
+		flattened = newFlattened;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY__FLATTENED, oldFlattened, flattened));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public EList<EntityVersion> getVersions() {
@@ -165,7 +215,7 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case NoSQLSchemaPackage.ENTITY__VERSIONS:
-				return ((InternalEList<?>) getVersions()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getVersions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -173,6 +223,7 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -182,6 +233,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 				return getName();
 			case NoSQLSchemaPackage.ENTITY__ROOT:
 				return isRoot();
+			case NoSQLSchemaPackage.ENTITY__FLATTENED:
+				return isFlattened();
 			case NoSQLSchemaPackage.ENTITY__VERSIONS:
 				return getVersions();
 		}
@@ -191,6 +244,7 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -203,6 +257,9 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 			case NoSQLSchemaPackage.ENTITY__ROOT:
 				setRoot((Boolean) newValue);
 				return;
+			case NoSQLSchemaPackage.ENTITY__FLATTENED:
+				setFlattened((Boolean)newValue);
+				return;
 			case NoSQLSchemaPackage.ENTITY__VERSIONS:
 				getVersions().clear();
 				getVersions().addAll((Collection<? extends EntityVersion>) newValue);
@@ -214,6 +271,7 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -225,6 +283,9 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 			case NoSQLSchemaPackage.ENTITY__ROOT:
 				setRoot(ROOT_EDEFAULT);
 				return;
+			case NoSQLSchemaPackage.ENTITY__FLATTENED:
+				setFlattened(FLATTENED_EDEFAULT);
+				return;
 			case NoSQLSchemaPackage.ENTITY__VERSIONS:
 				getVersions().clear();
 				return;
@@ -235,6 +296,7 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -244,6 +306,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NoSQLSchemaPackage.ENTITY__ROOT:
 				return root != ROOT_EDEFAULT;
+			case NoSQLSchemaPackage.ENTITY__FLATTENED:
+				return flattened != FLATTENED_EDEFAULT;
 			case NoSQLSchemaPackage.ENTITY__VERSIONS:
 				return versions != null && !versions.isEmpty();
 		}
@@ -253,6 +317,7 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -264,6 +329,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 		result.append(name);
 		result.append(", root: ");
 		result.append(root);
+		result.append(", flattened: ");
+		result.append(flattened);
 		result.append(')');
 		return result.toString();
 	}

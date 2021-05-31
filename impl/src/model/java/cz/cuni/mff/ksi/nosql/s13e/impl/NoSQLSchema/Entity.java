@@ -18,6 +18,7 @@ import java.lang.String;
  * <ul>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getName <em>Name</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}</li>
+ *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened <em>Flattened</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions <em>Versions</em>}</li>
  * </ul>
  *
@@ -69,31 +70,61 @@ public interface Entity extends EObject {
 	 */
 	boolean isRoot();
 
-	/**
-	 * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root</em>' attribute.
-	 * @see #isRoot()
-	 * @generated
-	 */
-	void setRoot(boolean value);
+    /**
+     * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @param value the new value of the '<em>Root</em>' attribute.
+     * @generated
+     * @see #isRoot()
+     */
+    void setRoot(boolean value);
 
-	/**
-	 * Returns the value of the '<em><b>Versions</b></em>' containment reference list.
-	 * The list contents are of type {@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Versions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Versions</em>' containment reference list.
-	 * @model containment="true" required="true"
-	 * @generated
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Versions()
-	 */
+    /**
+     * Returns the value of the '<em><b>Flattened</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Flattened</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     *
+     * @return the value of the '<em>Flattened</em>' attribute.
+     * @model default="false"
+     * @generated
+     * @see #setFlattened(boolean)
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Flattened()
+     */
+    boolean isFlattened();
+
+    /**
+     * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened <em>Flattened</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @param value the new value of the '<em>Flattened</em>' attribute.
+     * @generated
+     * @see #isFlattened()
+     */
+    void setFlattened(boolean value);
+
+    /**
+     * Returns the value of the '<em><b>Versions</b></em>' containment reference list.
+     * The list contents are of type {@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Versions</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     *
+     * @return the value of the '<em>Versions</em>' containment reference list.
+     * @model containment="true" required="true"
+     * @generated
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Versions()
+     */
 	EList<EntityVersion> getVersions();
 
 } // Entity

@@ -83,7 +83,6 @@ public class AggregateImpl extends ComplexTypeImpl implements Aggregate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(EntityVersion newTarget, NotificationChain msgs) {
@@ -100,7 +99,6 @@ public class AggregateImpl extends ComplexTypeImpl implements Aggregate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setTarget(EntityVersion newTarget) {
@@ -119,7 +117,6 @@ public class AggregateImpl extends ComplexTypeImpl implements Aggregate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -136,7 +133,6 @@ public class AggregateImpl extends ComplexTypeImpl implements Aggregate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -151,7 +147,6 @@ public class AggregateImpl extends ComplexTypeImpl implements Aggregate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

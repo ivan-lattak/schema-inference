@@ -14,6 +14,7 @@
     <genClasses ecoreClass="nosqlschema.ecore#//Entity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nosqlschema.ecore#//Entity/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nosqlschema.ecore#//Entity/root"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nosqlschema.ecore#//Entity/flattened"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nosqlschema.ecore#//Entity/versions"/>
     </genClasses>
     <genClasses ecoreClass="nosqlschema.ecore#//EntityVersion">

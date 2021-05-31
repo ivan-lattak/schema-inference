@@ -123,32 +123,44 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 */
 	int ENTITY__NAME = 0;
 
-	/**
-	 * The feature id for the '<em><b>Root</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTITY__ROOT = 1;
+    /**
+     * The feature id for the '<em><b>Root</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     * @ordered
+     */
+    int ENTITY__ROOT = 1;
 
-	/**
-	 * The feature id for the '<em><b>Versions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTITY__VERSIONS = 2;
+    /**
+     * The feature id for the '<em><b>Flattened</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     * @ordered
+     */
+    int ENTITY__FLATTENED = 2;
 
-	/**
-	 * The number of structural features of the '<em>Entity</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The feature id for the '<em><b>Versions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     * @ordered
+     */
+    int ENTITY__VERSIONS = 3;
+
+    /**
+     * The number of structural features of the '<em>Entity</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTITY_FEATURE_COUNT = 3;
+	int ENTITY_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Entity</em>' class.
@@ -182,7 +194,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The feature id for the '<em><b>Additional Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -192,7 +203,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -202,7 +212,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The feature id for the '<em><b>Aggregates</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -212,7 +221,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The number of structural features of the '<em>Entity Version</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -389,7 +397,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -399,7 +406,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The feature id for the '<em><b>Original Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -446,20 +452,18 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * The number of operations of the '<em>Unknown Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
-	 */
-	int UNKNOWN_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
+     */
+    int UNKNOWN_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
 
-	/**
-	 * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl <em>Complex Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
+    /**
+     * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl <em>Complex Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getComplexType()
 	 * @generated
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getComplexType()
 	 */
 	int COMPLEX_TYPE = 9;
 
@@ -717,27 +721,40 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getName()
 	 * @see #getEntity()
-	 * @generated
-	 */
-	EAttribute getEntity_Name();
+     * @generated
+     */
+    EAttribute getEntity_Name();
 
-	/**
-	 * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Root</em>'.
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot()
-	 * @see #getEntity()
-	 * @generated
-	 */
-	EAttribute getEntity_Root();
+    /**
+     * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @return the meta object for the attribute '<em>Root</em>'.
+     * @generated
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot()
+     * @see #getEntity()
+     */
+    EAttribute getEntity_Root();
 
-	/**
-	 * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions <em>Versions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Versions</em>'.
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions()
+    /**
+     * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened <em>Flattened</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @return the meta object for the attribute '<em>Flattened</em>'.
+     * @generated
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened()
+     * @see #getEntity()
+     */
+    EAttribute getEntity_Flattened();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions <em>Versions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Versions</em>'.
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions()
 	 * @see #getEntity()
 	 * @generated
 	 */
@@ -748,56 +765,52 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Entity Version</em>'.
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion
-	 * @generated
-	 */
-	EClass getEntityVersion();
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion
+     * @generated
+     */
+    EClass getEntityVersion();
 
-	/**
-	 * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @generated
+    /**
+     * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getId <em>Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Id</em>'.
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getId()
-	 * @see #getEntityVersion()
-	 */
-	EAttribute getEntityVersion_Id();
+     * @see #getEntityVersion()
+     * @generated
+     */
+    EAttribute getEntityVersion_Id();
 
-	/**
-	 * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAdditionalCount <em>Additional Count</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the attribute '<em>Additional Count</em>'.
-	 * @generated
+    /**
+     * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAdditionalCount <em>Additional Count</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Additional Count</em>'.
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAdditionalCount()
-	 * @see #getEntityVersion()
-	 */
-	EAttribute getEntityVersion_AdditionalCount();
+     * @see #getEntityVersion()
+     * @generated
+     */
+    EAttribute getEntityVersion_AdditionalCount();
 
-	/**
-	 * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the containment reference list '<em>Properties</em>'.
-	 * @generated
+    /**
+     * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getProperties <em>Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Properties</em>'.
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getProperties()
-	 * @see #getEntityVersion()
-	 */
-	EReference getEntityVersion_Properties();
+     * @see #getEntityVersion()
+     * @generated
+     */
+    EReference getEntityVersion_Properties();
 
-	/**
-	 * Returns the meta object for the reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates <em>Aggregates</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the reference list '<em>Aggregates</em>'.
-	 * @generated
+    /**
+     * Returns the meta object for the reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates <em>Aggregates</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Aggregates</em>'.
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates()
 	 * @see #getEntityVersion()
+	 * @generated
 	 */
 	EReference getEntityVersion_Aggregates();
 
@@ -890,32 +903,30 @@ public interface NoSQLSchemaPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Entity Reference</em>'.
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference
-	 * @generated
-	 */
-	EClass getEntityReference();
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference
+     * @generated
+     */
+    EClass getEntityReference();
 
-	/**
-	 * Returns the meta object for the reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @generated
+    /**
+     * Returns the meta object for the reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getTarget <em>Target</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Target</em>'.
 	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getTarget()
-	 * @see #getEntityReference()
-	 */
-	EReference getEntityReference_Target();
+     * @see #getEntityReference()
+     * @generated
+     */
+    EReference getEntityReference_Target();
 
-	/**
-	 * Returns the meta object for the containment reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getOriginalType <em>Original Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the containment reference '<em>Original Type</em>'.
-	 * @generated
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getOriginalType()
+    /**
+     * Returns the meta object for the containment reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getOriginalType <em>Original Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Original Type</em>'.
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getOriginalType()
 	 * @see #getEntityReference()
+	 * @generated
 	 */
 	EReference getEntityReference_OriginalType();
 
@@ -1082,23 +1093,33 @@ public interface NoSQLSchemaPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ENTITY__NAME = eINSTANCE.getEntity_Name();
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ENTITY__NAME = eINSTANCE.getEntity_Name();
 
-		/**
-		 * The meta object literal for the '<em><b>Root</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ENTITY__ROOT = eINSTANCE.getEntity_Root();
+        /**
+         * The meta object literal for the '<em><b>Root</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         *
+         * @generated
+         */
+        EAttribute ENTITY__ROOT = eINSTANCE.getEntity_Root();
 
-		/**
-		 * The meta object literal for the '<em><b>Versions</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
+        /**
+         * The meta object literal for the '<em><b>Flattened</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         *
+         * @generated
+         */
+        EAttribute ENTITY__FLATTENED = eINSTANCE.getEntity_Flattened();
+
+        /**
+         * The meta object literal for the '<em><b>Versions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -1118,7 +1139,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ENTITY_VERSION__ID = eINSTANCE.getEntityVersion_Id();
@@ -1127,7 +1147,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Additional Count</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ENTITY_VERSION__ADDITIONAL_COUNT = eINSTANCE.getEntityVersion_AdditionalCount();
@@ -1136,7 +1155,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference ENTITY_VERSION__PROPERTIES = eINSTANCE.getEntityVersion_Properties();
@@ -1145,7 +1163,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Aggregates</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference ENTITY_VERSION__AGGREGATES = eINSTANCE.getEntityVersion_Aggregates();
@@ -1236,7 +1253,6 @@ public interface NoSQLSchemaPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference ENTITY_REFERENCE__TARGET = eINSTANCE.getEntityReference_Target();

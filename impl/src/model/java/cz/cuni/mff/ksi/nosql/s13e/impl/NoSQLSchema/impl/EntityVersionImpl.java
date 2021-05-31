@@ -61,52 +61,47 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
      * The default value of the '{@link #getAdditionalCount() <em>Additional Count</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
      * @see #getAdditionalCount()
-     */
+     * @generated
+	 * @ordered
+	 */
     protected static final int ADDITIONAL_COUNT_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getAdditionalCount() <em>Additional Count</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
      * @see #getAdditionalCount()
-     */
+     * @generated
+	 * @ordered
+	 */
     protected int additionalCount = ADDITIONAL_COUNT_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
      * @see #getProperties()
-     */
+     * @generated
+	 * @ordered
+	 */
     protected EList<Property> properties;
 
     /**
      * The cached value of the '{@link #getAggregates() <em>Aggregates</em>}' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
      * @see #getAggregates()
-     */
+     * @generated
+	 * @ordered
+	 */
     protected EList<Aggregate> aggregates;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     protected EntityVersionImpl() {
         super();
     }
@@ -114,9 +109,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
         return NoSQLSchemaPackage.Literals.ENTITY_VERSION;
@@ -124,19 +118,18 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
 	 * @generated
-	 */
-	public int getId() {
-		return id;
+     */
+    public int getId() {
+        return id;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     public void setId(int newId) {
         int oldId = id;
         id = newId;
@@ -147,9 +140,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     public int getAdditionalCount() {
         return additionalCount;
     }
@@ -157,9 +149,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     public void setAdditionalCount(int newAdditionalCount) {
         int oldAdditionalCount = additionalCount;
         additionalCount = newAdditionalCount;
@@ -170,35 +161,32 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Property> getProperties() {
         if (properties == null) {
             properties = new EObjectContainmentEList<Property>(Property.class, this, NoSQLSchemaPackage.ENTITY_VERSION__PROPERTIES);
         }
-        return properties;
+		return properties;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Aggregate> getAggregates() {
         if (aggregates == null) {
             aggregates = new EObjectWithInverseResolvingEList<Aggregate>(Aggregate.class, this, NoSQLSchemaPackage.ENTITY_VERSION__AGGREGATES, NoSQLSchemaPackage.AGGREGATE__TARGET);
         }
-        return aggregates;
+		return aggregates;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -212,9 +200,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -229,9 +216,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -250,9 +236,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
@@ -278,9 +263,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
@@ -303,9 +287,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
@@ -324,9 +307,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
         if (eIsProxy()) return super.toString();
@@ -337,7 +319,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
         result.append(", additionalCount: ");
         result.append(additionalCount);
         result.append(')');
-		return result.toString();
+        return result.toString();
 	}
 
 } //EntityVersionImpl
