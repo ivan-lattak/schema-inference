@@ -29,7 +29,7 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
         val properties = underlying map { case (k, v) => (k, InternalProperty(k, construct(k, v, root = false))) }
         val res = InternalAggregate(entity.getOrAddIdenticalVersion(properties))
         if (root) res.unregister() else res
-      case _ => throw new RuntimeException(s"Unexpected JSON type in raw schema: $jsValue") // null, boolean and number are unexpected
+      case _ => throw new IllegalArgumentException(s"Unexpected JSON type in raw schema: $jsValue") // null, boolean and number are unexpected
     }
 
     def finish: InternalNoSqlSchema = new InternalNoSqlSchema(TreeSet(entities.values.toSeq: _*)(Ordering.by(_.name)))

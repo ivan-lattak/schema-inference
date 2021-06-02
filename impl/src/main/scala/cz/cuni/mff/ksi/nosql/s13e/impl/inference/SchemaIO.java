@@ -18,6 +18,10 @@ public final class SchemaIO {
 
     private static final Map<String, Object> options = createOptions();
 
+    private SchemaIO() {
+        throw new UnsupportedOperationException();
+    }
+
     private static Map<String, Object> createOptions() {
         Map<String, Object> options = new HashMap<>();
         options.put(XMIResource.OPTION_ENCODING, "UTF-8");

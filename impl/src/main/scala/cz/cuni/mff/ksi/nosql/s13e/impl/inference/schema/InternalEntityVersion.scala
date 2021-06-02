@@ -75,7 +75,7 @@ case object InternalEntityVersion {
           case _ => compareProperties(lt, rt)
         }
       }
-      case _ => throw new RuntimeException("The lists are not equally long")
+      case _ => throw new IllegalArgumentException("The lists are not equally long")
     }
 
   }

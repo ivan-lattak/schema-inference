@@ -13,7 +13,7 @@ private case object TypeFolder extends ((InternalType, InternalType) => Internal
       def mkList(t: InternalType): List[InternalSingleType] = t match {
         case InternalUnionType(types) => types
         case t: InternalSingleType => List(t)
-        case InternalUnknownType => throw new RuntimeException("Unexpected unknown type")
+        case InternalUnknownType => throw new IllegalArgumentException("Unexpected unknown type")
       }
 
       mergeSortedTypes(mkList(left), mkList(right)) match {
