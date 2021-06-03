@@ -1,9 +1,9 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.Defaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.InternalDefaults
 
-class InternalNoSqlSchemaTest extends UnitTest with Defaults {
+class InternalNoSqlSchemaTest extends UnitTest with InternalDefaults {
 
   describe("Equals methods within InternalNoSqlSchema hierarchy") {
 

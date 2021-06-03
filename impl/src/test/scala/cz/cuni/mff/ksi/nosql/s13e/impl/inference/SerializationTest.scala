@@ -1,8 +1,8 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.{Defaults, JsonDocs, SeDes}
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.{InternalDefaults, JsonDocs, SeDes}
 
-class SerializationTest extends UnitTest with Defaults with JsonDocs with SeDes {
+class SerializationTest extends UnitTest with InternalDefaults with JsonDocs with SeDes {
 
   describe("Schema objects") {
 

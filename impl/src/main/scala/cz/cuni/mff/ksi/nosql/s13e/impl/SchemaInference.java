@@ -3,6 +3,7 @@ package cz.cuni.mff.ksi.nosql.s13e.impl;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema;
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.EntityFlattener;
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaIO;
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaInferenceImpl;
 
@@ -26,8 +27,8 @@ public final class SchemaInference {
         return SchemaInferenceImpl.extend(schema, sparkMaster, dataLoader, newSchemaName);
     }
 
-    public static NoSQLSchema flatten(Entity entity) {
-        throw new UnsupportedOperationException();
+    public static NoSQLSchema flatten(NoSQLSchema schema, Entity entity) {
+        return EntityFlattener.flatten(schema, entity);
     }
 
     public static ObjectNode convertToJsonSchema(NoSQLSchema schema, Entity rootEntity) {

@@ -1,11 +1,11 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.Defaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.InternalDefaults
 
 import scala.collection.immutable.TreeMap
 
-class InternalEntityVersionTest extends UnitTest with Defaults {
+class InternalEntityVersionTest extends UnitTest with InternalDefaults {
 
   val THIS_SIZE = 31
   val THAT_SIZE = 47

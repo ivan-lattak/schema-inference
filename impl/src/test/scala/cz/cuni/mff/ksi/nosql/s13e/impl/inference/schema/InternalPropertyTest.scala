@@ -1,9 +1,9 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.Defaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.InternalDefaults
 
-class InternalPropertyTest extends UnitTest with Defaults {
+class InternalPropertyTest extends UnitTest with InternalDefaults {
 
   describe("InternalProperty's natural ordering") {
 

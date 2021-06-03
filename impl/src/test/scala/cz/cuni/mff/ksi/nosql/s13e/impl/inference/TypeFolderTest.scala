@@ -1,9 +1,9 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.{InternalAggregate, InternalArray, InternalType, InternalUnionType}
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.Defaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.InternalDefaults
 
-class TypeFolderTest extends UnitTest with Defaults {
+class TypeFolderTest extends UnitTest with InternalDefaults {
 
   describe("TypeFolder") {
 

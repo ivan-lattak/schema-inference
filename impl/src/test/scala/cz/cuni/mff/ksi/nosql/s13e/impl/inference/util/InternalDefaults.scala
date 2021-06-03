@@ -4,7 +4,7 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema._
 
 import scala.collection.immutable.{TreeMap, TreeSet}
 
-trait Defaults {
+trait InternalDefaults {
 
   val schema = new InternalNoSqlSchema(TreeSet.empty(Ordering.by(_.name)))
   val namedSchema: NamedInternalNoSqlSchema = schema.named("")

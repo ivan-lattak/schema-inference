@@ -19,6 +19,10 @@ case object SchemaInferenceImpl {
              sparkMaster: String,
              dataLoader: DataLoader,
              @Nullable newSchemaName: String): NoSQLSchema = {
+    if (schema.getEntities.stream().anyMatch(_.isFlattened)) {
+      throw new IllegalArgumentException("Cannot extend a schema containing a flattened entity")
+    }
+
     val internalSchema = Converter.modelToInternal(schema)
     Converter.internalToModel(
       createInternal(sparkMaster, dataLoader,

@@ -1,9 +1,9 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.Defaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.InternalDefaults
 
-class InternalEntityTest extends UnitTest with Defaults {
+class InternalEntityTest extends UnitTest with InternalDefaults {
 
   describe("InternalEntity's getOrAddIdenticalVersion method") {
 
