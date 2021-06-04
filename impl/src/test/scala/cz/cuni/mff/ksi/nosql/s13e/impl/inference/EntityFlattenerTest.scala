@@ -1,12 +1,10 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
-import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema
-import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Aggregate, UnionType}
-import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.ModelDefaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.{ModelChecking, ModelDefaults}
 
 import scala.collection.JavaConverters.seqAsJavaListConverter
 
-class EntityFlattenerTest extends UnitTest with ModelDefaults {
+class EntityFlattenerTest extends UnitTest with ModelDefaults with ModelChecking {
 
   describe("EntityFlattener") {
 
@@ -19,35 +17,30 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults {
       schema.getEntities.add(entity)
       entity.getVersions.addAll(List(versionWithX, versionWithXAndY).asJava)
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
-      entity.isFlattened shouldBe true
-
-      entity.getVersions should have size 1
-      val v = entity.getVersions.get(0)
-      v.getId shouldBe 0
-      v.getProperties should have size 2
-
-      val p1 = v.getProperties.get(0)
-      p1.getName shouldBe "x"
-      p1.isOptional shouldBe false
-      p1.getType shouldBe a[UnionType]
-      val types = p1.getType.asInstanceOf[UnionType].getTypes
-      types should have size 2
-      types.get(0) shouldBe a[NoSQLSchema.Number]
-      types.get(1) shouldBe a[NoSQLSchema.String]
-
-      val p2 = v.getProperties.get(1)
-      p2.getName shouldBe "y"
-      p2.isOptional shouldBe true
-      p2.getType shouldBe a[NoSQLSchema.Number]
+      checkEntity(entity, "entity*", false, (0, 0)) { versions =>
+        checkProperties(versions.get(0).getProperties,
+          "x" -> aUnionOf(aNumber, aString),
+          "y?" -> aNumber,
+        )
+      }
     }
 
     it("should leave an already flattened entity unchanged") {
       schema.getEntities.add(entity)
+      versionWithXAndY.setId(1)
       entity.getVersions.addAll(List(versionWithX, versionWithXAndY).asJava)
       entity.setFlattened(true)
 
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
-      entity.getVersions should have size 2
+      checkEntity(entity, "entity*", false, (0, 0), (0, 0)) { versions =>
+        checkProperties(versions.get(0).getProperties,
+          "x" -> aString,
+        )
+        checkProperties(versions.get(1).getProperties,
+          "x" -> aNumber,
+          "y" -> aNumber,
+        )
+      }
     }
 
     it("should throw exception on an entity which contains path from one version to another") {
@@ -63,7 +56,6 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults {
     }
 
     it("should fix aggregates targeting merged versions") {
-      schema.getEntities.add(entity)
       entity.getVersions.add(versionWithX)
       entity.getVersions.add(versionWithXAndY)
 
@@ -74,6 +66,7 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults {
       )
       another.getVersions.add(versionWithY)
       schema.getEntities.add(another)
+      schema.getEntities.add(entity)
 
       val parent = factory.createEntity()
       parent.setName("parent")
@@ -87,16 +80,11 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults {
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
 
       schema.getEntities should have size 3
-      schema.getEntities should contain(parent)
-      parent.getVersions should have size 1
-      parent.getVersions.get(0).getProperties should have size 1
-
-      val loneType = parent.getVersions.get(0).getProperties.get(0).getType
-      loneType shouldBe a[UnionType]
-      val types = loneType.asInstanceOf[UnionType].getTypes
-      types should have size 2
-      types.get(0).asInstanceOf[Aggregate].getTarget shouldBe versionWithY
-      types.get(1).asInstanceOf[Aggregate].getTarget shouldBe versionWithX // this actually contains X and optionally Y
+      checkEntity(schema.getEntities.get(2), "parent", false, (0, 0)) { versions =>
+        checkProperties(versions.get(0).getProperties,
+          "union" -> aUnionOf(anAggregateOf(versionWithY), anAggregateOf(versionWithX)) // versionWithX actually contains X and optionally Y
+        )
+      }
     }
 
     it("should unwrap a merged aggregate from a union, if there is nothing else") {
@@ -107,20 +95,18 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults {
       val parent = factory.createEntity()
       parent.setName("parent")
       parent.getVersions.add(versionWith(
-        "x" -> unionOf(aggregateOf(versionWithX), aggregateOf(versionWithXAndY))
+        "union" -> unionOf(aggregateOf(versionWithX), aggregateOf(versionWithXAndY))
       ))
       schema.getEntities.add(parent)
 
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
 
       schema.getEntities should have size 2
-      schema.getEntities should contain(parent)
-      parent.getVersions should have size 1
-      parent.getVersions.get(0).getProperties should have size 1
-
-      val loneType = parent.getVersions.get(0).getProperties.get(0).getType
-      loneType shouldBe an[Aggregate]
-      loneType.asInstanceOf[Aggregate].getTarget shouldBe versionWithX
+      checkEntity(schema.getEntities.get(1), "parent", false, (0, 0)) { versions =>
+        checkProperties(versions.get(0).getProperties,
+          "union" -> anAggregateOf(versionWithX),
+        )
+      }
     }
 
   }

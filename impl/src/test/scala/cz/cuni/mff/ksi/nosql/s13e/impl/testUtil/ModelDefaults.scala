@@ -13,6 +13,7 @@ trait ModelDefaults {
   val schema: NoSQLSchema.NoSQLSchema = factory.createNoSQLSchema()
 
   val entity: Entity = factory.createEntity()
+  entity.setName("entity")
 
   val version: EntityVersion = factory.createEntityVersion()
   val versionWithX: EntityVersion = versionWith(
