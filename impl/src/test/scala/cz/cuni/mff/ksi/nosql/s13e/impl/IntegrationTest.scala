@@ -48,20 +48,47 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
 
     describe("flatten") {
 
-      it("should correctly flatten article entity", IntegrationTest) {
-        val article = schema.getEntities.asScala.find(_.getName == "article")
-        article shouldBe defined
-        SchemaInference.flatten(schema, article.get)
+      def flatten(schema: NoSQLSchema.NoSQLSchema, entities: String*): Unit = {
+        for (name <- entities) {
+          val entity = schema.getEntities.asScala.find(_.getName == name)
+          entity shouldBe defined
+          SchemaInference.flatten(schema, entity.get)
+        }
+      }
 
+      it("should correctly flatten article entity", IntegrationTest) {
+        flatten(schema, "article")
         checkRunningExampleSchema(schema, articleFlat = true)
       }
 
       it("should correctly flatten author entity", IntegrationTest) {
-        val author = schema.getEntities.asScala.find(_.getName == "author")
-        author shouldBe defined
-        SchemaInference.flatten(schema, author.get)
-
+        flatten(schema, "author")
         checkRunningExampleSchema(schema, authorFlat = true)
+      }
+
+      it("should correctly flatten location entity", IntegrationTest) {
+        flatten(schema, "location")
+        checkRunningExampleSchema(schema, locationFlat = true)
+      }
+
+      it("should correctly flatten article and author entities", IntegrationTest) {
+        flatten(schema, "article", "author")
+        checkRunningExampleSchema(schema, articleFlat = true, authorFlat = true)
+      }
+
+      it("should correctly flatten article and location entities", IntegrationTest) {
+        flatten(schema, "article", "location")
+        checkRunningExampleSchema(schema, articleFlat = true, locationFlat = true)
+      }
+
+      it("should correctly flatten author and location entities", IntegrationTest) {
+        flatten(schema, "author", "location")
+        checkRunningExampleSchema(schema, authorFlat = true, locationFlat = true)
+      }
+
+      it("should correctly flatten all entities", IntegrationTest) {
+        flatten(schema, "author", "location", "article")
+        checkRunningExampleSchema(schema, articleFlat = true, authorFlat = true, locationFlat = true)
       }
 
     }
@@ -83,8 +110,9 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
     val authorStr = if (authorFlat) None else Some(schema.getEntities.get(2).getVersions.get(1))
 
     val body = schema.getEntities.get(3).getVersions.get(0)
+
     val location1 = schema.getEntities.get(4).getVersions.get(0)
-    val location2 = schema.getEntities.get(4).getVersions.get(1)
+    val location2 = if (locationFlat) None else Some(schema.getEntities.get(4).getVersions.get(1))
 
     if (articleFlat) {
       checkEntity(schema.getEntities.get(0), "article*", root = true, (0, 2)) { versions =>
@@ -134,7 +162,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
         checkProperties(versions.get(0).getProperties,
           "first_name" -> aString,
           "last_name" -> aString,
-          "location" -> aUnionOf(anAggregateOf(location1), anAggregateOf(location2)),
+          "location" -> (if (locationFlat) anAggregateOf(location1) else aUnionOf(anAggregateOf(location1), anAggregateOf(location2.get))),
           "phone_number" -> aUnionOf(aNumber, aString),
         )
       }
@@ -149,7 +177,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
         checkProperties(versions.get(1).getProperties,
           "first_name" -> aString,
           "last_name" -> aString,
-          "location" -> anAggregateOf(location2),
+          "location" -> anAggregateOf(if (locationFlat) location1 else location2.get),
           "phone_number" -> aString,
         )
       }
@@ -162,12 +190,22 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
       )
     }
 
-    checkEntity(schema.getEntities.get(4), "location", false, (1, 0), (1, 0)) { versions =>
-      checkProperties(versions.get(0).getProperties, "address" -> aString)
-      checkProperties(versions.get(1).getProperties,
-        "latitude" -> aString,
-        "longitude" -> aString,
-      )
+    if (locationFlat) {
+      checkEntity(schema.getEntities.get(4), "location*", false, if (authorFlat) (1, 1) else (2, 0)) { versions =>
+        checkProperties(versions.get(0).getProperties,
+          "address?" -> aString,
+          "latitude?" -> aString,
+          "longitude?" -> aString,
+        )
+      }
+    } else {
+      checkEntity(schema.getEntities.get(4), "location", false, (1, 0), (1, 0)) { versions =>
+        checkProperties(versions.get(0).getProperties, "address" -> aString)
+        checkProperties(versions.get(1).getProperties,
+          "latitude" -> aString,
+          "longitude" -> aString,
+        )
+      }
     }
   }
 
