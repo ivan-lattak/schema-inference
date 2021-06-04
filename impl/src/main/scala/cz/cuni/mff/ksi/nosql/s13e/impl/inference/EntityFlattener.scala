@@ -304,14 +304,17 @@ object EntityFlattener {
       }
 
       getDirectDescendants(version).foreach(sortVersionProperties)
-      version.getProperties.forEach(p => sortType(p.getType))
+      version.getProperties.forEach(p => {
+        sortType(p.getType)
+        unwrapUnionWithLoneElement(p)
+      })
       sortEList(version.getProperties)(SchemaOrderings.Property.default)
 
       _visited.add(version)
     }
 
     private def sortType(`type`: Type): Unit = `type` match {
-      case array: Array => sortType(array)
+      case array: Array => sortType(array.getElementType)
       case union: UnionType =>
         union.getTypes.forEach(sortType)
         val ord = SchemaOrderings.Type.default[SingleType]
@@ -343,6 +346,11 @@ object EntityFlattener {
           last = Some(current)
         }
       }
+    }
+
+    private def unwrapUnionWithLoneElement(property: Property): Unit = property.getType match {
+      case unionType: UnionType => if (unionType.getTypes.size() == 1) property.setType(unionType.getTypes.get(0))
+      case _ =>
     }
 
   }

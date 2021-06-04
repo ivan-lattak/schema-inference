@@ -99,6 +99,30 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults {
       types.get(1).asInstanceOf[Aggregate].getTarget shouldBe versionWithX // this actually contains X and optionally Y
     }
 
+    it("should unwrap a merged aggregate from a union, if there is nothing else") {
+      schema.getEntities.add(entity)
+      entity.getVersions.add(versionWithX)
+      entity.getVersions.add(versionWithXAndY)
+
+      val parent = factory.createEntity()
+      parent.setName("parent")
+      parent.getVersions.add(versionWith(
+        "x" -> unionOf(aggregateOf(versionWithX), aggregateOf(versionWithXAndY))
+      ))
+      schema.getEntities.add(parent)
+
+      EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
+
+      schema.getEntities should have size 2
+      schema.getEntities should contain(parent)
+      parent.getVersions should have size 1
+      parent.getVersions.get(0).getProperties should have size 1
+
+      val loneType = parent.getVersions.get(0).getProperties.get(0).getType
+      loneType shouldBe an[Aggregate]
+      loneType.asInstanceOf[Aggregate].getTarget shouldBe versionWithX
+    }
+
   }
 
 }
