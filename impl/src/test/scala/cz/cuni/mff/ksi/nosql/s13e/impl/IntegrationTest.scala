@@ -1,8 +1,7 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl
 
-import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Entity, EntityVersion, Property}
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.mongo.MongoDataLoader
-import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.ModelCheckers
+import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.ModelChecking
 import org.scalatest.Tag
 import org.scalatest.funspec.PathAnyFunSpec
 import org.scalatest.matchers.should.Matchers
@@ -10,9 +9,7 @@ import org.scalatest.matchers.should.Matchers
 import java.nio.file.Files
 import scala.collection.JavaConverters.collectionAsScalaIterableConverter
 
-class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
-
-  private type JList[E] = java.util.List[E]
+class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
 
   private val PREFIX = "impl.integrationTest"
 
@@ -206,37 +203,6 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
           "longitude" -> aString,
         )
       }
-    }
-  }
-
-  private def checkEntity(entity: Entity, name: String, root: Boolean, expected: (Int, Int)*)
-                         (checker: JList[EntityVersion] => Unit): Unit = {
-    val expectedFlattened = name endsWith "*"
-    entity.getName shouldBe name.stripSuffix("*")
-    entity.isRoot shouldBe root
-    entity.isFlattened shouldBe expectedFlattened
-
-    val versions = entity.getVersions
-    versions should have size expected.size
-    Stream from 0 zip expected foreach {
-      case (index, (aggregates, additional)) =>
-        val version = versions.get(index)
-        version.getId shouldBe index
-        version.getAggregates should have size aggregates
-        version.getAdditionalCount shouldBe additional
-    }
-
-    checker(entity.getVersions)
-  }
-
-  private def checkProperties(properties: JList[Property], expected: (String, TypeChecker)*): Unit = {
-    properties should have size expected.size
-    properties.asScala zip expected foreach {
-      case (prop, (name, typeChecker)) =>
-        val expectedOptional = name endsWith "?"
-        prop.getName shouldBe name.stripSuffix("?")
-        prop.isOptional shouldBe expectedOptional
-        typeChecker(prop.getType)
     }
   }
 
