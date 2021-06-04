@@ -22,6 +22,14 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
     val dataLoader = MongoDataLoader(mongoHost, dbName)
     val schema = SchemaInference.infer(sparkMaster, dataLoader, "Inference DB")
 
+    def flatten(schema: NoSQLSchema.NoSQLSchema, entities: String*): Unit = {
+      for (name <- entities) {
+        val entity = schema.getEntities.asScala.find(_.getName == name)
+        entity shouldBe defined
+        SchemaInference.flatten(schema, entity.get)
+      }
+    }
+
     describe("infer") {
 
       it("should correctly infer the schema of the inference database", IntegrationTest) {
@@ -30,28 +38,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
 
     }
 
-    describe("save and load") {
-
-      they("should correctly save to file and then load from file", IntegrationTest) {
-        val path = Files.createTempFile("SchemaInferenceIntegrationTest", ".xml")
-        SchemaInference.save(schema, path)
-        path.toFile should exist
-
-        val loaded = SchemaInference.load(path)
-        checkRunningExampleSchema(loaded)
-      }
-
-    }
-
     describe("flatten") {
-
-      def flatten(schema: NoSQLSchema.NoSQLSchema, entities: String*): Unit = {
-        for (name <- entities) {
-          val entity = schema.getEntities.asScala.find(_.getName == name)
-          entity shouldBe defined
-          SchemaInference.flatten(schema, entity.get)
-        }
-      }
 
       it("should correctly flatten article entity", IntegrationTest) {
         flatten(schema, "article")
@@ -90,8 +77,30 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
 
     }
 
-  }
+    describe("save and load") {
 
+      they("should correctly save to file and then load from file", IntegrationTest) {
+        val path = Files.createTempFile("SchemaInferenceIntegrationTest", ".xml")
+        SchemaInference.save(schema, path)
+        path.toFile should exist
+
+        val loaded = SchemaInference.load(path)
+        checkRunningExampleSchema(loaded)
+      }
+
+      they("should correctly save to file and then load from file even after flattening", IntegrationTest) {
+        flatten(schema, "author", "location", "article")
+        val path = Files.createTempFile("SchemaInferenceIntegrationTest", ".xml")
+        SchemaInference.save(schema, path)
+        path.toFile should exist
+
+        val loaded = SchemaInference.load(path)
+        checkRunningExampleSchema(loaded, articleFlat = true, authorFlat = true, locationFlat = true)
+      }
+
+    }
+
+  }
 
   private def checkRunningExampleSchema(schema: NoSQLSchema.NoSQLSchema,
                                         articleFlat: Boolean = false,
