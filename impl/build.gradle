@@ -60,5 +60,21 @@ test {
         testLogging {
             events("passed", "skipped", "failed")
         }
+        excludeTags 'IntegrationTest'
     }
+}
+
+task integrationTest(type: Test, group: 'verification') {
+    useJUnitPlatform {
+        includeEngines 'scalatest'
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
+        includeTags 'IntegrationTest'
+    }
+    mustRunAfter test
+}
+
+check {
+    dependsOn integrationTest
 }
