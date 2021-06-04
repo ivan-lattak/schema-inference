@@ -1,4 +1,4 @@
-package cz.cuni.mff.ksi.nosql.s13e.impl.inference.util
+package cz.cuni.mff.ksi.nosql.s13e.impl.inference.testUtil
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.{RawSchema, TypedDocumentImpl}
 import play.api.libs.json.{JsObject, Json}

@@ -1,4 +1,4 @@
-package cz.cuni.mff.ksi.nosql.s13e.impl.inference.util
+package cz.cuni.mff.ksi.nosql.s13e.impl.testUtil
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, ObjectOutputStream}
 import scala.util.{Failure, Success, Try}

@@ -4,7 +4,7 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Entity, EntityReference, Property}
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.Converter.{internalToModel, modelToInternal}
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.NamedInternalNoSqlSchema
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.JsonDocs
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.testUtil.JsonDocs
 import org.apache.commons.io.output.ByteArrayOutputStream
 
 import java.io.ByteArrayInputStream

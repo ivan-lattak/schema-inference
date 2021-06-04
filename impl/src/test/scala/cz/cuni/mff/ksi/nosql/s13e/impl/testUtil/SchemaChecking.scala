@@ -1,11 +1,11 @@
-package cz.cuni.mff.ksi.nosql.s13e.impl.inference.util
+package cz.cuni.mff.ksi.nosql.s13e.impl.testUtil
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema.{InternalEntity, InternalEntityVersion, InternalProperty, InternalType}
-import org.scalatest.matchers.should.Matchers.{be, convertToAnyShouldWrapper, have}
+import org.scalatest.matchers.should.Matchers
 
 import scala.Function.tupled
 
-trait SchemaChecking {
+trait SchemaChecking extends Matchers {
 
   def checkEntity(name: String, root: Boolean, count: Int,
                   properties: Map[String, InternalType])(entity: InternalEntity): Unit = checkEntity(name, root, (count, properties))(entity)

@@ -1,4 +1,4 @@
-package cz.cuni.mff.ksi.nosql.s13e.impl.inference.util
+package cz.cuni.mff.ksi.nosql.s13e.impl.testUtil
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Aggregate, Entity, EntityReference, EntityVersion, NoSQLSchemaFactory, Property, SingleType, Type, UnionType, UnknownType}

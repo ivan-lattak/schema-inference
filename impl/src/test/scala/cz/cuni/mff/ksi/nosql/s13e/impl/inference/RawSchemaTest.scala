@@ -1,6 +1,6 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.JsonDocs
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.testUtil.JsonDocs
 
 class RawSchemaTest extends UnitTest with JsonDocs {
 

@@ -2,7 +2,7 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference.mongo
 
 import com.mongodb.spark.config.ReadConfig
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.ContainedInPropertyMatcher.containedIn
+import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.ContainedInPropertyMatcher.containedIn
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession

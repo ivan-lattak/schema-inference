@@ -1,7 +1,8 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema._
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.{JsonDocs, SchemaChecking}
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.testUtil.JsonDocs
+import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.SchemaChecking
 
 class InjectorTest extends UnitTest with JsonDocs with SchemaChecking {
 

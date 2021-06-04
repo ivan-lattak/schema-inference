@@ -1,7 +1,7 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl.inference.schema
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.UnitTest
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.InternalDefaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.InternalDefaults
 
 class InternalPropertyTest extends UnitTest with InternalDefaults {
 

@@ -2,7 +2,7 @@ package cz.cuni.mff.ksi.nosql.s13e.impl.inference
 
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Aggregate, UnionType}
-import cz.cuni.mff.ksi.nosql.s13e.impl.inference.util.ModelDefaults
+import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.ModelDefaults
 
 import scala.collection.JavaConverters.seqAsJavaListConverter
 

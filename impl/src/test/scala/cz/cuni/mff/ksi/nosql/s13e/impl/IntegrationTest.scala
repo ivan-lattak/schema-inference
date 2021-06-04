@@ -1,7 +1,8 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl
 
-import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Aggregate, Entity, EntityReference, EntityVersion, Property, Type, UnionType}
+import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.{Entity, EntityVersion, Property}
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.mongo.MongoDataLoader
+import cz.cuni.mff.ksi.nosql.s13e.impl.testUtil.ModelCheckers
 import org.scalatest.Tag
 import org.scalatest.funspec.PathAnyFunSpec
 import org.scalatest.matchers.should.Matchers
@@ -9,7 +10,7 @@ import org.scalatest.matchers.should.Matchers
 import java.nio.file.Files
 import scala.collection.JavaConverters.collectionAsScalaIterableConverter
 
-class IntegrationTest extends PathAnyFunSpec with Matchers {
+class IntegrationTest extends PathAnyFunSpec with Matchers with ModelCheckers {
 
   private type JList[E] = java.util.List[E]
 
@@ -197,42 +198,8 @@ class IntegrationTest extends PathAnyFunSpec with Matchers {
         val expectedOptional = name endsWith "?"
         prop.getName shouldBe name.stripSuffix("?")
         prop.isOptional shouldBe expectedOptional
-        typeChecker.check(prop.getType)
+        typeChecker(prop.getType)
     }
-  }
-
-  private def aBoolean: TypeChecker = t => t shouldBe a[NoSQLSchema.Boolean]
-
-  private def aNumber: TypeChecker = t => t shouldBe a[NoSQLSchema.Number]
-
-  private def aString: TypeChecker = t => t shouldBe a[NoSQLSchema.String]
-
-  private def anArrayOf(inner: TypeChecker): TypeChecker = t => {
-    t shouldBe a[NoSQLSchema.Array]
-    inner.check(t.asInstanceOf[NoSQLSchema.Array].getElementType)
-  }
-
-  private def anAggregateOf(target: EntityVersion): TypeChecker = t => {
-    t shouldBe an[Aggregate]
-    t.asInstanceOf[Aggregate].getTarget shouldBe target
-  }
-
-  private def aReferenceOf(target: Entity, originalTypeChecker: TypeChecker): TypeChecker = t => {
-    t shouldBe an[EntityReference]
-    t.asInstanceOf[EntityReference].getTarget shouldBe target
-    originalTypeChecker.check(t.asInstanceOf[EntityReference].getOriginalType)
-  }
-
-  private def aUnionOf(inner: TypeChecker*): TypeChecker = t => {
-    t shouldBe a[UnionType]
-    t.asInstanceOf[UnionType].getTypes should have size inner.size
-    inner zip t.asInstanceOf[UnionType].getTypes.asScala foreach {
-      case (checker, singleType) => checker.check(singleType)
-    }
-  }
-
-  private trait TypeChecker {
-    def check(`type`: Type): Unit
   }
 
 }
