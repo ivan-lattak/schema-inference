@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl;
 
@@ -28,119 +29,128 @@ import java.util.Collection;
  * @generated
  */
 public class UnionTypeImpl extends TypeImpl implements UnionType {
-	/**
-	 * The cached value of the '{@link #getTypes() <em>Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SingleType> types;
+    /**
+     * The cached value of the '{@link #getTypes() <em>Types</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     * @ordered
+     * @see #getTypes()
+     */
+    protected EList<SingleType> types;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UnionTypeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected UnionTypeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return NoSQLSchemaPackage.Literals.UNION_TYPE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return NoSQLSchemaPackage.Literals.UNION_TYPE;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<SingleType> getTypes() {
-		if (types == null) {
-			types = new EObjectContainmentEList<SingleType>(SingleType.class, this, NoSQLSchemaPackage.UNION_TYPE__TYPES);
-		}
-		return types;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    public EList<SingleType> getTypes() {
+        if (types == null) {
+            types = new EObjectContainmentEList<SingleType>(SingleType.class, this, NoSQLSchemaPackage.UNION_TYPE__TYPES);
+        }
+        return types;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
             case NoSQLSchemaPackage.UNION_TYPE__TYPES:
                 return ((InternalEList<?>) getTypes()).basicRemove(otherEnd, msgs);
         }
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case NoSQLSchemaPackage.UNION_TYPE__TYPES:
-				return getTypes();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case NoSQLSchemaPackage.UNION_TYPE__TYPES:
+                return getTypes();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
             case NoSQLSchemaPackage.UNION_TYPE__TYPES:
                 getTypes().clear();
                 getTypes().addAll((Collection<? extends SingleType>) newValue);
                 return;
         }
-		super.eSet(featureID, newValue);
-	}
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case NoSQLSchemaPackage.UNION_TYPE__TYPES:
-				getTypes().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case NoSQLSchemaPackage.UNION_TYPE__TYPES:
+                getTypes().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case NoSQLSchemaPackage.UNION_TYPE__TYPES:
-				return types != null && !types.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case NoSQLSchemaPackage.UNION_TYPE__TYPES:
+                return types != null && !types.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //UnionTypeImpl

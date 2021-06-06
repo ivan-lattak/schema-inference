@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl;
 
@@ -13,23 +14,25 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class NumberImpl extends PrimitiveTypeImpl implements cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Number {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NumberImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected NumberImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return NoSQLSchemaPackage.Literals.NUMBER;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return NoSQLSchemaPackage.Literals.NUMBER;
+    }
 
 } //NumberImpl

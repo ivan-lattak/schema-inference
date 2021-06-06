@@ -27,7 +27,6 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults with ModelChecking
 
     it("should leave an already flattened entity unchanged") {
       schema.getEntities.add(entity)
-      versionWithXAndY.setId(1)
       entity.getVersions.addAll(List(versionWithX, versionWithXAndY).asJava)
       entity.setFlattened(true)
 

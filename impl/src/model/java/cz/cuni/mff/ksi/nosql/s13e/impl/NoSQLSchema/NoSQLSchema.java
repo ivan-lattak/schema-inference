@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema;
 
@@ -25,7 +26,7 @@ import java.lang.String;
  * @generated
  */
 public interface NoSQLSchema extends EObject {
-	/**
+    /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
@@ -39,32 +40,34 @@ public interface NoSQLSchema extends EObject {
      * @model id="true" required="true"
      * @generated
      */
-	String getName();
+    String getName();
 
-	/**
-	 * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
+    /**
+     * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema#getName <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @generated
+     * @see #getName()
+     */
+    void setName(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
-	 * The list contents are of type {@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Entities</em>' containment reference list.
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getNoSQLSchema_Entities()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Entity> getEntities();
+    /**
+     * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
+     * The list contents are of type {@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     *
+     * @return the value of the '<em>Entities</em>' containment reference list.
+     * @model containment="true"
+     * @generated
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getNoSQLSchema_Entities()
+     */
+    EList<Entity> getEntities();
 
 } // NoSQLSchema

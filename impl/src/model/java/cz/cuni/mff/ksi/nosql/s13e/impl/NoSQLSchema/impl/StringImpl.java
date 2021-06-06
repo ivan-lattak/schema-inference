@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl;
 
@@ -13,23 +14,25 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class StringImpl extends PrimitiveTypeImpl implements cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.String {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StringImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected StringImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return NoSQLSchemaPackage.Literals.STRING;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return NoSQLSchemaPackage.Literals.STRING;
+    }
 
 } //StringImpl

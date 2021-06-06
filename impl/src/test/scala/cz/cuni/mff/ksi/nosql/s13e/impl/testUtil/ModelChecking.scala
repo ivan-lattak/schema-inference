@@ -56,10 +56,8 @@ trait ModelChecking extends Matchers {
 
     val versions = entity.getVersions
     versions should have size expected.size
-    Stream from 0 zip expected foreach {
-      case (index, (aggregates, additional)) =>
-        val version = versions.get(index)
-        version.getId shouldBe index
+    versions.asScala zip expected foreach {
+      case (version, (aggregates, additional)) =>
         version.getAggregates should have size aggregates
         version.getAdditionalCount shouldBe additional
     }

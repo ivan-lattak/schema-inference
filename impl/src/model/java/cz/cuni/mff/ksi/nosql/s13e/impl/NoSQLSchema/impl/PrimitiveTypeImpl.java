@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl;
 
@@ -14,23 +15,25 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class PrimitiveTypeImpl extends SingleTypeImpl implements PrimitiveType {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PrimitiveTypeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected PrimitiveTypeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return NoSQLSchemaPackage.Literals.PRIMITIVE_TYPE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return NoSQLSchemaPackage.Literals.PRIMITIVE_TYPE;
+    }
 
 } //PrimitiveTypeImpl

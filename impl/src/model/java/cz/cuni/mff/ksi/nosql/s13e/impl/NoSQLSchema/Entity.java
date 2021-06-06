@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema;
 
@@ -27,48 +28,51 @@ import java.lang.String;
  * @generated
  */
 public interface Entity extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Name()
-	 * @model id="true" required="true"
-	 * @generated
-	 */
-	String getName();
+    /**
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     *
+     * @return the value of the '<em>Name</em>' attribute.
+     * @model id="true" required="true"
+     * @generated
+     * @see #setName(String)
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Name()
+     */
+    String getName();
 
-	/**
-	 * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
+    /**
+     * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getName <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @generated
+     * @see #getName()
+     */
+    void setName(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Root</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Root</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root</em>' attribute.
-	 * @see #setRoot(boolean)
-	 * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Root()
-	 * @model default="false"
-	 * @generated
-	 */
-	boolean isRoot();
+    /**
+     * Returns the value of the '<em><b>Root</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Root</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     *
+     * @return the value of the '<em>Root</em>' attribute.
+     * @model default="false"
+     * @generated
+     * @see #setRoot(boolean)
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Root()
+     */
+    boolean isRoot();
 
     /**
      * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}' attribute.
@@ -90,12 +94,11 @@ public interface Entity extends EObject {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     *
      * @return the value of the '<em>Flattened</em>' attribute.
-     * @model default="false"
-     * @generated
      * @see #setFlattened(boolean)
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Flattened()
+     * @model default="false"
+     * @generated
      */
     boolean isFlattened();
 
@@ -103,10 +106,9 @@ public interface Entity extends EObject {
      * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened <em>Flattened</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @param value the new value of the '<em>Flattened</em>' attribute.
-     * @generated
      * @see #isFlattened()
+     * @generated
      */
     void setFlattened(boolean value);
 
@@ -125,6 +127,6 @@ public interface Entity extends EObject {
      * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Versions()
      */
-	EList<EntityVersion> getVersions();
+    EList<EntityVersion> getVersions();
 
 } // Entity

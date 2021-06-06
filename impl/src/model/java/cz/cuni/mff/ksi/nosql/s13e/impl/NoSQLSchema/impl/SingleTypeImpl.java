@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl;
 
@@ -14,23 +15,25 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class SingleTypeImpl extends TypeImpl implements SingleType {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SingleTypeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected SingleTypeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return NoSQLSchemaPackage.Literals.SINGLE_TYPE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return NoSQLSchemaPackage.Literals.SINGLE_TYPE;
+    }
 
 } //SingleTypeImpl

@@ -1,4 +1,5 @@
 /**
+ *
  */
 package cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl;
 
@@ -27,7 +28,6 @@ import java.util.Collection;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#getId <em>Id</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#getAdditionalCount <em>Additional Count</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#getAggregates <em>Aggregates</em>}</li>
@@ -36,35 +36,15 @@ import java.util.Collection;
  * @generated
  */
 public class EntityVersionImpl extends MinimalEObjectImpl.Container implements EntityVersion {
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ID_EDEFAULT = 0;
-
     /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+     * The default value of the '{@link #getAdditionalCount() <em>Additional Count</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      *
      * @generated
      * @ordered
-     * @see #getId()
-     */
-    protected int id = ID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getAdditionalCount() <em>Additional Count</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
      * @see #getAdditionalCount()
-     * @generated
-	 * @ordered
-	 */
+     */
     protected static final int ADDITIONAL_COUNT_EDEFAULT = 0;
 
     /**
@@ -73,8 +53,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
      * <!-- end-user-doc -->
      * @see #getAdditionalCount()
      * @generated
-	 * @ordered
-	 */
+     * @ordered
+     */
     protected int additionalCount = ADDITIONAL_COUNT_EDEFAULT;
 
     /**
@@ -83,8 +63,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
      * <!-- end-user-doc -->
      * @see #getProperties()
      * @generated
-	 * @ordered
-	 */
+     * @ordered
+     */
     protected EList<Property> properties;
 
     /**
@@ -93,15 +73,15 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
      * <!-- end-user-doc -->
      * @see #getAggregates()
      * @generated
-	 * @ordered
-	 */
+     * @ordered
+     */
     protected EList<Aggregate> aggregates;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EntityVersionImpl() {
         super();
     }
@@ -109,8 +89,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
         return NoSQLSchemaPackage.Literals.ENTITY_VERSION;
@@ -119,29 +99,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
+     * @generated
      */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public void setId(int newId) {
-        int oldId = id;
-        id = newId;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY_VERSION__ID, oldId, id));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
     public int getAdditionalCount() {
         return additionalCount;
     }
@@ -149,8 +108,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setAdditionalCount(int newAdditionalCount) {
         int oldAdditionalCount = additionalCount;
         additionalCount = newAdditionalCount;
@@ -161,32 +120,32 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList<Property> getProperties() {
         if (properties == null) {
             properties = new EObjectContainmentEList<Property>(Property.class, this, NoSQLSchemaPackage.ENTITY_VERSION__PROPERTIES);
         }
-		return properties;
+        return properties;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList<Aggregate> getAggregates() {
         if (aggregates == null) {
             aggregates = new EObjectWithInverseResolvingEList<Aggregate>(Aggregate.class, this, NoSQLSchemaPackage.ENTITY_VERSION__AGGREGATES, NoSQLSchemaPackage.AGGREGATE__TARGET);
         }
-		return aggregates;
+        return aggregates;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -200,8 +159,8 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -216,13 +175,11 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case NoSQLSchemaPackage.ENTITY_VERSION__ID:
-                return getId();
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 return getAdditionalCount();
             case NoSQLSchemaPackage.ENTITY_VERSION__PROPERTIES:
@@ -236,15 +193,12 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case NoSQLSchemaPackage.ENTITY_VERSION__ID:
-                setId((Integer) newValue);
-                return;
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 setAdditionalCount((Integer) newValue);
                 return;
@@ -263,14 +217,11 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case NoSQLSchemaPackage.ENTITY_VERSION__ID:
-                setId(ID_EDEFAULT);
-                return;
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 setAdditionalCount(ADDITIONAL_COUNT_EDEFAULT);
                 return;
@@ -287,13 +238,11 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case NoSQLSchemaPackage.ENTITY_VERSION__ID:
-                return id != ID_EDEFAULT;
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 return additionalCount != ADDITIONAL_COUNT_EDEFAULT;
             case NoSQLSchemaPackage.ENTITY_VERSION__PROPERTIES:
@@ -307,19 +256,17 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuilder result = new StringBuilder(super.toString());
-        result.append(" (id: ");
-        result.append(id);
-        result.append(", additionalCount: ");
+        result.append(" (additionalCount: ");
         result.append(additionalCount);
         result.append(')');
         return result.toString();
-	}
+    }
 
 } //EntityVersionImpl

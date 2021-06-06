@@ -38,7 +38,6 @@ private object Converter {
         internalEntity.versions.keys zip Stream.from(0) foreach {
           case (internalVersion, id) =>
             val version = factory.createEntityVersion()
-            version.setId(id)
             version.setAdditionalCount(internalVersion.additionalCount)
             entity.getVersions.add(version)
             versions(identity(internalVersion)) = version

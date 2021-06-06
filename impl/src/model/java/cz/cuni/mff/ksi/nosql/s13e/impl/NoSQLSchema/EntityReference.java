@@ -30,12 +30,11 @@ public interface EntityReference extends SingleType {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     *
      * @return the value of the '<em>Target</em>' reference.
-     * @model required="true"
-     * @generated
      * @see #setTarget(Entity)
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityReference_Target()
+     * @model required="true"
+     * @generated
      */
     Entity getTarget();
 
@@ -43,10 +42,11 @@ public interface EntityReference extends SingleType {
      * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getTarget <em>Target</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @param value the new value of the '<em>Target</em>' reference.
+     * @generated
      * @see #getTarget()
-	 * @generated
-	 */
+     */
     void setTarget(Entity value);
 
     /**
@@ -61,8 +61,8 @@ public interface EntityReference extends SingleType {
      * @see #setOriginalType(PrimitiveType)
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityReference_OriginalType()
      * @model containment="true"
-	 * @generated
-	 */
+     * @generated
+     */
     PrimitiveType getOriginalType();
 
     /**
@@ -71,8 +71,8 @@ public interface EntityReference extends SingleType {
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Original Type</em>' containment reference.
      * @see #getOriginalType()
-	 * @generated
-	 */
+     * @generated
+     */
     void setOriginalType(PrimitiveType value);
 
 } // EntityReference
