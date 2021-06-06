@@ -1,0 +1,95 @@
+{
+  "$id": "http://ksi.mff.cuni.cz/schemas/inferred",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Inference DB",
+  "definitions": {
+    "#location.0": {
+      "$id": "#location.0",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "address"
+      ],
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "#location.1": {
+      "$id": "#location.1",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        }
+      }
+    },
+    "#author.0": {
+      "$id": "#author.0",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first_name",
+        "last_name",
+        "location",
+        "phone_number"
+      ],
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#location.0"
+        },
+        "phone_number": {
+          "type": "number"
+        }
+      }
+    },
+    "#author.1": {
+      "$id": "#author.1",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first_name",
+        "last_name",
+        "location",
+        "phone_number"
+      ],
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#location.1"
+        },
+        "phone_number": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "$ref": "#author.0"
+    },
+    {
+      "$ref": "#author.1"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import org.scalatest.matchers.should.Matchers
 
 import java.nio.file.Files
 import scala.collection.JavaConverters.collectionAsScalaIterableConverter
+import scala.io.Source
 
 class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
 
@@ -96,6 +97,45 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
 
         val loaded = SchemaInference.load(path)
         checkRunningExampleSchema(loaded, articleFlat = true, authorFlat = true, locationFlat = true)
+      }
+
+    }
+
+    describe("convert to JSON Schema") {
+
+      def readClassPathResource(file: String): String = {
+        val source = Source.fromInputStream(getClass.getResourceAsStream(file))
+        try source.mkString finally source.close()
+      }
+
+      it("should correctly convert with article being root", IntegrationTest) {
+        val expected = readClassPathResource("running_example_article_root.json")
+        val article :: _ = schema.getEntities.asScala.toList
+        SchemaInference.convertToJsonSchema(schema, article).toString() shouldBe expected
+      }
+
+      it("should correctly convert with author being root", IntegrationTest) {
+        val expected = readClassPathResource("running_example_author_root.json")
+        val _ :: _ :: author :: _ = schema.getEntities.asScala.toList
+        SchemaInference.convertToJsonSchema(schema, author).toString() shouldBe expected
+      }
+
+      describe("when author is flattened") {
+
+        val _ :: _ :: author :: _ = schema.getEntities.asScala.toList
+        SchemaInference.flatten(schema, author)
+
+        it("should correctly convert with article being root", IntegrationTest) {
+          val expected = readClassPathResource("running_example_flattened_article_root.json")
+          val article :: _ = schema.getEntities.asScala.toList
+          SchemaInference.convertToJsonSchema(schema, article).toString() shouldBe expected
+        }
+
+        it("should correctly convert with author being root", IntegrationTest) {
+          val expected = readClassPathResource("running_example_flattened_author_root.json")
+          SchemaInference.convertToJsonSchema(schema, author).toString() shouldBe expected
+        }
+
       }
 
     }

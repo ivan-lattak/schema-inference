@@ -10,15 +10,15 @@ import scala.collection.mutable
 object JsonSchemaConverter {
 
   def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootEntity: Entity): JsObject =
-    convertToJsonSchema(schema, rootEntity.getVersions.asScala.toList)
+    convertToJsonSchema(schema, rootEntity.getVersions.asScala.toSet)
 
   def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootVersion: EntityVersion): JsObject =
-    convertToJsonSchema(schema, List(rootVersion))
+    convertToJsonSchema(schema, Set(rootVersion))
 
-  private def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootVersions: List[EntityVersion]): JsObject =
+  private def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootVersions: Set[EntityVersion]): JsObject =
     new JsonSchemaBuilder(schema, rootVersions).build
 
-  private class JsonSchemaBuilder(schema: NoSQLSchema.NoSQLSchema, rootVersions: List[EntityVersion])
+  private class JsonSchemaBuilder(schema: NoSQLSchema.NoSQLSchema, rootVersions: Set[EntityVersion])
     extends VersionTraversal {
 
     // maps all versions in the NoSQL schema to the name of their containing entities
@@ -29,7 +29,7 @@ object JsonSchemaConverter {
         }.toMap
 
     // Contains only versions that will be used in the resulting JSON schema, in the order they will be listed,
-    // mapping them to their unique ID in the schema. ID = "<entityName>.<counter from 0>"
+    // mapping them to their unique ID in the schema. ID = "#<entityName>.<counter from 0>"
     private val usedVersionsToId: mutable.LinkedHashMap[EntityVersion, String] = mutable.LinkedHashMap.empty
     private val entityNameToLastUsedCounter: mutable.Map[String, Int] = mutable.HashMap.empty
 
@@ -48,26 +48,25 @@ object JsonSchemaConverter {
         case (version, id) => (id, createVersion(id, version))
       })
 
-    private def root: (String, JsValue) = rootVersions match {
+    private def root: (String, JsValue) = rootVersions.toList match {
       case version :: Nil => createVersionRef(version)
-      case _ =>
-        "anyOf" -> JsArray(rootVersions.map(createVersionRef)
+      case versions =>
+        "anyOf" -> JsArray(versions.map(createVersionRef)
           .map(Seq(_))
           .map(JsObject))
     }
 
-    private def detectUsedVersions(versions: List[EntityVersion]): Unit = {
+    private def detectUsedVersions(versions: Set[EntityVersion]): Unit = {
       if (versions.isEmpty) return
       detectUsedVersions(versions.flatMap(getDirectDescendants))
 
-      versions.foreach { version =>
-        if (usedVersionsToId.contains(version)) return
-
-        val entityName = versionToEntityName(version)
-        val counter = entityNameToLastUsedCounter.getOrElse(entityName, -1) + 1
-        entityNameToLastUsedCounter(entityName) = counter
-        usedVersionsToId(version) = s"$entityName.$counter"
-      }
+      versions.filterNot(usedVersionsToId.contains)
+        .foreach { version =>
+          val entityName = versionToEntityName(version)
+          val counter = entityNameToLastUsedCounter.getOrElse(entityName, -1) + 1
+          entityNameToLastUsedCounter(entityName) = counter
+          usedVersionsToId(version) = s"#$entityName.$counter"
+        }
     }
 
     private def createVersion(versionId: String, version: EntityVersion): JsObject =
@@ -123,6 +122,7 @@ object JsonSchemaConverter {
           case _: NoSQLSchema.String => "string"
         })
       ))
+
   }
 
 }
