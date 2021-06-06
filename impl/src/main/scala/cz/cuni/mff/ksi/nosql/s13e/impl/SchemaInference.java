@@ -1,11 +1,13 @@
 package cz.cuni.mff.ksi.nosql.s13e.impl;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity;
+import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion;
 import cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema;
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.EntityFlattener;
+import cz.cuni.mff.ksi.nosql.s13e.impl.inference.JsonSchemaConverter;
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaIO;
 import cz.cuni.mff.ksi.nosql.s13e.impl.inference.SchemaInferenceImpl;
+import play.api.libs.json.JsObject;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -31,8 +33,12 @@ public final class SchemaInference {
         return EntityFlattener.flatten(schema, entity);
     }
 
-    public static ObjectNode convertToJsonSchema(NoSQLSchema schema, Entity rootEntity) {
-        throw new UnsupportedOperationException();
+    public static JsObject convertToJsonSchema(NoSQLSchema schema, Entity rootEntity) {
+        return JsonSchemaConverter.convertToJsonSchema(schema, rootEntity);
+    }
+
+    public static JsObject convertToJsonSchema(NoSQLSchema schema, EntityVersion rootVersion) {
+        return JsonSchemaConverter.convertToJsonSchema(schema, rootVersion);
     }
 
     public static NoSQLSchema save(NoSQLSchema schema, Path filePath) throws IOException {
