@@ -17,7 +17,7 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults with ModelChecking
       schema.getEntities.add(entity)
       entity.getVersions.addAll(List(versionWithX, versionWithXAndY).asJava)
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
-      checkEntity(entity, "entity*", false, (0, 0)) { versions =>
+      checkEntity(entity, "entity*", (false, 0, 0)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "x" -> aUnionOf(aNumber, aString),
           "y?" -> aNumber,
@@ -31,7 +31,7 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults with ModelChecking
       entity.setFlattened(true)
 
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
-      checkEntity(entity, "entity*", false, (0, 0), (0, 0)) { versions =>
+      checkEntity(entity, "entity*", (false, 0, 0), (false, 0, 0)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "x" -> aString,
         )
@@ -79,7 +79,7 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults with ModelChecking
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
 
       schema.getEntities should have size 3
-      checkEntity(schema.getEntities.get(2), "parent", false, (0, 0)) { versions =>
+      checkEntity(schema.getEntities.get(2), "parent", (false, 0, 0)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "union" -> aUnionOf(anAggregateOf(versionWithY), anAggregateOf(versionWithX)) // versionWithX actually contains X and optionally Y
         )
@@ -101,7 +101,7 @@ class EntityFlattenerTest extends UnitTest with ModelDefaults with ModelChecking
       EntityFlattener.flatten(schema, entity) should be theSameInstanceAs schema
 
       schema.getEntities should have size 2
-      checkEntity(schema.getEntities.get(1), "parent", false, (0, 0)) { versions =>
+      checkEntity(schema.getEntities.get(1), "parent", (false, 0, 0)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "union" -> anAggregateOf(versionWithX),
         )

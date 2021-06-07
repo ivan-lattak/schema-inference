@@ -15,16 +15,46 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#isRoot <em>Root</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAdditionalCount <em>Additional Count</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getProperties <em>Properties</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates <em>Aggregates</em>}</li>
  * </ul>
  *
- * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityVersion()
  * @model
  * @generated
+ * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityVersion()
  */
 public interface EntityVersion extends EObject {
+    /**
+     * Returns the value of the '<em><b>Root</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Root</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     *
+     * @return the value of the '<em>Root</em>' attribute.
+     * @model default="false"
+     * @generated
+     * @see #setRoot(boolean)
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityVersion_Root()
+     */
+    boolean isRoot();
+
+    /**
+     * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#isRoot <em>Root</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @param value the new value of the '<em>Root</em>' attribute.
+     * @generated
+     * @see #isRoot()
+     */
+    void setRoot(boolean value);
+
     /**
      * Returns the value of the '<em><b>Additional Count</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -65,7 +95,7 @@ public interface EntityVersion extends EObject {
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityVersion_Properties()
      * @model containment="true"
      * @generated
-     */
+	 */
     EList<Property> getProperties();
 
     /**
@@ -78,13 +108,12 @@ public interface EntityVersion extends EObject {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     *
      * @return the value of the '<em>Aggregates</em>' reference list.
-     * @model opposite="target" ordered="false"
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntityVersion_Aggregates()
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Aggregate#getTarget
-     */
+     * @model opposite="target" ordered="false"
+     * @generated
+	 */
     EList<Aggregate> getAggregates();
 
 } // EntityVersion

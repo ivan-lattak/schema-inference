@@ -28,6 +28,7 @@ import java.util.Collection;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#isRoot <em>Root</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#getAdditionalCount <em>Additional Count</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityVersionImpl#getAggregates <em>Aggregates</em>}</li>
@@ -36,6 +37,28 @@ import java.util.Collection;
  * @generated
  */
 public class EntityVersionImpl extends MinimalEObjectImpl.Container implements EntityVersion {
+    /**
+     * The default value of the '{@link #isRoot() <em>Root</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     * @ordered
+     * @see #isRoot()
+     */
+    protected static final boolean ROOT_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isRoot() <em>Root</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     * @ordered
+     * @see #isRoot()
+     */
+    protected boolean root = ROOT_EDEFAULT;
+
     /**
      * The default value of the '{@link #getAdditionalCount() <em>Additional Count</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -51,9 +74,10 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
      * The cached value of the '{@link #getAdditionalCount() <em>Additional Count</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAdditionalCount()
+     *
      * @generated
      * @ordered
+     * @see #getAdditionalCount()
      */
     protected int additionalCount = ADDITIONAL_COUNT_EDEFAULT;
 
@@ -80,6 +104,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     protected EntityVersionImpl() {
@@ -89,6 +114,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
@@ -99,6 +125,30 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    public boolean isRoot() {
+        return root;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    public void setRoot(boolean newRoot) {
+        boolean oldRoot = root;
+        root = newRoot;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY_VERSION__ROOT, oldRoot, root));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
      * @generated
      */
     public int getAdditionalCount() {
@@ -108,6 +158,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     public void setAdditionalCount(int newAdditionalCount) {
@@ -120,6 +171,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     public EList<Property> getProperties() {
@@ -132,6 +184,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     public EList<Aggregate> getAggregates() {
@@ -159,6 +212,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
@@ -175,11 +229,14 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case NoSQLSchemaPackage.ENTITY_VERSION__ROOT:
+                return isRoot();
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 return getAdditionalCount();
             case NoSQLSchemaPackage.ENTITY_VERSION__PROPERTIES:
@@ -193,12 +250,16 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case NoSQLSchemaPackage.ENTITY_VERSION__ROOT:
+                setRoot((Boolean) newValue);
+                return;
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 setAdditionalCount((Integer) newValue);
                 return;
@@ -217,11 +278,15 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case NoSQLSchemaPackage.ENTITY_VERSION__ROOT:
+                setRoot(ROOT_EDEFAULT);
+                return;
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 setAdditionalCount(ADDITIONAL_COUNT_EDEFAULT);
                 return;
@@ -238,11 +303,14 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case NoSQLSchemaPackage.ENTITY_VERSION__ROOT:
+                return root != ROOT_EDEFAULT;
             case NoSQLSchemaPackage.ENTITY_VERSION__ADDITIONAL_COUNT:
                 return additionalCount != ADDITIONAL_COUNT_EDEFAULT;
             case NoSQLSchemaPackage.ENTITY_VERSION__PROPERTIES:
@@ -256,6 +324,7 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
@@ -263,10 +332,12 @@ public class EntityVersionImpl extends MinimalEObjectImpl.Container implements E
         if (eIsProxy()) return super.toString();
 
         StringBuilder result = new StringBuilder(super.toString());
-        result.append(" (additionalCount: ");
+        result.append(" (root: ");
+        result.append(root);
+        result.append(", additionalCount: ");
         result.append(additionalCount);
         result.append(')');
         return result.toString();
-    }
+	}
 
 } //EntityVersionImpl

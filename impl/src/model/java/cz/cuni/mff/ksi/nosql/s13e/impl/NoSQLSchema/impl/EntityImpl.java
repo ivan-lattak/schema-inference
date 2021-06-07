@@ -27,7 +27,6 @@ import java.util.Collection;
  * </p>
  * <ul>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#getName <em>Name</em>}</li>
- *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#isRoot <em>Root</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#isFlattened <em>Flattened</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl#getVersions <em>Versions</em>}</li>
  * </ul>
@@ -58,28 +57,6 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     protected String name = NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isRoot() <em>Root</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #isRoot()
-     */
-    protected static final boolean ROOT_EDEFAULT = false;
-
-    /**
-     * The cached value of the '{@link #isRoot() <em>Root</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     * @see #isRoot()
-     */
-    protected boolean root = ROOT_EDEFAULT;
-
-    /**
      * The default value of the '{@link #isFlattened() <em>Flattened</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -94,30 +71,27 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
      * The cached value of the '{@link #isFlattened() <em>Flattened</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
+     * @see #isFlattened()
      * @generated
      * @ordered
-     * @see #isFlattened()
-     */
+	 */
     protected boolean flattened = FLATTENED_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getVersions() <em>Versions</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
+     * @see #getVersions()
      * @generated
      * @ordered
-     * @see #getVersions()
-     */
+	 */
     protected EList<EntityVersion> versions;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     protected EntityImpl() {
         super();
     }
@@ -125,9 +99,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     @Override
     protected EClass eStaticClass() {
         return NoSQLSchemaPackage.Literals.ENTITY;
@@ -136,7 +109,6 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      */
     public String getName() {
@@ -146,7 +118,6 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      */
     public void setName(String newName) {
@@ -159,30 +130,6 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean isRoot() {
-        return root;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public void setRoot(boolean newRoot) {
-        boolean oldRoot = root;
-        root = newRoot;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NoSQLSchemaPackage.ENTITY__ROOT, oldRoot, root));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
      * @generated
      */
     public boolean isFlattened() {
@@ -192,9 +139,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     public void setFlattened(boolean newFlattened) {
         boolean oldFlattened = flattened;
         flattened = newFlattened;
@@ -205,7 +151,6 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      */
     public EList<EntityVersion> getVersions() {
@@ -218,9 +163,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -233,16 +177,13 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case NoSQLSchemaPackage.ENTITY__NAME:
                 return getName();
-            case NoSQLSchemaPackage.ENTITY__ROOT:
-                return isRoot();
             case NoSQLSchemaPackage.ENTITY__FLATTENED:
                 return isFlattened();
             case NoSQLSchemaPackage.ENTITY__VERSIONS:
@@ -254,18 +195,14 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case NoSQLSchemaPackage.ENTITY__NAME:
                 setName((String) newValue);
-                return;
-            case NoSQLSchemaPackage.ENTITY__ROOT:
-                setRoot((Boolean) newValue);
                 return;
             case NoSQLSchemaPackage.ENTITY__FLATTENED:
                 setFlattened((Boolean) newValue);
@@ -281,17 +218,13 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
             case NoSQLSchemaPackage.ENTITY__NAME:
                 setName(NAME_EDEFAULT);
-                return;
-            case NoSQLSchemaPackage.ENTITY__ROOT:
-                setRoot(ROOT_EDEFAULT);
                 return;
             case NoSQLSchemaPackage.ENTITY__FLATTENED:
                 setFlattened(FLATTENED_EDEFAULT);
@@ -306,16 +239,13 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case NoSQLSchemaPackage.ENTITY__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case NoSQLSchemaPackage.ENTITY__ROOT:
-                return root != ROOT_EDEFAULT;
             case NoSQLSchemaPackage.ENTITY__FLATTENED:
                 return flattened != FLATTENED_EDEFAULT;
             case NoSQLSchemaPackage.ENTITY__VERSIONS:
@@ -327,7 +257,6 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      */
     @Override
@@ -337,12 +266,10 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
         StringBuilder result = new StringBuilder(super.toString());
         result.append(" (name: ");
         result.append(name);
-        result.append(", root: ");
-        result.append(root);
         result.append(", flattened: ");
         result.append(flattened);
         result.append(')');
         return result.toString();
-    }
+	}
 
 } //EntityImpl

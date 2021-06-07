@@ -8,24 +8,24 @@ import scala.Function.tupled
 trait SchemaChecking extends Matchers {
 
   def checkEntity(name: String, root: Boolean, count: Int,
-                  properties: Map[String, InternalType])(entity: InternalEntity): Unit = checkEntity(name, root, (count, properties))(entity)
+                  properties: Map[String, InternalType])(entity: InternalEntity): Unit = checkEntity(name, (root, count, properties))(entity)
 
-  def checkEntity(name: String, root: Boolean,
-                  versionAttrs: (Int, Map[String, InternalType])*)(entity: InternalEntity): Unit = {
+  def checkEntity(name: String,
+                  versionAttrs: (Boolean, Int, Map[String, InternalType])*)(entity: InternalEntity): Unit = {
     entity.name shouldBe name
-    entity.root shouldBe root
 
     entity.versions should have size versionAttrs.size
     var i = 0
     for ((k, v) <- entity.versions) {
       k should be theSameInstanceAs v
-      val (count, properties) = versionAttrs(i)
-      checkVersion(v, count, properties)
+      val (root, count, properties) = versionAttrs(i)
+      checkVersion(v, root, count, properties)
       i += 1
     }
   }
 
-  def checkVersion(version: InternalEntityVersion, count: Int, properties: Map[String, InternalType]): Unit = {
+  def checkVersion(version: InternalEntityVersion, root: Boolean, count: Int, properties: Map[String, InternalType]): Unit = {
+    version.root shouldBe root
     version.count shouldBe count
     version.properties shouldEqual properties.map(tupled((k, v) => k -> InternalProperty(k, v)))
   }

@@ -11,7 +11,7 @@ trait InternalDefaults {
   val emptySchema: EmptyInternalNoSqlSchema.type = EmptyInternalNoSqlSchema
   val schemas = List(schema, namedSchema, emptySchema)
 
-  val entity: InternalEntity = InternalEntity("", root = false)
+  val entity: InternalEntity = InternalEntity("")
   val entities = List(entity)
 
   val propertiesWithX: TreeMap[String, InternalProperty] = TreeMap(
@@ -22,9 +22,9 @@ trait InternalDefaults {
     "y" -> InternalProperty("y", InternalNumber),
   )
 
-  val version: InternalEntityVersion = InternalEntityVersion(TreeMap.empty)
-  val versionWithX: InternalEntityVersion = InternalEntityVersion(propertiesWithX)
-  val versionWithXAndY: InternalEntityVersion = InternalEntityVersion(propertiesWithXAndY)
+  val version: InternalEntityVersion = InternalEntityVersion(TreeMap.empty, _root = false)
+  val versionWithX: InternalEntityVersion = InternalEntityVersion(propertiesWithX, _root = false)
+  val versionWithXAndY: InternalEntityVersion = InternalEntityVersion(propertiesWithXAndY, _root = false)
   val versions = List(version, versionWithX, versionWithXAndY)
 
   val unknown: InternalUnknownType.type = InternalUnknownType
@@ -32,7 +32,7 @@ trait InternalDefaults {
   val number: InternalNumber.type = InternalNumber
   val string: InternalString.type = InternalString
   val array: InternalArray = InternalArray(unknown)
-  val aggregate: InternalAggregate = InternalAggregate(InternalEntityVersion(TreeMap.empty))
+  val aggregate: InternalAggregate = InternalAggregate(InternalEntityVersion(TreeMap.empty, _root = false))
   val reference: InternalEntityReference = InternalEntityReference("")
   val union: InternalUnionType = InternalUnionType(List(boolean, number))
   val types: List[InternalType] = List(unknown, boolean, number, string, array, aggregate, reference, union)

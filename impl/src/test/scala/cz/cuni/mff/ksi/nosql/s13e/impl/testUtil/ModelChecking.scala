@@ -47,17 +47,17 @@ trait ModelChecking extends Matchers {
     }
   }
 
-  def checkEntity(entity: Entity, name: java.lang.String, root: scala.Boolean, expected: (Int, Int)*)
+  def checkEntity(entity: Entity, name: java.lang.String, expected: (scala.Boolean, Int, Int)*)
                  (checker: JList[EntityVersion] => Unit): Unit = {
     val expectedFlattened = name endsWith "*"
     entity.getName shouldBe name.stripSuffix("*")
-    entity.isRoot shouldBe root
     entity.isFlattened shouldBe expectedFlattened
 
     val versions = entity.getVersions
     versions should have size expected.size
     versions.asScala zip expected foreach {
-      case (version, (aggregates, additional)) =>
+      case (version, (root, aggregates, additional)) =>
+        version.isRoot shouldBe root
         version.getAggregates should have size aggregates
         version.getAdditionalCount shouldBe additional
     }

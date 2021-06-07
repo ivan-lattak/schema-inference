@@ -9,11 +9,16 @@ import scala.collection.mutable
 
 object JsonSchemaConverter {
 
-  def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootEntity: Entity): JsObject =
-    convertToJsonSchema(schema, rootEntity.getVersions.asScala.toSet)
+  def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootEntity: Entity): JsObject = {
+    val rootVersions = rootEntity.getVersions.asScala.filter(_.isRoot).toSet
+    if (rootVersions.isEmpty) throw new IllegalArgumentException(s"There are no root entity versions in entity $rootEntity")
+    convertToJsonSchema(schema, rootVersions)
+  }
 
-  def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootVersion: EntityVersion): JsObject =
+  def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootVersion: EntityVersion): JsObject = {
+    if (!rootVersion.isRoot) throw new IllegalArgumentException(s"The entity version specified is not a root version: $rootVersion")
     convertToJsonSchema(schema, Set(rootVersion))
+  }
 
   private def convertToJsonSchema(schema: NoSQLSchema.NoSQLSchema, rootVersions: Set[EntityVersion]): JsObject =
     new JsonSchemaBuilder(schema, rootVersions).build

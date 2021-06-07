@@ -14,7 +14,7 @@ class InternalEntityVersionTest extends UnitTest with InternalDefaults {
 
     val theseAggregates = (0 until THIS_SIZE).map(_ => InternalAggregate(version)).toList
 
-    val thatVersion = InternalEntityVersion(TreeMap.empty)
+    val thatVersion = InternalEntityVersion(TreeMap.empty, _root = false)
     val thoseAggregates = (0 until THAT_SIZE).map(_ => InternalAggregate(thatVersion)).toList
 
     describe("when mergeFrom is called") {

@@ -35,18 +35,17 @@ private object Converter {
 
     private def processEntitiesAndVersions(schema: NoSQLSchema.NoSQLSchema): Unit = {
       def processVersions(internalEntity: InternalEntity, entity: Entity): Unit =
-        internalEntity.versions.keys zip Stream.from(0) foreach {
-          case (internalVersion, id) =>
-            val version = factory.createEntityVersion()
-            version.setAdditionalCount(internalVersion.additionalCount)
-            entity.getVersions.add(version)
-            versions(identity(internalVersion)) = version
+        internalEntity.versions.keys foreach { internalVersion =>
+          val version = factory.createEntityVersion()
+          version.setRoot(internalVersion.root)
+          version.setAdditionalCount(internalVersion.additionalCount)
+          entity.getVersions.add(version)
+          versions(identity(internalVersion)) = version
         }
 
       for (internalEntity <- internalSchema.entities) {
         val entity = factory.createEntity()
         entity.setName(internalEntity.name)
-        entity.setRoot(internalEntity.root)
         schema.getEntities.add(entity)
         entities(entity.getName) = entity
 
@@ -166,13 +165,13 @@ private object Converter {
     private def convertEntity(entity: Entity): InternalEntity = {
       val internalVersions = entity.getVersions.asScala.map(convertVersion).map(v => (v, v)).toSeq
       val versionMap = mutable.TreeMap(internalVersions: _*)(PropertiesOrdering)
-      InternalEntity(entity.getName, entity.isRoot, versionMap)
+      InternalEntity(entity.getName, versionMap)
     }
 
     private def convertVersion(version: EntityVersion): InternalEntityVersion =
       versions.getOrElseUpdate(identity(version), {
         val internalProperties = version.getProperties.asScala.map(convertProperty).map(p => (p.name, p)).toSeq
-        InternalEntityVersion(TreeMap(internalProperties: _*), _additionalCount = version.getAdditionalCount)
+        InternalEntityVersion(TreeMap(internalProperties: _*), version.isRoot, _additionalCount = version.getAdditionalCount)
       })
 
     private def convertProperty(property: Property): InternalProperty =

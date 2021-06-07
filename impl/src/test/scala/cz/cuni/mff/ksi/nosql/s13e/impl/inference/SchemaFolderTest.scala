@@ -22,22 +22,22 @@ class SchemaFolderTest extends UnitTest with JsonDocs with SchemaChecking {
         "mime_type" -> InternalString,
       ))(body)
 
-      checkEntity("location", root = false,
-        (1, Map(
+      checkEntity("location",
+        (false, 1, Map(
           "address" -> InternalString,
-        )), (1, Map(
+        )), (false, 1, Map(
           "latitude" -> InternalString,
           "longitude" -> InternalString,
         ))
       )(location)
 
-      checkEntity("author", root = false,
-        (1, Map(
+      checkEntity("author",
+        (false, 1, Map(
           "first_name" -> InternalString,
           "last_name" -> InternalString,
           "phone_number" -> InternalNumber,
           "location" -> InternalAggregate(location.versions.head._1),
-        )), (1, Map(
+        )), (false, 1, Map(
           "first_name" -> InternalString,
           "last_name" -> InternalString,
           "phone_number" -> InternalString,
@@ -45,8 +45,8 @@ class SchemaFolderTest extends UnitTest with JsonDocs with SchemaChecking {
         ))
       )(author)
 
-      checkEntity("article", root = true,
-        (1, Map(
+      checkEntity("article",
+        (true, 1, Map(
           "_id" -> InternalNumber,
           "body" -> InternalString,
           "timestamp" -> InternalString,
@@ -55,7 +55,7 @@ class SchemaFolderTest extends UnitTest with JsonDocs with SchemaChecking {
           "comments" -> InternalString,
           "article_id" -> InternalNumber,
           "published" -> InternalBoolean,
-        )), (1, Map(
+        )), (true, 1, Map(
           "_id" -> InternalNumber,
           "timestamp" -> InternalString,
           "author" -> InternalAggregate(author.versions.toList(1)._1),
@@ -68,7 +68,7 @@ class SchemaFolderTest extends UnitTest with JsonDocs with SchemaChecking {
       )(article)
     }
 
-    it("should merge entities which are root and non-root correctly") {
+    it("should merge entities with root and non-root versions correctly") {
       val schema = SchemaFolder(Injector(articleJohnDoe), Injector(authorPicasso))
 
       schema.entities should have size 7
@@ -96,13 +96,13 @@ class SchemaFolderTest extends UnitTest with JsonDocs with SchemaChecking {
         "url" -> InternalString,
       ))(photo)
 
-      checkEntity("author", root = true,
-        (1, Map(
+      checkEntity("author",
+        (true, 1, Map(
           "name" -> InternalString,
           "age" -> InternalNumber,
           "address" -> InternalAggregate(address.versions.head._1),
           "photos" -> InternalArray(InternalAggregate(photo.versions.head._1)),
-        )), (1, Map(
+        )), (false, 1, Map(
           "first_name" -> InternalString,
           "last_name" -> InternalString,
           "phone_number" -> InternalString,

@@ -44,7 +44,7 @@ private case object SchemaFolder extends ((InternalNoSqlSchema, InternalNoSqlSch
 
   private def mergeEntities(left: InternalEntity, right: InternalEntity): InternalEntity =
     if (left.name != right.name) throw new IllegalArgumentException("Merging entities with different names") else
-      InternalEntity(left.name, left.root || right.root, mergeVersionMaps(left.versions, right.versions))
+      InternalEntity(left.name, mergeVersionMaps(left.versions, right.versions))
 
   private def mergeVersionMaps(left: VersionMap, right: VersionMap): MutableVersionMap =
     mutable.TreeMap(mergeVersionLists(left.keys.toList, right.keys.toList).map(v => (v, v)): _*)(PropertiesOrdering)

@@ -14,13 +14,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaPackage {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     private EClass noSQLSchemaEClass = null;
@@ -28,6 +28,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
     private EClass entityEClass = null;
@@ -36,98 +37,98 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass entityVersionEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass propertyEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass typeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass unionTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass singleTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass entityReferenceEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass unknownTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass complexTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass arrayEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass aggregateEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass primitiveTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass booleanEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass numberEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private EClass stringEClass = null;
 
     /**
@@ -144,7 +145,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#eNS_URI
      * @see #init()
      * @generated
-     */
+	 */
     private NoSQLSchemaPackageImpl() {
         super(eNS_URI, NoSQLSchemaFactory.eINSTANCE);
     }
@@ -153,7 +154,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     private static boolean isInited = false;
 
     /**
@@ -167,7 +168,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * @see #createPackageContents()
      * @see #initializePackageContents()
      * @generated
-     */
+	 */
     public static NoSQLSchemaPackage init() {
         if (isInited) return (NoSQLSchemaPackage) EPackage.Registry.INSTANCE.getEPackage(NoSQLSchemaPackage.eNS_URI);
 
@@ -195,7 +196,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     public EClass getNoSQLSchema() {
         return noSQLSchemaEClass;
     }
@@ -204,7 +205,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     public EAttribute getNoSQLSchema_Name() {
         return (EAttribute) noSQLSchemaEClass.getEStructuralFeatures().get(0);
     }
@@ -213,7 +214,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     public EReference getNoSQLSchema_Entities() {
         return (EReference) noSQLSchemaEClass.getEStructuralFeatures().get(1);
     }
@@ -222,7 +223,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     public EClass getEntity() {
         return entityEClass;
     }
@@ -231,7 +232,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     public EAttribute getEntity_Name() {
         return (EAttribute) entityEClass.getEStructuralFeatures().get(0);
     }
@@ -240,8 +241,8 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
-    public EAttribute getEntity_Root() {
+	 */
+    public EAttribute getEntity_Flattened() {
         return (EAttribute) entityEClass.getEStructuralFeatures().get(1);
     }
 
@@ -249,25 +250,16 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
-    public EAttribute getEntity_Flattened() {
-        return (EAttribute) entityEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+	 */
     public EReference getEntity_Versions() {
-        return (EReference) entityEClass.getEStructuralFeatures().get(3);
+        return (EReference) entityEClass.getEStructuralFeatures().get(2);
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     public EClass getEntityVersion() {
         return entityVersionEClass;
     }
@@ -275,27 +267,30 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
-    public EAttribute getEntityVersion_AdditionalCount() {
+    public EAttribute getEntityVersion_Root() {
         return (EAttribute) entityVersionEClass.getEStructuralFeatures().get(0);
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
-    public EReference getEntityVersion_Properties() {
-        return (EReference) entityVersionEClass.getEStructuralFeatures().get(1);
+    public EAttribute getEntityVersion_AdditionalCount() {
+        return (EAttribute) entityVersionEClass.getEStructuralFeatures().get(1);
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      */
-    public EReference getEntityVersion_Aggregates() {
+    public EReference getEntityVersion_Properties() {
         return (EReference) entityVersionEClass.getEStructuralFeatures().get(2);
     }
 
@@ -304,6 +299,15 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getEntityVersion_Aggregates() {
+        return (EReference) entityVersionEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+	 */
     public EClass getProperty() {
         return propertyEClass;
     }
@@ -465,7 +469,7 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
-     */
+	 */
     public EClass getBoolean() {
         return booleanEClass;
     }
@@ -522,11 +526,11 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
 
         entityEClass = createEClass(ENTITY);
         createEAttribute(entityEClass, ENTITY__NAME);
-        createEAttribute(entityEClass, ENTITY__ROOT);
         createEAttribute(entityEClass, ENTITY__FLATTENED);
         createEReference(entityEClass, ENTITY__VERSIONS);
 
         entityVersionEClass = createEClass(ENTITY_VERSION);
+        createEAttribute(entityVersionEClass, ENTITY_VERSION__ROOT);
         createEAttribute(entityVersionEClass, ENTITY_VERSION__ADDITIONAL_COUNT);
         createEReference(entityVersionEClass, ENTITY_VERSION__PROPERTIES);
         createEReference(entityVersionEClass, ENTITY_VERSION__AGGREGATES);
@@ -613,11 +617,11 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
 
         initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 1, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEntity_Root(), ecorePackage.getEBoolean(), "root", "false", 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEntity_Flattened(), ecorePackage.getEBoolean(), "flattened", "false", 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEntity_Versions(), this.getEntityVersion(), null, "versions", null, 1, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(entityVersionEClass, EntityVersion.class, "EntityVersion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getEntityVersion_Root(), ecorePackage.getEBoolean(), "root", "false", 0, 1, EntityVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEntityVersion_AdditionalCount(), ecorePackage.getEInt(), "additionalCount", null, 1, 1, EntityVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEntityVersion_Properties(), this.getProperty(), null, "properties", null, 0, -1, EntityVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEntityVersion_Aggregates(), this.getAggregate(), this.getAggregate_Target(), "aggregates", null, 0, -1, EntityVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -658,6 +662,6 @@ public class NoSQLSchemaPackageImpl extends EPackageImpl implements NoSQLSchemaP
 
         // Create resource
         createResource(eNS_URI);
-    }
+	}
 
 } //NoSQLSchemaPackageImpl

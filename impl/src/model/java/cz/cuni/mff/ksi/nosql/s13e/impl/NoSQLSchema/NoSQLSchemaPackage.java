@@ -49,119 +49,102 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The package namespace name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     String eNS_PREFIX = "NoSQLSchema";
 
     /**
      * The singleton instance of the package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     */
+	 */
     NoSQLSchemaPackage eINSTANCE = cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl.init();
 
     /**
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaImpl <em>No SQL Schema</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getNoSQLSchema()
-     */
+     * @generated
+	 */
     int NO_SQL_SCHEMA = 0;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
-     */
+	 */
     int NO_SQL_SCHEMA__NAME = 0;
 
     /**
      * The feature id for the '<em><b>Entities</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
-     */
+	 */
     int NO_SQL_SCHEMA__ENTITIES = 1;
 
     /**
      * The number of structural features of the '<em>No SQL Schema</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
-     */
+	 */
     int NO_SQL_SCHEMA_FEATURE_COUNT = 2;
 
     /**
      * The number of operations of the '<em>No SQL Schema</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
-     */
+	 */
     int NO_SQL_SCHEMA_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl <em>Entity</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getEntity()
-     */
+     * @generated
+	 */
     int ENTITY = 1;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
-     */
+	 */
     int ENTITY__NAME = 0;
-
-    /**
-     * The feature id for the '<em><b>Root</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     * @ordered
-     */
-    int ENTITY__ROOT = 1;
 
     /**
      * The feature id for the '<em><b>Flattened</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      * @ordered
      */
-    int ENTITY__FLATTENED = 2;
+    int ENTITY__FLATTENED = 1;
 
     /**
      * The feature id for the '<em><b>Versions</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @generated
      * @ordered
      */
-    int ENTITY__VERSIONS = 3;
+    int ENTITY__VERSIONS = 2;
 
     /**
      * The number of structural features of the '<em>Entity</em>' class.
@@ -171,16 +154,15 @@ public interface NoSQLSchemaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ENTITY_FEATURE_COUNT = 4;
+    int ENTITY_FEATURE_COUNT = 3;
 
     /**
      * The number of operations of the '<em>Entity</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
-     * @ordered
-     */
+	 * @ordered
+	 */
     int ENTITY_OPERATION_COUNT = 0;
 
     /**
@@ -195,6 +177,16 @@ public interface NoSQLSchemaPackage extends EPackage {
     int ENTITY_VERSION = 2;
 
     /**
+     * The feature id for the '<em><b>Root</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     * @ordered
+     */
+    int ENTITY_VERSION__ROOT = 0;
+
+    /**
      * The feature id for the '<em><b>Additional Count</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -202,7 +194,7 @@ public interface NoSQLSchemaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ENTITY_VERSION__ADDITIONAL_COUNT = 0;
+    int ENTITY_VERSION__ADDITIONAL_COUNT = 1;
 
     /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -212,7 +204,7 @@ public interface NoSQLSchemaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ENTITY_VERSION__PROPERTIES = 1;
+    int ENTITY_VERSION__PROPERTIES = 2;
 
     /**
      * The feature id for the '<em><b>Aggregates</b></em>' reference list.
@@ -222,7 +214,7 @@ public interface NoSQLSchemaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ENTITY_VERSION__AGGREGATES = 2;
+    int ENTITY_VERSION__AGGREGATES = 3;
 
     /**
      * The number of structural features of the '<em>Entity Version</em>' class.
@@ -232,13 +224,12 @@ public interface NoSQLSchemaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ENTITY_VERSION_FEATURE_COUNT = 3;
+    int ENTITY_VERSION_FEATURE_COUNT = 4;
 
     /**
      * The number of operations of the '<em>Entity Version</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -248,10 +239,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PropertyImpl <em>Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PropertyImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getProperty()
+     * @generated
      */
     int PROPERTY = 3;
 
@@ -259,7 +249,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -269,7 +258,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Optional</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -279,7 +267,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Type</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -289,7 +276,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Property</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -299,7 +285,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Property</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -309,10 +294,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.TypeImpl <em>Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.TypeImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getType()
+     * @generated
      */
     int TYPE = 4;
 
@@ -320,7 +304,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -330,7 +313,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -340,10 +322,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnionTypeImpl <em>Union Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnionTypeImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getUnionType()
+     * @generated
      */
     int UNION_TYPE = 5;
 
@@ -351,7 +332,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Types</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -361,7 +341,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Union Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -371,7 +350,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Union Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -381,10 +359,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.SingleTypeImpl <em>Single Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.SingleTypeImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getSingleType()
+     * @generated
      */
     int SINGLE_TYPE = 6;
 
@@ -392,7 +369,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Single Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -402,7 +378,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Single Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -412,10 +387,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityReferenceImpl <em>Entity Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityReferenceImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getEntityReference()
+     * @generated
      */
     int ENTITY_REFERENCE = 7;
 
@@ -423,7 +397,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Target</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -433,7 +406,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Original Type</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -443,7 +415,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Entity Reference</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -453,7 +424,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Entity Reference</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -463,10 +433,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnknownTypeImpl <em>Unknown Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnknownTypeImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getUnknownType()
+     * @generated
      */
     int UNKNOWN_TYPE = 8;
 
@@ -474,7 +443,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Unknown Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -484,7 +452,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Unknown Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -494,10 +461,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl <em>Complex Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getComplexType()
+     * @generated
      */
     int COMPLEX_TYPE = 9;
 
@@ -505,7 +471,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Complex Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -515,7 +480,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Complex Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -525,10 +489,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ArrayImpl <em>Array</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ArrayImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getArray()
+     * @generated
      */
     int ARRAY = 10;
 
@@ -536,7 +499,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Element Type</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -546,7 +508,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Array</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -556,7 +517,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Array</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -566,10 +526,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.AggregateImpl <em>Aggregate</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.AggregateImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getAggregate()
+     * @generated
      */
     int AGGREGATE = 11;
 
@@ -577,7 +536,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The feature id for the '<em><b>Target</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -587,7 +545,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Aggregate</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -597,7 +554,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Aggregate</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -607,10 +563,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PrimitiveTypeImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getPrimitiveType()
+     * @generated
      */
     int PRIMITIVE_TYPE = 12;
 
@@ -618,7 +573,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Primitive Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -628,7 +582,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Primitive Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -638,10 +591,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.BooleanImpl <em>Boolean</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.BooleanImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getBoolean()
+     * @generated
      */
     int BOOLEAN = 13;
 
@@ -649,7 +601,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Boolean</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -659,7 +610,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Boolean</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -669,10 +619,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NumberImpl <em>Number</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NumberImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getNumber()
+     * @generated
      */
     int NUMBER = 14;
 
@@ -680,7 +629,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>Number</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -690,7 +638,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>Number</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -700,10 +647,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The meta object id for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.StringImpl <em>String</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.StringImpl
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getString()
+     * @generated
      */
     int STRING = 15;
 
@@ -711,7 +657,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of structural features of the '<em>String</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -721,7 +666,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * The number of operations of the '<em>String</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @generated
      * @ordered
      */
@@ -732,10 +676,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema <em>No SQL Schema</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>No SQL Schema</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema
+     * @generated
      */
     EClass getNoSQLSchema();
 
@@ -743,11 +686,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema#getName <em>Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the attribute '<em>Name</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema#getName()
      * @see #getNoSQLSchema()
+     * @generated
      */
     EAttribute getNoSQLSchema_Name();
 
@@ -755,11 +697,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema#getEntities <em>Entities</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the containment reference list '<em>Entities</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchema#getEntities()
      * @see #getNoSQLSchema()
+     * @generated
      */
     EReference getNoSQLSchema_Entities();
 
@@ -767,10 +708,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity <em>Entity</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Entity</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity
+     * @generated
      */
     EClass getEntity();
 
@@ -778,34 +718,21 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getName <em>Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the attribute '<em>Name</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getName()
      * @see #getEntity()
-     */
-    EAttribute getEntity_Name();
-
-    /**
-     * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Root</em>'.
-     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot()
-     * @see #getEntity()
      * @generated
      */
-    EAttribute getEntity_Root();
+    EAttribute getEntity_Name();
 
     /**
      * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened <em>Flattened</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the attribute '<em>Flattened</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened()
      * @see #getEntity()
+     * @generated
      */
     EAttribute getEntity_Flattened();
 
@@ -813,11 +740,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions <em>Versions</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the containment reference list '<em>Versions</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions()
      * @see #getEntity()
+     * @generated
      */
     EReference getEntity_Versions();
 
@@ -825,11 +751,24 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion <em>Entity Version</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     *
      * @return the meta object for class '<em>Entity Version</em>'.
-     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion
      * @generated
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion
      */
     EClass getEntityVersion();
+
+    /**
+     * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#isRoot <em>Root</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @return the meta object for the attribute '<em>Root</em>'.
+     * @generated
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#isRoot()
+     * @see #getEntityVersion()
+     */
+    EAttribute getEntityVersion_Root();
 
     /**
      * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAdditionalCount <em>Additional Count</em>}'.
@@ -847,11 +786,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getProperties <em>Properties</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the containment reference list '<em>Properties</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getProperties()
      * @see #getEntityVersion()
+     * @generated
      */
     EReference getEntityVersion_Properties();
 
@@ -859,11 +797,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates <em>Aggregates</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the reference list '<em>Aggregates</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityVersion#getAggregates()
      * @see #getEntityVersion()
+     * @generated
      */
     EReference getEntityVersion_Aggregates();
 
@@ -871,10 +808,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property <em>Property</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Property</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property
+     * @generated
      */
     EClass getProperty();
 
@@ -882,11 +818,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property#getName <em>Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the attribute '<em>Name</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property#getName()
      * @see #getProperty()
+     * @generated
      */
     EAttribute getProperty_Name();
 
@@ -894,11 +829,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the attribute '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property#isOptional <em>Optional</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the attribute '<em>Optional</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property#isOptional()
      * @see #getProperty()
+     * @generated
      */
     EAttribute getProperty_Optional();
 
@@ -906,11 +840,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the containment reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property#getType <em>Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the containment reference '<em>Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Property#getType()
      * @see #getProperty()
+     * @generated
      */
     EReference getProperty_Type();
 
@@ -918,10 +851,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Type <em>Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Type
+     * @generated
      */
     EClass getType();
 
@@ -929,10 +861,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.UnionType <em>Union Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Union Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.UnionType
+     * @generated
      */
     EClass getUnionType();
 
@@ -940,11 +871,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the containment reference list '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.UnionType#getTypes <em>Types</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the containment reference list '<em>Types</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.UnionType#getTypes()
      * @see #getUnionType()
+     * @generated
      */
     EReference getUnionType_Types();
 
@@ -952,10 +882,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.SingleType <em>Single Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Single Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.SingleType
+     * @generated
      */
     EClass getSingleType();
 
@@ -973,11 +902,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getTarget <em>Target</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the reference '<em>Target</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getTarget()
      * @see #getEntityReference()
+     * @generated
      */
     EReference getEntityReference_Target();
 
@@ -985,11 +913,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the containment reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getOriginalType <em>Original Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the containment reference '<em>Original Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.EntityReference#getOriginalType()
      * @see #getEntityReference()
+     * @generated
      */
     EReference getEntityReference_OriginalType();
 
@@ -997,10 +924,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.UnknownType <em>Unknown Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Unknown Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.UnknownType
+     * @generated
      */
     EClass getUnknownType();
 
@@ -1008,10 +934,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.ComplexType <em>Complex Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Complex Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.ComplexType
+     * @generated
      */
     EClass getComplexType();
 
@@ -1019,10 +944,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Array <em>Array</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Array</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Array
+     * @generated
      */
     EClass getArray();
 
@@ -1030,11 +954,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the containment reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Array#getElementType <em>Element Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the containment reference '<em>Element Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Array#getElementType()
      * @see #getArray()
+     * @generated
      */
     EReference getArray_ElementType();
 
@@ -1042,10 +965,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Aggregate <em>Aggregate</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Aggregate</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Aggregate
+     * @generated
      */
     EClass getAggregate();
 
@@ -1053,11 +975,10 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for the reference '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Aggregate#getTarget <em>Target</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for the reference '<em>Target</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Aggregate#getTarget()
      * @see #getAggregate()
+     * @generated
      */
     EReference getAggregate_Target();
 
@@ -1065,10 +986,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.PrimitiveType <em>Primitive Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Primitive Type</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.PrimitiveType
+     * @generated
      */
     EClass getPrimitiveType();
 
@@ -1076,10 +996,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Boolean <em>Boolean</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Boolean</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Boolean
+     * @generated
      */
     EClass getBoolean();
 
@@ -1087,10 +1006,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Number <em>Number</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>Number</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Number
+     * @generated
      */
     EClass getNumber();
 
@@ -1098,10 +1016,9 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the meta object for class '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.String <em>String</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the meta object for class '<em>String</em>'.
-     * @generated
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.String
+     * @generated
      */
     EClass getString();
 
@@ -1109,7 +1026,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     *
      * @return the factory that creates the instances of the model.
      * @generated
      */
@@ -1126,7 +1042,6 @@ public interface NoSQLSchemaPackage extends EPackage {
      *   <li>and each data type</li>
      * </ul>
      * <!-- end-user-doc -->
-     *
      * @generated
      */
     interface Literals {
@@ -1175,19 +1090,9 @@ public interface NoSQLSchemaPackage extends EPackage {
         EAttribute ENTITY__NAME = eINSTANCE.getEntity_Name();
 
         /**
-         * The meta object literal for the '<em><b>Root</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         *
-         * @generated
-         */
-        EAttribute ENTITY__ROOT = eINSTANCE.getEntity_Root();
-
-        /**
          * The meta object literal for the '<em><b>Flattened</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
          * @generated
          */
         EAttribute ENTITY__FLATTENED = eINSTANCE.getEntity_Flattened();
@@ -1196,7 +1101,6 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '<em><b>Versions</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
          * @generated
          */
         EReference ENTITY__VERSIONS = eINSTANCE.getEntity_Versions();
@@ -1213,6 +1117,15 @@ public interface NoSQLSchemaPackage extends EPackage {
         EClass ENTITY_VERSION = eINSTANCE.getEntityVersion();
 
         /**
+         * The meta object literal for the '<em><b>Root</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         *
+         * @generated
+         */
+        EAttribute ENTITY_VERSION__ROOT = eINSTANCE.getEntityVersion_Root();
+
+        /**
          * The meta object literal for the '<em><b>Additional Count</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1225,9 +1138,8 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
-         */
+		 * @generated
+		 */
         EReference ENTITY_VERSION__PROPERTIES = eINSTANCE.getEntityVersion_Properties();
 
         /**
@@ -1243,10 +1155,9 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PropertyImpl <em>Property</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PropertyImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getProperty()
+         * @generated
          */
         EClass PROPERTY = eINSTANCE.getProperty();
 
@@ -1254,7 +1165,6 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
          * @generated
          */
         EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
@@ -1263,8 +1173,7 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
+		 * @generated
          */
         EAttribute PROPERTY__OPTIONAL = eINSTANCE.getProperty_Optional();
 
@@ -1281,10 +1190,9 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.TypeImpl <em>Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.TypeImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getType()
+         * @generated
          */
         EClass TYPE = eINSTANCE.getType();
 
@@ -1292,10 +1200,9 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnionTypeImpl <em>Union Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnionTypeImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getUnionType()
+         * @generated
          */
         EClass UNION_TYPE = eINSTANCE.getUnionType();
 
@@ -1312,10 +1219,9 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.SingleTypeImpl <em>Single Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.SingleTypeImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getSingleType()
+         * @generated
          */
         EClass SINGLE_TYPE = eINSTANCE.getSingleType();
 
@@ -1323,10 +1229,9 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityReferenceImpl <em>Entity Reference</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.EntityReferenceImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getEntityReference()
+         * @generated
          */
         EClass ENTITY_REFERENCE = eINSTANCE.getEntityReference();
 
@@ -1334,7 +1239,6 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '<em><b>Target</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
          * @generated
          */
         EReference ENTITY_REFERENCE__TARGET = eINSTANCE.getEntityReference_Target();
@@ -1352,10 +1256,9 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnknownTypeImpl <em>Unknown Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.UnknownTypeImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getUnknownType()
+         * @generated
          */
         EClass UNKNOWN_TYPE = eINSTANCE.getUnknownType();
 
@@ -1363,21 +1266,19 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl <em>Complex Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ComplexTypeImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getComplexType()
-         */
+         * @generated
+		 */
         EClass COMPLEX_TYPE = eINSTANCE.getComplexType();
 
         /**
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ArrayImpl <em>Array</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.ArrayImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getArray()
+         * @generated
          */
         EClass ARRAY = eINSTANCE.getArray();
 
@@ -1394,10 +1295,9 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.AggregateImpl <em>Aggregate</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.AggregateImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getAggregate()
+         * @generated
          */
         EClass AGGREGATE = eINSTANCE.getAggregate();
 
@@ -1405,7 +1305,6 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '<em><b>Target</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
          * @generated
          */
         EReference AGGREGATE__TARGET = eINSTANCE.getAggregate_Target();
@@ -1414,22 +1313,20 @@ public interface NoSQLSchemaPackage extends EPackage {
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.PrimitiveTypeImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getPrimitiveType()
-         */
+		 * @generated
+		 */
         EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
 
         /**
          * The meta object literal for the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.BooleanImpl <em>Boolean</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         *
-         * @generated
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.BooleanImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getBoolean()
-         */
+		 * @generated
+		 */
         EClass BOOLEAN = eINSTANCE.getBoolean();
 
         /**
@@ -1438,8 +1335,8 @@ public interface NoSQLSchemaPackage extends EPackage {
          * <!-- end-user-doc -->
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NumberImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getNumber()
-         * @generated
-         */
+		 * @generated
+		 */
         EClass NUMBER = eINSTANCE.getNumber();
 
         /**
@@ -1448,8 +1345,8 @@ public interface NoSQLSchemaPackage extends EPackage {
          * <!-- end-user-doc -->
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.StringImpl
          * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.impl.NoSQLSchemaPackageImpl#getString()
-         * @generated
-         */
+		 * @generated
+		 */
         EClass STRING = eINSTANCE.getString();
 
     }

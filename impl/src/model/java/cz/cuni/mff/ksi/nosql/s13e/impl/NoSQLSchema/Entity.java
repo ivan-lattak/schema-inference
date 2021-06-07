@@ -18,7 +18,6 @@ import java.lang.String;
  * </p>
  * <ul>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getName <em>Name</em>}</li>
- *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isFlattened <em>Flattened</em>}</li>
  *   <li>{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#getVersions <em>Versions</em>}</li>
  * </ul>
@@ -57,35 +56,6 @@ public interface Entity extends EObject {
     void setName(String value);
 
     /**
-     * Returns the value of the '<em><b>Root</b></em>' attribute.
-     * The default value is <code>"false"</code>.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Root</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     *
-     * @return the value of the '<em>Root</em>' attribute.
-     * @model default="false"
-     * @generated
-     * @see #setRoot(boolean)
-     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Root()
-     */
-    boolean isRoot();
-
-    /**
-     * Sets the value of the '{@link cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.Entity#isRoot <em>Root</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @param value the new value of the '<em>Root</em>' attribute.
-     * @generated
-     * @see #isRoot()
-     */
-    void setRoot(boolean value);
-
-    /**
      * Returns the value of the '<em><b>Flattened</b></em>' attribute.
      * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
@@ -99,7 +69,7 @@ public interface Entity extends EObject {
      * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Flattened()
      * @model default="false"
      * @generated
-     */
+	 */
     boolean isFlattened();
 
     /**
@@ -109,7 +79,7 @@ public interface Entity extends EObject {
      * @param value the new value of the '<em>Flattened</em>' attribute.
      * @see #isFlattened()
      * @generated
-     */
+	 */
     void setFlattened(boolean value);
 
     /**
@@ -121,12 +91,11 @@ public interface Entity extends EObject {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     *
      * @return the value of the '<em>Versions</em>' containment reference list.
+     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Versions()
      * @model containment="true" required="true"
      * @generated
-     * @see cz.cuni.mff.ksi.nosql.s13e.impl.NoSQLSchema.NoSQLSchemaPackage#getEntity_Versions()
-     */
+	 */
     EList<EntityVersion> getVersions();
 
 } // Entity

@@ -37,6 +37,7 @@ object EntityFlattener {
   }
 
   private def mergeVersions(left: EntityVersion, right: EntityVersion): EntityVersion = {
+    left.setRoot(left.isRoot || right.isRoot)
     left.setAdditionalCount(left.getAdditionalCount + right.getAdditionalCount)
     left.getAggregates.addAll(right.getAggregates) // this correctly resets the aggregates' targets
 

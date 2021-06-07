@@ -112,9 +112,9 @@ class ConverterTest extends UnitTest with JsonDocs {
                                     additionalCount: Int,
                                     properties: Int)(entity: Entity): Unit = {
     entity.getName shouldEqual name
-    entity.isRoot shouldBe root
     entity.getVersions should have size 1
     val version = entity.getVersions.get(0)
+    version.isRoot shouldBe root
     version.getAggregates should have size aggregates
     version.getAdditionalCount shouldBe additionalCount
     version.getProperties should have size properties

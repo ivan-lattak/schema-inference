@@ -4,14 +4,18 @@ import scala.annotation.tailrec
 import scala.collection.{SortedMap, mutable}
 
 sealed case class InternalEntityVersion(properties: SortedMap[String, InternalProperty],
+                                        private var _root: Boolean,
                                         private[schema] val liveAggregates: mutable.Buffer[InternalAggregate] = mutable.ListBuffer.empty,
                                         private var _additionalCount: Int = 0) {
+
+  def root: Boolean = _root
 
   def additionalCount: Int = _additionalCount
 
   def count: Int = liveAggregates.size + additionalCount
 
   def mergeFrom(that: InternalEntityVersion): this.type = {
+    _root ||= that.root
     that.liveAggregates.foreach(_.target = this)
     liveAggregates ++= that.liveAggregates
     that.liveAggregates.clear()

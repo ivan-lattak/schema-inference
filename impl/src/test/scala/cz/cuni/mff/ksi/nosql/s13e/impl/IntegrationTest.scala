@@ -108,16 +108,10 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
         try source.mkString finally source.close()
       }
 
-      it("should correctly convert with article being root", IntegrationTest) {
+      it("should correctly convert", IntegrationTest) {
         val expected = readClassPathResource("running_example_article_root.json")
         val article :: _ = schema.getEntities.asScala.toList
         SchemaInference.convertToJsonSchema(schema, article).toString() shouldBe expected
-      }
-
-      it("should correctly convert with author being root", IntegrationTest) {
-        val expected = readClassPathResource("running_example_author_root.json")
-        val _ :: _ :: author :: _ = schema.getEntities.asScala.toList
-        SchemaInference.convertToJsonSchema(schema, author).toString() shouldBe expected
       }
 
       describe("when author is flattened") {
@@ -125,15 +119,10 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
         val _ :: _ :: author :: _ = schema.getEntities.asScala.toList
         SchemaInference.flatten(schema, author)
 
-        it("should correctly convert with article being root", IntegrationTest) {
-          val expected = readClassPathResource("running_example_flattened_article_root.json")
+        it("should correctly convert", IntegrationTest) {
+          val expected = readClassPathResource("running_example_flattened_author.json")
           val article :: _ = schema.getEntities.asScala.toList
           SchemaInference.convertToJsonSchema(schema, article).toString() shouldBe expected
-        }
-
-        it("should correctly convert with author being root", IntegrationTest) {
-          val expected = readClassPathResource("running_example_flattened_author_root.json")
-          SchemaInference.convertToJsonSchema(schema, author).toString() shouldBe expected
         }
 
       }
@@ -161,7 +150,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
     val location2 = if (locationFlat) None else Some(schema.getEntities.get(4).getVersions.get(1))
 
     if (articleFlat) {
-      checkEntity(schema.getEntities.get(0), "article*", root = true, (0, 2)) { versions =>
+      checkEntity(schema.getEntities.get(0), "article*", (true, 0, 2)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "_id" -> aNumber,
           "article_id?" -> aReferenceOf(article, aNumber),
@@ -175,7 +164,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
         )
       }
     } else {
-      checkEntity(schema.getEntities.get(0), "article", root = true, (0, 1), (0, 1)) { versions =>
+      checkEntity(schema.getEntities.get(0), "article", (true, 0, 1), (true, 0, 1)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "_id" -> aNumber,
           "article_id" -> aReferenceOf(article, aNumber),
@@ -199,12 +188,12 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
       }
     }
 
-    checkEntity(schema.getEntities.get(1), "attachment", false, (1, 1)) { versions =>
+    checkEntity(schema.getEntities.get(1), "attachment", (false, 1, 1)) { versions =>
       checkProperties(versions.get(0).getProperties, "url" -> aString)
     }
 
     if (authorFlat) {
-      checkEntity(schema.getEntities.get(2), "author*", false, if (articleFlat) (1, 1) else (2, 0)) { versions =>
+      checkEntity(schema.getEntities.get(2), "author*", if (articleFlat) (false, 1, 1) else (false, 2, 0)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "first_name" -> aString,
           "last_name" -> aString,
@@ -213,7 +202,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
         )
       }
     } else {
-      checkEntity(schema.getEntities.get(2), "author", false, (1, 0), (1, 0)) { versions =>
+      checkEntity(schema.getEntities.get(2), "author", (false, 1, 0), (false, 1, 0)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "first_name" -> aString,
           "last_name" -> aString,
@@ -229,7 +218,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
       }
     }
 
-    checkEntity(schema.getEntities.get(3), "body", false, (1, 0)) { versions =>
+    checkEntity(schema.getEntities.get(3), "body", (false, 1, 0)) { versions =>
       checkProperties(versions.get(0).getProperties,
         "content" -> aString,
         "mime_type" -> aString,
@@ -237,7 +226,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
     }
 
     if (locationFlat) {
-      checkEntity(schema.getEntities.get(4), "location*", false, if (authorFlat) (1, 1) else (2, 0)) { versions =>
+      checkEntity(schema.getEntities.get(4), "location*", if (authorFlat) (false, 1, 1) else (false, 2, 0)) { versions =>
         checkProperties(versions.get(0).getProperties,
           "address?" -> aString,
           "latitude?" -> aString,
@@ -245,7 +234,7 @@ class IntegrationTest extends PathAnyFunSpec with Matchers with ModelChecking {
         )
       }
     } else {
-      checkEntity(schema.getEntities.get(4), "location", false, (1, 0), (1, 0)) { versions =>
+      checkEntity(schema.getEntities.get(4), "location", (false, 1, 0), (false, 1, 0)) { versions =>
         checkProperties(versions.get(0).getProperties, "address" -> aString)
         checkProperties(versions.get(1).getProperties,
           "latitude" -> aString,

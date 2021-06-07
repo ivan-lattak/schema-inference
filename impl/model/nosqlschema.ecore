@@ -15,9 +15,6 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
                              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
                              iD="true"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="root"
-                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-                             defaultValueLiteral="false"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="flattened"
                              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
                              defaultValueLiteral="false"/>
@@ -25,6 +22,9 @@
                              upperBound="-1" eType="#//EntityVersion" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EntityVersion">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="root"
+                             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+                             defaultValueLiteral="false"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalCount" lowerBound="1"
                              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"

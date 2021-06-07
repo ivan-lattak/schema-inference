@@ -25,9 +25,9 @@ private case object Injector extends (TypedDocumentImpl => InternalNoSqlSchema) 
       case JsArray(value) => InternalArray(
         value.map(construct(singularize(typeName), _, root = false)).fold(InternalUnknownType)(TypeFolder))
       case JsObject(underlying) =>
-        val entity = entities.getOrElseUpdate(typeName, InternalEntity(typeName, root))
+        val entity = entities.getOrElseUpdate(typeName, InternalEntity(typeName))
         val properties = underlying map { case (k, v) => (k, InternalProperty(k, construct(k, v, root = false))) }
-        val res = InternalAggregate(entity.getOrAddIdenticalVersion(properties))
+        val res = InternalAggregate(entity.getOrAddIdenticalVersion(properties, root))
         if (root) res.unregister() else res
       case _ => throw new IllegalArgumentException(s"Unexpected JSON type in raw schema: $jsValue") // null, boolean and number are unexpected
     }
