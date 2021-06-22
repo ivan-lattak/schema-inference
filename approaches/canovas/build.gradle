@@ -25,5 +25,5 @@ dependencies {
 task run(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'cz.cuni.mff.ksi.nosql.s13e.canovas.RunInference'
-    systemProperties utils.propertiesForApproach
+    systemProperties utils.getPropertiesWithPrefix('canovas')
 }

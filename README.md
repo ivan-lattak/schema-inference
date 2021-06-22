@@ -24,6 +24,12 @@ $ ./gradlew :<approach>:run
 
 The available approaches are `sevilla`, `baazizi`, `canovas`, and `frozza`.
 
+Use the following command to run only the new (our) approach:
+
+```shell
+$ ./gradlew :run
+```
+
 ---
 NOTE: You can also just use `gradle` instead of `./gradlew`, if you have [Gradle](https://gradle.org/install/) installed and on PATH.
 
@@ -37,7 +43,7 @@ Run parameters can be configured using [Gradle properties](https://docs.gradle.o
 -P<key>=<value>
 ```
 
-`<key>` can either be `allApproaches.<parameter>` to set the parameter for all approaches at once, or `<approach>.<parameter>`, in which case the parameter is set for the specified approach only. The meanings of different parameters are explained in the following table:
+`<key>` can either be `allApproaches.<parameter>` to set the parameter for all approaches at once, or `<approach>.<parameter>`, in which case the parameter is set for the specified approach only. (Use `schemaInference.<parameter>` to set run parameters of our new approach.) The meanings of different parameters are explained in the following table:
 
 ### Common
 
@@ -47,6 +53,7 @@ Run parameters can be configured using [Gradle properties](https://docs.gradle.o
 | `dbName`         | The name of the database containing the input data.                 | `inference(Extended)?`        | all                            |
 | `outputFile`     | The path where the result of the inference will be stored.          | `build/schema.(txt,xml,json)` | all                            |
 | `collectionName` | The name of the document collection containing the input data.      | `articles`                    | `baazizi`, `canovas`, `frozza` |
+| `sparkMaster`    | The master URL for the Spark cluster.                               | `local[*]`                    | `baazizi`, `schemaInference`   |
 
 ### Sevilla
 
@@ -58,7 +65,6 @@ Run parameters can be configured using [Gradle properties](https://docs.gradle.o
 
 | Parameter     | Meaning                                                                                   | Default value |
 | ------------- | ----------------------------------------------------------------------------------------- | ------------- |
-| `sparkMaster` | The master URL for the Spark cluster.                                                     | `local[*]`    |
 | `equivalence` | The equivalence relation to use for the type reduction. Can be `k` (kind) or `l` (label). | `k`           |
 
 ### Canovas

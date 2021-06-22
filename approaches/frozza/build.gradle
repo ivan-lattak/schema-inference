@@ -41,7 +41,7 @@ task start {
 task run(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'cz.cuni.mff.ksi.nosql.s13e.frozza.RunInference'
-    systemProperties utils.propertiesForApproach
+    systemProperties utils.getPropertiesWithPrefix('frozza')
 }
 
 task stop {
@@ -72,12 +72,14 @@ static def npmExists() {
     }
 }
 
-tasks.all {
-    onlyIf {
-        if (npmExists()) {
-            return true
+['install', 'start', 'run', 'stop'].each {
+    tasks.named(it) {
+        onlyIf {
+            if (npmExists()) {
+                return true
+            }
+            System.err.println("Skipping task $name, npm was not found! Make sure you have both node.js and npm installed and accessible on PATH.")
+            return false
         }
-        System.err.println("Skipping task $name, npm was not found! Make sure you have both node.js and npm installed and accessible on PATH.")
-        return false
     }
 }

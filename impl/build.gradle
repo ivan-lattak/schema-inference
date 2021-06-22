@@ -22,7 +22,7 @@ dependencies {
     modelImplementation 'org.eclipse.emf:org.eclipse.emf.ecore:2.23.0'
     modelImplementation 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.16.0'
 
-    implementation sourceSets.model.output
+    api sourceSets.model.output
     implementation configurations.modelImplementation
 
     implementation project(':utils:annotation')

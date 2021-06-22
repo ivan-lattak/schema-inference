@@ -21,27 +21,28 @@ class UtilsExtension {
         this.project = project
     }
 
-    Map<String, ?> getPropertiesForApproach() {
-        Map<String, ?> propsForApproach = [:]
-        String approachPrefix = project.path.substring(':'.length()) + '.'
-        fillFromAll(propsForApproach, approachPrefix)
-        fillFromCurrent(propsForApproach, approachPrefix)
+    Map<String, Object> getPropertiesWithPrefix(String prefix) {
+        Map<String, Object> propsForApproach = [:]
+        String prefixWithDot = prefix.endsWith('.') ? prefix : prefix + '.'
+
+        fillFromAll(propsForApproach, prefixWithDot)
+        fillFromCurrent(propsForApproach, prefixWithDot)
 
         return propsForApproach
     }
 
-    private void fillFromAll(Map<String, Object> properties, String approachPrefix) {
+    private void fillFromAll(Map<String, Object> properties, String prefix) {
         project.properties.each {
             if (it.key.startsWith('allApproaches.')) {
-                def newKey = approachPrefix + it.key.substring('allApproaches.'.length())
+                def newKey = prefix + it.key.substring('allApproaches.'.length())
                 properties[newKey] = it.value
             }
         }
     }
 
-    private void fillFromCurrent(Map<String, Object> properties, String approachPrefix) {
+    private void fillFromCurrent(Map<String, Object> properties, String prefix) {
         project.properties.each {
-            if (it.key.startsWith(approachPrefix)) {
+            if (it.key.startsWith(prefix)) {
                 properties << it
             }
         }
