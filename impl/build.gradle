@@ -29,7 +29,7 @@ dependencies {
 
     implementation 'com.google.guava:guava:16.0.1'
 
-    implementation "com.typesafe.play:play-json_$scalaVersion:2.7.4"
+    api "com.typesafe.play:play-json_$scalaVersion:2.7.4"
     implementation "com.typesafe.scala-logging:scala-logging_$scalaVersion:3.9.3"
 
     implementation "org.apache.spark:spark-sql_$scalaVersion:2.4.5"

@@ -13,6 +13,12 @@ import play.api.libs.json.{JsObject, Json}
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
+/**
+ * Loads data from a MongoDB database given by the constructor parameters.
+ *
+ * @param mongoHost The hostname of the MongoDB instance to load the data from.
+ * @param dbName    The name of the database to load the data from.
+ */
 case class MongoDataLoader(mongoHost: String,
                            dbName: String) extends DataLoader {
 
