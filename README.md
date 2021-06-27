@@ -55,6 +55,13 @@ Run parameters can be configured using [Gradle properties](https://docs.gradle.o
 | `collectionName` | The name of the document collection containing the input data.      | `articles`                    | `baazizi`, `canovas`, `frozza` |
 | `sparkMaster`    | The master URL for the Spark cluster.                               | `local[*]`                    | `baazizi`, `schemaInference`   |
 
+---
+**NOTE**
+
+Based on the provided master URL, the Spark driver can function in a local or server mode. In local mode, the driver starts a number of threads in the local JVM to act as workers and no Spark server is necessary. In server mode, the driver uses the provided Spark master URL to connect to a standalone Spark cluster, which then handles the data processing. Refer to the [documentation](https://spark.apache.org/docs/latest/submitting-applications.html#master-urls) for more details.
+
+---
+
 ### Sevilla
 
 | Parameter      | Meaning                                                                            | Default value  |
