@@ -1,0 +1,61 @@
+[{
+	"_id": 1,
+	"author": {
+		"first_name": "John",
+		"last_name": "Doe",
+		"phone_number": "518-555-0168",
+		"messages": ["Hello!", "Hi there!"],
+		"location": {
+			"latitude": "-48.875000",
+			"longitude": "-123.393333"
+		}
+	}
+}, {
+	"_id": 2,
+	"author": {
+		"first_name": "John",
+		"last_name": "Doe",
+		"phone_number": "518-555-0168",
+		"messages": ["Hello!", "Hi there!"],
+		"location": {
+			"latitude": "-48.875000",
+			"longitude": "-123.393333"
+		}
+	}
+}, {
+	"_id": 3,
+	"author": {
+		"first_name": "John",
+		"last_name": "Doe",
+		"phone_number": "518-555-0168",
+		"messages": ["Hello!", "Hi there!"],
+		"location": {
+			"latitude": "-48.875000",
+			"longitude": "-123.393333"
+		}
+	}
+}, {
+	"_id": 4,
+	"author": {
+		"first_name": "John",
+		"last_name": "Doe",
+		"phone_number": "518-555-0168",
+		"messages": ["Hello!", "Hi there!"],
+		"location": {
+			"latitude": "-48.875000",
+			"longitude": "-123.393333"
+		}
+	}
+}, {
+	"_id": 5,
+	"author": {
+		"first_name": "John",
+		"last_name": "Doe",
+		"phone_number": "518-555-0168",
+		"messages": ["Hello!", "Hi there!"],
+		"location": {
+			"latitude": "-48.875000",
+			"longitude": "-123.393333"
+		}
+	}
+}]

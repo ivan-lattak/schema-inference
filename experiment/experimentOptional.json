@@ -1,0 +1,47 @@
+[{
+	"_id": 1,
+	"timestamp": "2021-02-06T16:31:32.029Z",
+	"body": {
+		"content": "<p>Article body with HTML tags &amp; entities<p>",
+		"mime_type": "text/plain",
+		"length": 56,
+		"compressed": true
+	},
+	"comments": ["I like this", ":)"],
+	"published": true
+}, {
+	"_id": 2,
+	"body": {
+		"content": "<p>Article body with HTML tags &amp; entities<p>",
+		"mime_type": "text/plain",
+		"length": 56
+	}
+}, {
+	"_id": 3,
+	"timestamp": "2021-04-10T04:19:45.489Z",
+	"body": {
+		"content": "<p>Article body with HTML tags &amp; entities<p>",
+		"mime_type": "text/plain",
+		"length": 56,
+		"compressed": true
+	},
+	"comments": ["I like this"],
+	"published": true
+}, {
+	"_id": 4,
+	"body": {
+		"content": "<p>Article body with HTML tags &amp; entities<p>",
+		"mime_type": "text/plain",
+		"length": 56
+	}
+}, {
+	"_id": 5,
+	"timestamp": "2021-01-24T11:53:18.245Z",
+	"body": {
+		"content": "<p>Article body with HTML tags &amp; entities<p>",
+		"mime_type": "text/plain",
+		"length": 56,
+		"compressed": true
+	},
+	"published": false
+}]
