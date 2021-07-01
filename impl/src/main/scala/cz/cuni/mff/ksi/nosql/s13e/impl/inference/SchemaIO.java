@@ -29,6 +29,7 @@ public final class SchemaIO {
     }
 
     public static NoSQLSchema save(NoSQLSchema schema, Path filePath) throws IOException {
+        Files.createDirectories(filePath.getParent());
         try (OutputStream outputStream = Files.newOutputStream(filePath)) {
             return save(schema, outputStream);
         }

@@ -19,6 +19,7 @@ dependencies {
     // scala libraries
     implementation 'org.scala-lang:scala-library:2.12.13'
     implementation 'org.apache.spark:spark-core_2.12:2.4.5' // ':provided'
+    implementation "org.mongodb.scala:mongo-scala-driver_2.12:4.0.5"
     implementation 'org.mongodb.spark:mongo-spark-connector_2.12:3.0.1'
     implementation 'com.typesafe.play:play-json_2.12:2.7.4'
 

@@ -36,6 +36,7 @@ public class RunInference {
         JsonSimpleDiscoverer discoverer = new JsonSimpleDiscoverer();
         EPackage ePackage = discoverer.discover(source);
 
+        Files.createDirectories(new File(outputFile).toPath().getParent());
         ModelHelper.saveEPackage(ePackage, new File(outputFile));
     }
 

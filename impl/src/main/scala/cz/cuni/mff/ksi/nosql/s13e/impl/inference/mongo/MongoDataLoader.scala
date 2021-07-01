@@ -7,6 +7,9 @@ import cz.cuni.mff.ksi.nosql.s13e.impl.{DataLoader, TypedDocument}
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.bson.Document
+import org.bson.codecs.DocumentCodec
+import org.bson.codecs.configuration.CodecRegistries
+import org.mongodb.scala.bson.codecs.BsonTypeClassMap
 import org.mongodb.scala.{MongoClient, Observable}
 import play.api.libs.json.{JsObject, Json}
 
@@ -24,6 +27,8 @@ case class MongoDataLoader(mongoHost: String,
 
   private val mongoUri = s"mongodb://$mongoHost/"
 
+  private def bsonCodec = new DocumentCodec(CodecRegistries.fromRegistries(MongoClient.DEFAULT_CODEC_REGISTRY), new BsonTypeClassMap)
+
   override def loadData(sc: SparkContext): RDD[TypedDocument] = {
     def getReadConfig(collectionName: String): ReadConfig = ReadConfig(Map(
       "uri" -> mongoUri,
@@ -33,7 +38,7 @@ case class MongoDataLoader(mongoHost: String,
 
     def loadFromCollection(collectionName: String): RDD[TypedDocument] =
       loadDocuments(sc, getReadConfig(collectionName))
-        .map(_.toJson)
+        .map(_.toJson(bsonCodec))
         .map(Json.parse(_).asInstanceOf[JsObject])
         .map(TypedDocumentImpl(collectionName, _))
 

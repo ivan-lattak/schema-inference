@@ -26,6 +26,7 @@ public class RunInference {
 
     public static void main(String[] args) throws IOException {
         CountingType type = SchemaInference.infer(sparkMaster, mongoHost, dbName, collectionName, equivalence);
+        Files.createDirectories(Paths.get(outputFile).getParent());
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputFile))) {
             writer.write(type.toString());
             writer.newLine();

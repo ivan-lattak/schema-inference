@@ -58,7 +58,7 @@ public class CloseableInferenceClient implements Closeable {
         }
     }
 
-    public Batch waitUntilLastBatchDone(BatchInputParams params) throws IOException, InterruptedException {
+    public Optional<Batch> waitUntilLastBatchDone(BatchInputParams params) throws IOException, InterruptedException {
         String expectedDbUri = String.format("%s:%s/%s", params.getAddress(), params.getPort(), params.getDatabaseName());
         while (true) {
             List<Batch> batches = getForObject("/batches", BATCH_LIST_TYPE);
@@ -66,9 +66,9 @@ public class CloseableInferenceClient implements Closeable {
                 .filter(b -> b.getDbUri().equals(expectedDbUri))
                 .filter(b -> b.getCollectionName().equals(params.getCollectionName()))
                 .max(comparing(Batch::getCreatedAt))
-                .filter(b -> b.getStatus().equals("DONE"));
+                .filter(b -> b.getStatus().equals("DONE") || b.getStatus().equals("ERROR"));
             if (lastCreatedBatch.isPresent()) {
-                return lastCreatedBatch.get();
+                return lastCreatedBatch.filter(b -> b.getStatus().equals("DONE"));
             }
             //noinspection BusyWait
             Thread.sleep(1000);

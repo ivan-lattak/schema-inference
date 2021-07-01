@@ -8,6 +8,8 @@ import cz.cuni.mff.ksi.nosql.s13e.frozza.model.Credentials;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Optional;
 
 public class RunInference {
 
@@ -34,8 +36,9 @@ public class RunInference {
             client.login(new Credentials(inferrerEmail, inferrerPassword));
             BatchInputParams params = new BatchInputParams(mongoHost, "27017", dbName, collectionName);
             client.createBatch(params);
-            Batch batch = client.waitUntilLastBatchDone(params);
-            JsonNode schema = client.generateJsonSchema(batch);
+            Optional<Batch> batch = client.waitUntilLastBatchDone(params);
+            JsonNode schema = client.generateJsonSchema(batch.orElseThrow(() -> new RuntimeException("The inference batch finished with an error.")));
+            Files.createDirectories(new File(outputFile).toPath().getParent());
             objectMapper.writeValue(new File(outputFile), schema);
         }
     }

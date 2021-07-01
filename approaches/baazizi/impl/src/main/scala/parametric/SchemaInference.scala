@@ -3,12 +3,17 @@ package parametric
 import com.mongodb.spark.MongoSpark
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+import org.bson.codecs.configuration.CodecRegistries
+import org.bson.codecs.{BsonTypeClassMap, DocumentCodec}
+import org.mongodb.scala.MongoClient
 import parametric.typeDefinition._
 import parametric.typeInference._
 import parametric.typeReduction._
 import play.api.libs.json.{JsNull, JsValue, Json}
 
 object SchemaInference {
+  private def bsonCodec = new DocumentCodec(CodecRegistries.fromRegistries(MongoClient.DEFAULT_CODEC_REGISTRY), new BsonTypeClassMap)
+
   def infer(sparkMaster: String,
             mongoHost: String,
             dbName: String,
@@ -27,7 +32,7 @@ object SchemaInference {
       val helper: Helper = new Helper()
       val order: (StructuralType, StructuralType) => Int = helper.whichOrdering(equivalence)
       /* load json documents */
-      val objects: RDD[String] = MongoSpark.load(spark.sparkContext).map(_.toJson)
+      val objects: RDD[String] = MongoSpark.load(spark.sparkContext).map(_.toJson(bsonCodec))
 
       /* infer the schema */
       val reduction = new Reduction()

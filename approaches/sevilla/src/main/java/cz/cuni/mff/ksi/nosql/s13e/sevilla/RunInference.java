@@ -4,6 +4,10 @@ import com.google.gson.JsonArray;
 import es.um.nosql.s13e.json2dbschema.main.BuildNoSQLSchema;
 import es.um.nosql.s13e.nosqlimport.db.mongodb.MongoDBImport;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class RunInference {
 
     public static final String PROPERTY_MONGO_HOST = "sevilla.mongoHost";
@@ -16,9 +20,10 @@ public class RunInference {
     private static final String mapReduceDir = System.getProperty(PROPERTY_MAP_REDUCE_DIR, "mapreduce/v2");
     private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/schema.xml");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         MongoDBImport importer = new MongoDBImport(mongoHost, dbName);
         JsonArray array = importer.mapRed2Array(mapReduceDir);
+        Files.createDirectories(Paths.get(outputFile).getParent());
         new BuildNoSQLSchema().buildFromGsonArray(dbName, array, outputFile);
     }
 
