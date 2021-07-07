@@ -7,6 +7,7 @@ import net.jimblackler.jsonschemafriend.GenerationException;
 import net.jimblackler.jsonschemafriend.Schema;
 import net.jimblackler.jsonschemafriend.SchemaStore;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -31,7 +32,9 @@ public class GenerateJson {
         Generator generator = new Generator(new GeneratorConfiguration(), schemaStore, new Random(seed));
         JSONArray array = new JSONArray();
         for (long i = 0; i < documentCount; i++) {
-            array.put(generator.generate(schema, 100));
+            Object object = generator.generate(schema, 100);
+            ((JSONObject) object).put("_id", i);
+            array.put(object);
         }
 
         Path outputPath = Paths.get(outputFile);
