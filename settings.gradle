@@ -11,3 +11,6 @@ file('approaches').eachDir { dir ->
         apply from: "$dir/settings.gradle"
     }
 }
+
+include 'datagen'
+project(':datagen').projectDir = file('experiment/datagen')

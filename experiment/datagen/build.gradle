@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'cz.cuni.mff.ksi.nosql.s13e'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'net.jimblackler:jsongenerator:0.4.3'
+    implementation 'net.jimblackler:jsonschemafriend:0.9.1'
+    implementation 'org.json:json:20200518'
+}
+
+task generateJson(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'cz.cuni.mff.ksi.nosql.s13e.datagen.GenerateJson'
+}
