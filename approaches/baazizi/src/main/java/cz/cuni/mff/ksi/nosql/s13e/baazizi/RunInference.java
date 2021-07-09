@@ -25,7 +25,10 @@ public class RunInference {
     private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/schema.txt");
 
     public static void main(String[] args) throws IOException {
+        long start = System.currentTimeMillis();
         CountingType type = SchemaInference.infer(sparkMaster, mongoHost, dbName, collectionName, equivalence);
+        long runtime = System.currentTimeMillis() - start;
+        System.out.printf("Inference finished in: %d milliseconds%n", runtime);
         Files.createDirectories(Paths.get(outputFile).getParent());
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputFile))) {
             writer.write(type.toString());

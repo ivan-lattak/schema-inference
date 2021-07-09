@@ -21,8 +21,11 @@ public class RunInference {
     private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/schema.xml");
 
     public static void main(String[] args) throws IOException {
+        long start = System.currentTimeMillis();
         MongoDBImport importer = new MongoDBImport(mongoHost, dbName);
         JsonArray array = importer.mapRed2Array(mapReduceDir);
+        long runtime = System.currentTimeMillis() - start;
+        System.out.printf("Inference finished in: %d milliseconds%n", runtime);
         Files.createDirectories(Paths.get(outputFile).getParent());
         new BuildNoSQLSchema().buildFromGsonArray(dbName, array, outputFile);
     }

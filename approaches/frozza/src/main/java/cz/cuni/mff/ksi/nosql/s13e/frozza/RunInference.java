@@ -35,9 +35,12 @@ public class RunInference {
         try (CloseableInferenceClient client = new CloseableInferenceClient(inferrerUrl, objectMapper)) {
             client.login(new Credentials(inferrerEmail, inferrerPassword));
             BatchInputParams params = new BatchInputParams(mongoHost, "27017", dbName, collectionName);
+            long start = System.currentTimeMillis();
             client.createBatch(params);
             Optional<Batch> batch = client.waitUntilLastBatchDone(params);
             JsonNode schema = client.generateJsonSchema(batch.orElseThrow(() -> new RuntimeException("The inference batch finished with an error.")));
+            long runtime = System.currentTimeMillis() - start;
+            System.out.printf("Inference finished in: %d milliseconds%n", runtime);
             Files.createDirectories(new File(outputFile).toPath().getParent());
             objectMapper.writeValue(new File(outputFile), schema);
         }

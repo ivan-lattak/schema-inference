@@ -29,12 +29,15 @@ public class RunInference {
     public static void main(String[] args) throws IOException {
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
+        long start = System.currentTimeMillis();
         new MongoImporter(mongoHost, dbName, collectionName, jsonDir).importToFile();
         JsonSource source = new JsonSource(collectionName);
         source.addJsonData(null, Files.newBufferedReader(Paths.get(jsonDir).resolve(collectionName + ".json")));
 
         JsonSimpleDiscoverer discoverer = new JsonSimpleDiscoverer();
         EPackage ePackage = discoverer.discover(source);
+        long runtime = System.currentTimeMillis() - start;
+        System.out.printf("Inference finished in: %d milliseconds%n", runtime);
 
         Files.createDirectories(new File(outputFile).toPath().getParent());
         ModelHelper.saveEPackage(ePackage, new File(outputFile));

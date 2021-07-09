@@ -22,7 +22,10 @@ public class RunInference {
 
     public static void main(String[] args) throws IOException {
         DataLoader dataLoader = new MongoDataLoader(mongoHost, dbName);
+        long start = System.currentTimeMillis();
         NoSQLSchema schema = SchemaInference.infer(sparkMaster, dataLoader, "Inference DB");
+        long runtime = System.currentTimeMillis() - start;
+        System.out.printf("Inference finished in: %d milliseconds%n", runtime);
         SchemaInference.save(schema, Paths.get(outputFile));
     }
 
