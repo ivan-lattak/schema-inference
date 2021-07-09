@@ -1,47 +1,76 @@
 package cz.cuni.mff.ksi.nosql.s13e.datagen;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
 import net.jimblackler.jsongenerator.Configuration;
 import net.jimblackler.jsongenerator.Generator;
 import net.jimblackler.jsongenerator.JsonGeneratorException;
 import net.jimblackler.jsonschemafriend.GenerationException;
 import net.jimblackler.jsonschemafriend.Schema;
 import net.jimblackler.jsonschemafriend.SchemaStore;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.bson.Document;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class GenerateJson {
 
+    private static final int BATCH_COUNT = 100;
+
     public static final String PROPERTY_SEED = "datagen.seed";
     public static final String PROPERTY_DOCUMENT_COUNT = "datagen.documentCount";
-    public static final String PROPERTY_OUTPUT_FILE = "datagen.outputFile";
+    public static final String PROPERTY_DB_NAME = "datagen.dbName";
 
     private static final long seed = Long.getLong(PROPERTY_SEED, 0xdeadbeef);
-    private static final long documentCount = Long.getLong(PROPERTY_DOCUMENT_COUNT, 10_000);
-    private static final String outputFile = System.getProperty(PROPERTY_OUTPUT_FILE, "build/generated.json");
+    private static final int documentCount = Integer.getInteger(PROPERTY_DOCUMENT_COUNT, 10_000);
+    private static final String dbName = System.getProperty(PROPERTY_DB_NAME, "experimentPerformance");
 
-    public static void main(String[] args) throws GenerationException, JsonGeneratorException, IOException {
+    static {
+        if (documentCount % BATCH_COUNT != 0) {
+            throw new RuntimeException("documentCount must be divisible by " + BATCH_COUNT);
+        }
+    }
+
+    private static final int batchSize = documentCount / BATCH_COUNT;
+
+    @SuppressWarnings({"ReturnOfNull", "ConstantConditions"})
+    public static void main(String[] args) throws GenerationException {
         SchemaStore schemaStore = new SchemaStore();
         Schema schema = schemaStore.loadSchema(GenerateJson.class.getResource("schema.json"));
         Generator generator = new Generator(new GeneratorConfiguration(), schemaStore, new Random(seed));
-        JSONArray array = new JSONArray();
-        for (long i = 0; i < documentCount; i++) {
-            Object object = generator.generate(schema, 100);
-            ((JSONObject) object).put("_id", i);
-            array.put(object);
-        }
 
-        Path outputPath = Paths.get(outputFile);
-        Files.createDirectories(outputPath.getParent());
-        try (BufferedWriter writer = Files.newBufferedWriter(outputPath)) {
-            array.write(writer);
+        MongoClient client = new MongoClient();
+        client.startSession().withTransaction(() -> {
+            try {
+                client.dropDatabase(dbName);
+                MongoCollection<Document> articles = client.getDatabase(dbName).getCollection("articles");
+
+                List<Document> documents = new ArrayList<>(batchSize);
+                for (int batchNumber = 0; batchNumber < BATCH_COUNT; batchNumber++) {
+                    for (int i = 0; i < batchSize; i++) {
+                        Document document = Document.parse(generator.generate(schema, 10).toString());
+                        document.put("_id", batchNumber * batchSize + i);
+                        documents.add(document);
+                    }
+                    articles.insertMany(documents);
+                    documents.clear();
+                    System.out.println(dots(batchNumber + 1));
+                }
+
+                return null;
+            } catch (JsonGeneratorException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    private static String dots(int size) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            builder.append(".");
         }
+        return builder.toString();
     }
 
     private static class GeneratorConfiguration implements Configuration {

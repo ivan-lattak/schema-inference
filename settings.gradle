@@ -12,5 +12,5 @@ file('approaches').eachDir { dir ->
     }
 }
 
-include 'datagen'
-project(':datagen').projectDir = file('experiment/datagen')
+include ':experiment:datagen'
+include ':experiment:performance'

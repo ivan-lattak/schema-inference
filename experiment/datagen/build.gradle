@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'utils'
 }
 
 group 'cz.cuni.mff.ksi.nosql.s13e'
@@ -14,12 +15,15 @@ repositories {
 }
 
 dependencies {
+    implementation project(':utils:annotation')
+
     implementation 'net.jimblackler:jsongenerator:0.4.3'
     implementation 'net.jimblackler:jsonschemafriend:0.9.1'
-    implementation 'org.json:json:20200518'
+    implementation 'org.mongodb:mongo-java-driver:3.12.8'
 }
 
 task generateJson(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'cz.cuni.mff.ksi.nosql.s13e.datagen.GenerateJson'
+    systemProperties utils.getPropertiesWithPrefix('datagen')
 }
