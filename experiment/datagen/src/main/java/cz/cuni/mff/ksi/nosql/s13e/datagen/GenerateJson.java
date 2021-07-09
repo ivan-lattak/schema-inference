@@ -34,35 +34,27 @@ public class GenerateJson {
 
     private static final int batchSize = documentCount / BATCH_COUNT;
 
-    @SuppressWarnings({"ReturnOfNull", "ConstantConditions"})
-    public static void main(String[] args) throws GenerationException {
+    public static void main(String[] args) throws GenerationException, JsonGeneratorException {
         SchemaStore schemaStore = new SchemaStore();
         Schema schema = schemaStore.loadSchema(GenerateJson.class.getResource("schema.json"));
         Generator generator = new Generator(new GeneratorConfiguration(), schemaStore, new Random(seed));
 
         MongoClient client = new MongoClient();
-        client.startSession().withTransaction(() -> {
-            try {
-                client.dropDatabase(dbName);
-                MongoCollection<Document> articles = client.getDatabase(dbName).getCollection("articles");
+        client.dropDatabase(dbName);
+        MongoCollection<Document> articles = client.getDatabase(dbName).getCollection("articles");
 
-                List<Document> documents = new ArrayList<>(batchSize);
-                for (int batchNumber = 0; batchNumber < BATCH_COUNT; batchNumber++) {
-                    for (int i = 0; i < batchSize; i++) {
-                        Document document = Document.parse(generator.generate(schema, 10).toString());
-                        document.put("_id", batchNumber * batchSize + i);
-                        documents.add(document);
-                    }
-                    articles.insertMany(documents);
-                    documents.clear();
-                    System.out.println(dots(batchNumber + 1));
-                }
-
-                return null;
-            } catch (JsonGeneratorException e) {
-                throw new RuntimeException(e);
+        List<Document> documents = new ArrayList<>(batchSize);
+        for (int batchNumber = 0; batchNumber < BATCH_COUNT; batchNumber++) {
+            for (int i = 0; i < batchSize; i++) {
+                Document document = Document.parse(generator.generate(schema, 10).toString());
+                document.put("_id", batchNumber * batchSize + i);
+                documents.add(document);
             }
-        });
+            articles.insertMany(documents);
+            documents.clear();
+            System.out.println(dots(batchNumber + 1));
+        }
+
     }
 
     private static String dots(int size) {
