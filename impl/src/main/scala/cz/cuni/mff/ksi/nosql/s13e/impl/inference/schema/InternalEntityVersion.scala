@@ -31,7 +31,7 @@ sealed case class InternalEntityVersion(properties: SortedMap[String, InternalPr
 
   // this aggregate is being merged with another or is root, we forget it but increment the additional counter
   private[schema] def unregister(aggregate: InternalAggregate): this.type = {
-    liveAggregates -= aggregate
+    liveAggregates.remove(liveAggregates.indexWhere(_ eq aggregate))
     _additionalCount += 1
     this
   }
