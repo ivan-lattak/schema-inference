@@ -23,7 +23,7 @@ public class GenerateJson {
     public static final String PROPERTY_DB_NAME = "datagen.dbName";
 
     private static final long seed = Long.getLong(PROPERTY_SEED, 0xdeadbeef);
-    private static final int documentCount = Integer.getInteger(PROPERTY_DOCUMENT_COUNT, 10_000);
+    private static final int documentCount = Integer.getInteger(PROPERTY_DOCUMENT_COUNT, 1000_000);
     private static final String dbName = System.getProperty(PROPERTY_DB_NAME, "experimentPerformance");
 
     static {
@@ -54,7 +54,6 @@ public class GenerateJson {
             documents.clear();
             System.out.println(dots(batchNumber + 1));
         }
-
     }
 
     private static String dots(int size) {
