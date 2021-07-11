@@ -16,7 +16,7 @@ import java.util.*;
 
 public class PerformanceExperiment {
 
-    public static final int EXPERIMENT_COUNT = 8;
+    public static final List<Integer> EXPERIMENT_SIZES = Arrays.asList(1, 2, 4, 8, 16, 32, 64, 128);
     public static final int PERMUTATION_COUNT = 30;
     public static final int PERMUTATION_SIZE_MULTIPLIER = 1000;
     public static final int ITERATIONS_PER_APPROACH = 10;
@@ -37,8 +37,8 @@ public class PerformanceExperiment {
 
     public static void main(String[] args) throws IOException {
         Files.createDirectories(outputDir);
-        for (int i = 0; i < EXPERIMENT_COUNT; i++) {
-            runExperiment(1 << i);
+        for (int size : EXPERIMENT_SIZES) {
+            runExperiment(size);
         }
         Files.delete(tempMeasurementsFile);
     }
