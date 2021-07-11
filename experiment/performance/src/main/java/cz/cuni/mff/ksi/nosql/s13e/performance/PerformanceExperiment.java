@@ -1,6 +1,5 @@
 package cz.cuni.mff.ksi.nosql.s13e.performance;
 
-import com.mongodb.MongoClient;
 import org.bson.Document;
 import org.gradle.tooling.BuildException;
 import org.gradle.tooling.GradleConnector;
@@ -61,9 +60,11 @@ public class PerformanceExperiment {
         registerMeasurements(experimentSize, "New approach", runAndGatherMeasurements("New approach", ""));
     }
 
-    private static void generatePermutation(int permutationNumber, int experimentSize) {
+    private static void generatePermutation(int permutationNumber, int experimentSize) throws IOException {
         System.out.printf("  Generating permutation with size %dk, %d/%d...%n", experimentSize, permutationNumber + 1, PERMUTATION_COUNT);
-        try (MongoClient client = new MongoClient()) {
+
+        List<String> restartCommand = Arrays.asList("nosql", "restart", "mongodb");
+        new MongoClientWithRestart(restartCommand).runWithRestart(client -> {
             client.dropDatabase(tempDbName);
             List<Document> documents = new ArrayList<>(PERMUTATION_SIZE_MULTIPLIER);
             for (int i = 0; i < experimentSize; i++) {
@@ -78,7 +79,7 @@ public class PerformanceExperiment {
                 client.getDatabase(tempDbName).getCollection(COLLECTION_NAME).insertMany(documents);
                 documents.clear();
             }
-        }
+        });
     }
 
     private static Document sampleWithSize(int documentCount) {
