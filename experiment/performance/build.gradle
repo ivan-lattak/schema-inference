@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'utils'
+}
+
+group 'cz.cuni.mff.ksi.nosql.s13e'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+}
+
+dependencies {
+    implementation project(':utils:annotation')
+
+    implementation 'org.mongodb:mongo-java-driver:3.12.8'
+    implementation 'org.gradle:gradle-tooling-api:6.8.2'
+}
+
+task runPerformanceExperiment(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'cz.cuni.mff.ksi.nosql.s13e.performance.PerformanceExperiment'
+}

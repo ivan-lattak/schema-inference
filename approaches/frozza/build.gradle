@@ -44,6 +44,15 @@ task run(type: JavaExec) {
     systemProperties utils.getPropertiesWithPrefix('frozza')
 }
 
+task runMeasurements(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'cz.cuni.mff.ksi.nosql.s13e.frozza.RunMeasurements'
+    args(project.findProperty('measurements.iterations') ?: 1)
+    args(project.findProperty('measurements.outputFile') ?: 'build/output')
+    args(project.findProperty('measurements.dbName') ?: 'experimentPerformanceTemp')
+    args(project.findProperty('measurements.collectionName') ?: 'articles')
+}
+
 task stop {
     doLast {
         if (isWindows()) {

@@ -39,20 +39,21 @@ public class GenerateJson {
         Schema schema = schemaStore.loadSchema(GenerateJson.class.getResource("schema.json"));
         Generator generator = new Generator(new GeneratorConfiguration(), schemaStore, new Random(seed));
 
-        MongoClient client = new MongoClient();
-        client.dropDatabase(dbName);
-        MongoCollection<Document> articles = client.getDatabase(dbName).getCollection("articles");
+        try (MongoClient client = new MongoClient()) {
+            client.dropDatabase(dbName);
+            MongoCollection<Document> articles = client.getDatabase(dbName).getCollection("articles");
 
-        List<Document> documents = new ArrayList<>(batchSize);
-        for (int batchNumber = 0; batchNumber < BATCH_COUNT; batchNumber++) {
-            for (int i = 0; i < batchSize; i++) {
-                Document document = Document.parse(generator.generate(schema, 10).toString());
-                document.put("_id", batchNumber * batchSize + i);
-                documents.add(document);
+            List<Document> documents = new ArrayList<>(batchSize);
+            for (int batchNumber = 0; batchNumber < BATCH_COUNT; batchNumber++) {
+                for (int i = 0; i < batchSize; i++) {
+                    Document document = Document.parse(generator.generate(schema, 10).toString());
+                    document.put("_id", batchNumber * batchSize + i);
+                    documents.add(document);
+                }
+                articles.insertMany(documents);
+                documents.clear();
+                System.out.println(dots(batchNumber + 1));
             }
-            articles.insertMany(documents);
-            documents.clear();
-            System.out.println(dots(batchNumber + 1));
         }
     }
 

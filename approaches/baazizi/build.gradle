@@ -22,3 +22,12 @@ task run(type: JavaExec) {
     main = 'cz.cuni.mff.ksi.nosql.s13e.baazizi.RunInference'
     systemProperties utils.getPropertiesWithPrefix('baazizi')
 }
+
+task runMeasurements(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'cz.cuni.mff.ksi.nosql.s13e.baazizi.RunMeasurements'
+    args(project.findProperty('measurements.iterations') ?: 1)
+    args(project.findProperty('measurements.outputFile') ?: 'build/output')
+    args(project.findProperty('measurements.dbName') ?: 'experimentPerformanceTemp')
+    args(project.findProperty('measurements.collectionName') ?: 'articles')
+}

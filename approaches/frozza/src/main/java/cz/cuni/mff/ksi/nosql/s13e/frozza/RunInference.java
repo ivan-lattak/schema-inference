@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -43,7 +44,7 @@ public class RunInference {
             BatchInputParams params = new BatchInputParams(mongoHost, "27017", dbName, collectionName);
             long start = System.currentTimeMillis();
             client.createBatch(params);
-            Optional<Batch> batch = client.waitUntilLastBatchDone(params);
+            Optional<Batch> batch = client.waitUntilLastBatchDone(params, Duration.ofSeconds(1), null);
             JsonNode schema = client.generateJsonSchema(batch.orElseThrow(() -> new RuntimeException("The inference batch finished with an error.")));
             long runtime = System.currentTimeMillis() - start;
             if (measurementOutputFile == null) {

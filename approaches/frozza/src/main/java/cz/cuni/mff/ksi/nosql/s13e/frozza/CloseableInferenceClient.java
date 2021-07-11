@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.Nullable;
 import java.io.Closeable;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,8 +60,10 @@ public class CloseableInferenceClient implements Closeable {
         }
     }
 
-    public Optional<Batch> waitUntilLastBatchDone(BatchInputParams params) throws IOException, InterruptedException {
+    public Optional<Batch> waitUntilLastBatchDone(BatchInputParams params, Duration period, @Nullable Duration timeout)
+        throws IOException, InterruptedException {
         String expectedDbUri = String.format("%s:%s/%s", params.getAddress(), params.getPort(), params.getDatabaseName());
+        Instant start = Instant.now();
         while (true) {
             List<Batch> batches = getForObject("/batches", BATCH_LIST_TYPE);
             Optional<Batch> lastCreatedBatch = batches.stream()
@@ -70,8 +74,11 @@ public class CloseableInferenceClient implements Closeable {
             if (lastCreatedBatch.isPresent()) {
                 return lastCreatedBatch.filter(b -> b.getStatus().equals("DONE"));
             }
+            if (timeout != null && Instant.now().isAfter(start.plus(timeout))) {
+                return Optional.empty();
+            }
             //noinspection BusyWait
-            Thread.sleep(1000);
+            Thread.sleep(period.toMillis());
         }
     }
 
