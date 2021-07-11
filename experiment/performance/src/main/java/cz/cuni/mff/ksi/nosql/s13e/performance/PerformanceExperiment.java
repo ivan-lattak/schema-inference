@@ -2,6 +2,7 @@ package cz.cuni.mff.ksi.nosql.s13e.performance;
 
 import com.mongodb.MongoClient;
 import org.bson.Document;
+import org.gradle.tooling.BuildException;
 import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.ProjectConnection;
 
@@ -82,7 +83,11 @@ public class PerformanceExperiment {
 
     private static List<String> runAndGatherMeasurements(String approachName, String projectPath) throws IOException {
         System.out.printf("    Running iterations for '%s' approach...%n", approachName);
-        runGradleMeasurementsTask(projectPath);
+        try {
+            runGradleMeasurementsTask(projectPath);
+        } catch (BuildException e) {
+            return Collections.nCopies(ITERATIONS_PER_APPROACH, "ERROR");
+        }
 
         List<String> measurements = new ArrayList<>();
         try (BufferedReader reader = Files.newBufferedReader(tempMeasurementsFile)) {
@@ -94,7 +99,7 @@ public class PerformanceExperiment {
         return measurements;
     }
 
-    private static void runGradleMeasurementsTask(String projectPath) {
+    private static void runGradleMeasurementsTask(String projectPath) throws BuildException {
         try (ProjectConnection connection = GradleConnector.newConnector()
                 .forProjectDirectory(rootProjectDir.toFile())
                 .connect()) {
