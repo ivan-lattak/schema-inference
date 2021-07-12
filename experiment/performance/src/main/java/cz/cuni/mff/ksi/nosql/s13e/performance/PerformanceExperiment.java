@@ -86,6 +86,7 @@ public class PerformanceExperiment {
         try {
             runGradleMeasurementsTask(projectPath);
         } catch (BuildException e) {
+            System.err.printf("    ERROR: Running approach '%s' failed...%n", approachName);
             return Collections.nCopies(ITERATIONS_PER_APPROACH, "ERROR");
         }
 
