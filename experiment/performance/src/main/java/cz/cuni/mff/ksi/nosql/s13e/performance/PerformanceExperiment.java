@@ -71,6 +71,10 @@ public class PerformanceExperiment {
                         .getCollection(COLLECTION_NAME)
                         .aggregate(Collections.singletonList(sampleWithSize(PERMUTATION_SIZE_MULTIPLIER)))
                         .into(documents);
+                for (int docIndex = 0; docIndex < documents.size(); docIndex++) {
+                    Document document = documents.get(docIndex);
+                    document.put("_id", i * PERMUTATION_SIZE_MULTIPLIER + docIndex);
+                }
                 client.getDatabase(tempDbName).getCollection(COLLECTION_NAME).insertMany(documents);
                 documents.clear();
             }
