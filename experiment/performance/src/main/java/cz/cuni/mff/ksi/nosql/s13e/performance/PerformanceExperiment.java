@@ -63,15 +63,17 @@ public class PerformanceExperiment {
 
     private static void generatePermutation(int permutationNumber, int experimentSize) {
         System.out.printf("  Generating permutation with size %dk, %d/%d...%n", experimentSize, permutationNumber + 1, PERMUTATION_COUNT);
-        int documentCount = experimentSize * PERMUTATION_SIZE_MULTIPLIER;
         try (MongoClient client = new MongoClient()) {
             client.dropDatabase(tempDbName);
-            List<Document> documents = new ArrayList<>(documentCount);
-            client.getDatabase(dbName)
-                    .getCollection(COLLECTION_NAME)
-                    .aggregate(Collections.singletonList(sampleWithSize(documentCount)))
-                    .into(documents);
-            client.getDatabase(tempDbName).getCollection(COLLECTION_NAME).insertMany(documents);
+            List<Document> documents = new ArrayList<>(PERMUTATION_SIZE_MULTIPLIER);
+            for (int i = 0; i < experimentSize; i++) {
+                client.getDatabase(dbName)
+                        .getCollection(COLLECTION_NAME)
+                        .aggregate(Collections.singletonList(sampleWithSize(PERMUTATION_SIZE_MULTIPLIER)))
+                        .into(documents);
+                client.getDatabase(tempDbName).getCollection(COLLECTION_NAME).insertMany(documents);
+                documents.clear();
+            }
         }
     }
 
