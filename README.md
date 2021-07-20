@@ -1,6 +1,7 @@
 # Schema Inference for NoSQL Databases
 
-Master's thesis for Faculty of Mathematics and Physics of the Charles University
+NoSQL databases are becoming increasingly more popular due to their undeniable advantages in the context of storing and processing *big data*, mainly horizontal scalability and the lack of a requirement to define a data schema upfront. In the absence of explicit schema, however, an implicit schema inherent to the stored data still exists and can be *inferred*. Once inferred, a schema is of great value to the stakeholders and database maintainers. Nevertheless, the problem of schema inference is non-trivial and is still the subject of ongoing research. We explore the many aspects of NoSQL schema inference and data modeling, analyze a number of existing schema inference solutions in terms of their inner workings and capabilities, point out their shortcomings, and devise (1) a novel horizontally scalable approach based on the *Apache Spark* platform and (2) a new *NoSQL Schema* metamodel capable of modeling i.a. inter-entity referential relationships and deeply nested JSON constructs. We
+then experimentally evaluate the newly designed approach along with the preexisting solutions with respect to their functional and performance capabilities.
 
 ## How to run
 
